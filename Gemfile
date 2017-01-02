@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'simple_form'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -53,3 +55,42 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development do
   gem 'happy_seed'
 end
+
+group :development do
+end
+
+gem 'bootstrap-sass'
+gem 'modernizr-rails'
+gem 'meta-tags', require: 'meta_tags'
+gem 'responders', '~> 2.0'
+gem 'bh'
+gem 'premailer-rails'
+gem 'nokogiri'
+gem 'devise', '~> 4.2'
+gem 'cancancan'
+gem 'omniauth'
+gem 'omniauth-oauth2', '1.3.1'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'octokit'
+group :development do
+end
+
+gem 'omniauth-google-oauth2'
+# gem 'google-api-client', require: 'google/api_client'
+
+group :development do
+end
+
+gem 'omniauth-twitter'
+gem 'twitter'
+gem 'ckeditor'
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'kaminari', github: 'amatsuda/kaminari', branch: '0-17-stable'
+gem 'formtastic', github: 'justinfrench/formtastic'
+gem 'draper', github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'dateslices'
+gem 'jazz_hands', github: 'danrabinowitz/jazz_hands', branch: 'use-newer-version-of-pry', groups: [:development, :test]

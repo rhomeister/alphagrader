@@ -1,0 +1,4 @@
+%div{ id: "#{scope}_chart", style: "height: 300px" }
+
+:javascript
+  $( function() { new Chartkick.ColumnChart( '#{scope}_chart', "/admin/stats/#{scope}" ) } )
