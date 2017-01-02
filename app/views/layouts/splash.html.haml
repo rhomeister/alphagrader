@@ -1,0 +1,60 @@
+!!! 5
+%html.no-js
+  %head
+    %meta{ :charset => 'utf-8' }/
+    %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=edge,chrome=1' }/
+
+    = display_meta_tags :site => 'Seed Site', :title => page_title, :reverse => true
+
+    %meta{ :name => 'description', :content => '' }/
+    %meta{ :name => 'viewport', :content => 'width=device-width' }/
+
+    = stylesheet_link_tag 'splash', :media => nil
+
+    -# Append your own using content_for :stylesheets
+    = yield :stylesheets
+    = javascript_include_tag 'modernizr'
+
+    = csrf_meta_tag
+
+  %body.splash#top{ data: { spy: "scroll", target: "#navbar"} }
+    = render 'chromeframe'
+    = render 'flashes'
+
+    %header.slideup.affix-top{ data: { spy: "affix", "offset-top": 10 } }
+      = navbar id: "navbar", fluid: true, position: :top, padding: 0 do
+        = vertical do
+          = link_to "Home", "#top"
+        = horizontal do
+          = nav class: 'navbar-right' do
+            = link_to "About", "#about"
+            = link_to "Features", "#features"
+            = link_to "Contact", "#contact"
+
+    = yield
+
+
+    -# Javascript at the bottom for fast page loading
+    = render 'javascripts'
+    = javascript_include_tag 'scrollReveal.js'
+    :javascript
+        $(function() { 
+          window.scrollReveal = new scrollReveal();
+          $("#top a[href^='#']").on('click', function(e) {
+            e.preventDefault();
+
+            // store hash
+            var hash = this.hash;
+
+            var nav_height = $("nav").height();
+
+            // animate
+            $('html, body').animate({
+              scrollTop: $(this.hash).offset().top - nav_height
+            }, 500, function(){
+              // when done, add hash to url
+              // (default click behaviour)
+              window.location.hash = hash;
+            });
+          });
+        });

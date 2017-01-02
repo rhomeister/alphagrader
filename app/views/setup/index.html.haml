@@ -1,0 +1,51 @@
+!!!
+%html
+  %head
+    %title HappySeed Generator setup page
+    = javascript_include_tag 'application'
+    = csrf_meta_tags 
+    / %script{:src=>"https://code.jquery.com/jquery-2.1.3.min.js"}
+    / %script{:src=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}
+    %link{:href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel=>"stylesheet"}
+    :css
+      #nav { margin-top: 25px; }
+      @media (max-width: 768px) {
+        .affix {
+            position: static;
+        }
+      }
+
+  %body
+    = render partial: "application/header"
+    = render partial: "application/flashes"
+    .container
+      .row
+        .col-sm-3
+          .panel.panel-default.affix#nav
+            .panel-heading
+              %h3.panel-title
+                Nav
+            .panel-body
+              %ul.list-unstyled
+                %li
+                  %a{ href: "/rails/mailers"}Mailer Previews
+                %li
+                  %a{ href: "#env" }Environment Variables
+                - @docs.each do |f|
+                  %li
+                    %a{ href: "##{f[:name]}"}= f[:name]
+        .col-sm-9
+          / Environment Variables
+          %h3
+            %a{ name: "env" }Environment Variables
+
+          %pre= @env
+
+          / rdocs
+          - @docs.each do |f|
+            %h3
+              %a{ name: "#{f[:name]}"}= f[:name]
+
+            ~ f[:html].html_safe
+
+            %hr

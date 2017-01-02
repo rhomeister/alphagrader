@@ -1,0 +1,4 @@
+- if !flash.empty?
+  .container#flash
+    - flash.each do |key, value|
+      = alert_box value, context: flash_class(key), dismissible: true
