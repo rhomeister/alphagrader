@@ -1,10 +1,9 @@
+# frozen_string_literal: true
 class ConfirmationsController < Devise::ConfirmationsController
   # Signin automatically if they come in through the link
   def show
     super do
-      if resource.errors.empty?
-        sign_in(resource) 
-      end
+      sign_in(resource) if resource.errors.empty?
     end
   end
 end

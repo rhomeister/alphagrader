@@ -1,4 +1,7 @@
+# frozen_string_literal: true
 class ApplicationController < ActionController::Base
+  check_authorization unless: :devise_controller?
+
   protect_from_forgery with: :exception
 
   helper_method :page_title

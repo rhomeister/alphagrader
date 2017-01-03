@@ -1,10 +1,10 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
@@ -41,9 +41,17 @@ gem 'simple_form'
 
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
+gem 'rich_pluralization',
+    git: 'https://github.com/rhomeister/rich_pluralization.git',
+    ref: '318b16d'
+
+gem 'rdiscount'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -55,17 +63,25 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'letter_opener'
+  gem 'happy_seed'
+
+
+  gem 'rubocop', require: false
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'rspec-mocks'
+  gem 'spring-commands-rspec'
+  gem 'rspec-collection_matchers'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'rails-controller-testing'
+  gem 'capybara'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-group :development do
-  gem 'happy_seed'
-end
-
-group :development do
-end
 
 gem 'bootstrap-sass'
 gem 'modernizr-rails'
@@ -96,5 +112,6 @@ gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'dateslices'
+gem 'gretel'
 
-ruby "2.3.1"
+ruby '2.3.1'

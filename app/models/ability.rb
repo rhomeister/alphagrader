@@ -1,9 +1,14 @@
+# frozen_string_literal: true
 class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user && user.admin?
-      can :manage, :all
-    end
+    can :manage, :all if user && user.admin?
+
+    can :read, Course, memberships: { user_id: user.id }
+
+    can :read, Assignment, course: { memberships: { user_id: user.id } }
+
+    can :read, Submission, authors: { id: user.id }
   end
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
@@ -9,8 +10,6 @@ FactoryGirl.define do
     email
     password '12345678'
     password_confirmation '12345678'
-    if User.devise_modules.include?(:confirmable)
-      confirmed_at Time.now
-    end
+    confirmed_at Time.now if User.devise_modules.include?(:confirmable)
   end
 end

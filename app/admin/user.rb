@@ -1,4 +1,2 @@
-begin
-  ActiveAdmin.register User
-rescue NameError
-end
+# frozen_string_literal: true
+ActiveAdmin.register User

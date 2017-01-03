@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class MakeEmailNullable < ActiveRecord::Migration
   def change
     change_column_null :users, :email, true

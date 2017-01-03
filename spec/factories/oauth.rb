@@ -1,10 +1,9 @@
+# frozen_string_literal: true
 FactoryGirl.define do
-  factory :oauth_user, :class => 'User' do
-    before(:create) do |user, evaluator|
+  factory :oauth_user, class: 'User' do
+    before(:create) do |user, _evaluator|
       user.oauth_callback = true
     end
-    if User.devise_modules.include? :confirmable
-      confirmed_at Time.now
-    end
+    confirmed_at Time.now if User.devise_modules.include? :confirmable
   end
 end

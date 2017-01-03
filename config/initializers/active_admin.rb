@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 ActiveAdmin.setup do |config|
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "AlphaGrader"
+  config.site_title = 'AlphaGrader'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -194,7 +195,7 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   config.register_javascript '//www.google.com/jsapi'
   config.register_javascript 'chartkick.js'
-  config.register_javascript 'ckeditor/init.js'  #   config.register_javascript 'my_javascript.js'
+  config.register_javascript 'ckeditor/init.js' #   config.register_javascript 'my_javascript.js'
 
   # == CSV options
   #

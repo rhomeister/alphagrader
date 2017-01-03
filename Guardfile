@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
@@ -31,12 +32,12 @@ cucumber_options = {
   # notification: false
 }
 
-guard "cucumber", cucumber_options do
+guard 'cucumber', cucumber_options do
   watch(%r{^features/.+\.feature$})
-  watch(%r{^features/support/.+$}) { "features" }
+  watch(%r{^features/support/.+$}) { 'features' }
 
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "features"
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'features'
   end
 end
 
@@ -49,8 +50,8 @@ end
 #  * zeus: 'zeus rspec' (requires the server to be started separately)
 #  * 'just' rspec: 'rspec'
 
-guard :rspec, cmd: "bin/rspec", all_on_start: true do
-  require "guard/rspec/dsl"
+guard :rspec, cmd: 'bin/rspec', all_on_start: true do
+  require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
   # Feel free to open issues for suggestions and improvements
@@ -72,9 +73,9 @@ guard :rspec, cmd: "bin/rspec", all_on_start: true do
 
   watch(rails.controllers) do |m|
     [
-      rspec.spec.("routing/#{m[1]}_routing"),
-      rspec.spec.("controllers/#{m[1]}_controller"),
-      rspec.spec.("acceptance/#{m[1]}")
+      rspec.spec.call("routing/#{m[1]}_routing"),
+      rspec.spec.call("controllers/#{m[1]}_controller"),
+      rspec.spec.call("acceptance/#{m[1]}")
     ]
   end
 
@@ -84,12 +85,12 @@ guard :rspec, cmd: "bin/rspec", all_on_start: true do
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
   # Capybara features specs
-  watch(rails.view_dirs)     { |m| rspec.spec.("features/#{m[1]}") }
-  watch(rails.layouts)       { |m| rspec.spec.("features/#{m[1]}") }
+  watch(rails.view_dirs)     { |m| rspec.spec.call("features/#{m[1]}") }
+  watch(rails.layouts)       { |m| rspec.spec.call("features/#{m[1]}") }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$}) do |m|
-    Dir[File.join("**/#{m[1]}.feature")][0] || "spec/acceptance"
+    Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance'
   end
 end
