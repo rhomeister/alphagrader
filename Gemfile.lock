@@ -144,7 +144,6 @@ GEM
       thor (~> 0.19)
     buftok (0.2.0)
     builder (3.2.2)
-    byebug (9.0.6)
     cancancan (1.10.1)
     capybara (2.11.0)
       addressable
@@ -160,6 +159,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -331,6 +331,10 @@ GEM
     premailer-rails (1.9.5)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     public_suffix (2.0.5)
     puma (3.6.2)
     rack (2.0.1)
@@ -413,6 +417,7 @@ GEM
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
     simple_oauth (0.3.1)
+    slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -474,7 +479,6 @@ DEPENDENCIES
   activemodel-serializers-xml!
   bh
   bootstrap-sass
-  byebug
   cancancan
   capybara
   ckeditor
@@ -509,6 +513,7 @@ DEPENDENCIES
   pg
   postmark-rails (>= 0.10.0)
   premailer-rails
+  pry
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails-controller-testing

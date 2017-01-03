@@ -8,6 +8,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     generic_callback('google_oauth2')
   end
 
+  def github
+    generic_callback('github')
+  end
+
   def twitter
     generic_callback('twitter')
   end
@@ -15,15 +19,21 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def generic_callback(provider)
     @identity = Identity.find_for_oauth request.env['omniauth.auth']
 
-    @user = @identity.user || current_user
+    @user = @identity.user || current_user || User.find_by(email: @identity.email)
 
     if @user.nil?
-      @user = User.create(email: @identity.email, oauth_callback: true)
+      @user = User.create(email: @identity.email, oauth_callback: true, confirmed_at: Time.zone.now)
       @identity.update_attribute(:user_id, @user.id)
     end
 
+    @user.confirm
+
     if @user.email.blank? && @identity.email
       @user.update_attribute(:email, @identity.email)
+    end
+
+    if @user.name.blank? && @identity.name
+      @user.update_attribute(:name, @identity.name)
     end
 
     if @user.persisted?

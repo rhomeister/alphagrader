@@ -2,25 +2,27 @@
 
 %h1= @course.name
 
-%h3= User.human_attribute_name(:description)
-%p
-  = @course.description
+- unless @course.description.blank?
+  = panel title: User.human_attribute_name(:description), context: :primary do
+    .panel-body
+      = @course.description
 
-%h3= User.human_attribute_name(:instructors)
-%ul
-  - @course.instructors.each do |instructor|
-    %li= instructor.name
+= panel title: Course.human_attribute_name(:instructors), context: :primary do
+  .panel-body
+    %ul
+      - @course.instructors.each do |instructor|
+        %li= instructor.name
 
-%h3= Assignment.model_name.human.pl
-%table.table.table-striped
-  %thead
-    %tr
-      %th= Assignment.human_attribute_name(:name)
-      %th= Assignment.human_attribute_name(:due_date)
-  %tbody
-    = no_results_found_row(2) if @assignments.to_a.empty?
-    - @assignments.each do |assignment|
+= panel title: Assignment.model_name.human.pl, context: :primary do
+  %table.table.table-striped
+    %thead
       %tr
-        %td= link_to assignment.name, [@course, assignment]
-        %td= l assignment.due_date, format: :long
+        %th= Assignment.human_attribute_name(:name)
+        %th= Assignment.human_attribute_name(:due_date)
+    %tbody
+      = no_results_found_row(2) if @assignments.to_a.empty?
+      - @assignments.each do |assignment|
+        %tr
+          %td= link_to assignment.name, [@course, assignment]
+          %td= l assignment.due_date, format: :long
 
