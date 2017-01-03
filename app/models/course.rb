@@ -10,6 +10,7 @@ class Course < ApplicationRecord
   has_many :assignments
 
   before_save do
+    next unless enrollment_code.nil?
     loop do
       self.enrollment_code = SecureRandom.hex[0..5].upcase
       existing = Course.find_by(enrollment_code: enrollment_code)
