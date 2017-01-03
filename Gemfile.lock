@@ -202,6 +202,15 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
     formtastic_i18n (0.6.0)
+    git_stats (1.0.14)
+      actionpack (>= 4.0)
+      activesupport (>= 4.0)
+      haml (>= 4.0)
+      i18n
+      json_pure
+      lazy_high_charts (>= 1.4)
+      thor
+      tilt (>= 1.4)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     gretel (3.0.9)
@@ -215,6 +224,7 @@ GEM
     has_scope (0.7.0)
       actionpack (>= 4.1, < 5.1)
       activesupport (>= 4.1, < 5.1)
+    hash-deep-merge (0.1.1)
     hashdiff (0.3.2)
     hashie (3.4.6)
     htmlentities (4.3.4)
@@ -238,9 +248,12 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     json (1.8.3)
+    json_pure (2.0.2)
     jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
+    lazy_high_charts (1.5.6)
+      hash-deep-merge
     letter_opener (1.4.0)
       launchy (~> 2.2)
     listen (3.0.8)
@@ -473,6 +486,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   formtastic!
+  git_stats
   gretel
   haml
   happy_seed
