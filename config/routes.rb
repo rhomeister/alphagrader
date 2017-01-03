@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { registrations: 'registrations' }
+
+  unauthenticated do
+    devise_scope :user do
+      root to: 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+
+  authenticated do
+    devise_scope :user do
+      root to: 'home#index'
+    end
+  end
+
   namespace :admin do
     # get "/stats" => "stats#stats"
     devise_scope :admin_user do

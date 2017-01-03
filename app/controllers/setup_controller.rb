@@ -6,7 +6,7 @@ class SetupController < ApplicationController
     @env = File.read( File.join( Rails.root, ".env" ) )
     @docs = files
   end
-  
+
   protected
 
   def require_local!

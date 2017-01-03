@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :oauth_callback
   attr_accessor :current_password
-    
+
   validates_presence_of   :email, if: :email_required?
   validates_uniqueness_of :email, allow_blank: true, if: :email_changed?
   validates_format_of     :email, with: Devise.email_regexp, allow_blank: true, if: :email_changed?
@@ -22,8 +22,9 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :confirmable, :confirmable, :omniauthable, :confirmable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable
+  devise :confirmable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable #, :omniauthable
+
   def facebook
     identities.where( :provider => "facebook" ).first
   end
