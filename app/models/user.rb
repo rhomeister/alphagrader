@@ -3,6 +3,8 @@ class User < ApplicationRecord
   attr_accessor :oauth_callback
   attr_accessor :current_password
 
+  validates :name, presence: { if: :email_required? }
+
   validates :email, presence: { if: :email_required? }
   validates :email, uniqueness: { allow_blank: true, if: :email_changed? }
   validates :email, format: { with: Devise.email_regexp, allow_blank: true, if: :email_changed? }
@@ -75,5 +77,9 @@ class User < ApplicationRecord
       config.access_token        = twitter.accesstoken
       config.access_token_secret = twitter.secrettoken
     end
+  end
+
+  def instructor?(course)
+    course.instructors.include? self
   end
 end

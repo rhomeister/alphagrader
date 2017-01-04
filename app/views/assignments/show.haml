@@ -3,6 +3,9 @@
 %h1
   = "#{Assignment.model_name.human}:"
   = @assignment.name
+  - if can?(:edit, @assignment)
+    .pull-right
+      = link_to 'Edit', edit_course_assignment_path(@course, @assignment), class: 'btn btn-primary'
 
 - unless @assignment.description.blank?
   = panel title: Assignment.human_attribute_name(:description), context: :primary do

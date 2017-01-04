@@ -1,0 +1,13 @@
+= panel title: 'Edit Course', context: :primary do
+  = simple_form_for(@course) do |f|
+    .panel-body
+      = f.error_notification
+
+      .form-inputs
+        = f.input :name, required: true, autofocus: true
+        = f.input :description, input_html: { style: 'font-family: monospace; height: 300px'},
+          hint: 'This field is markdown formatted'
+    .panel-footer
+      .form-actions
+        = link_to 'Cancel', @course, class: 'btn btn-default'
+        = f.button :submit, "Save", class: 'btn btn-primary'

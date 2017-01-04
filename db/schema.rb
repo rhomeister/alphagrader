@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20170104043110) do
   create_table "assignments", force: :cascade do |t|
     t.integer  "course_id"
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.datetime "due_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

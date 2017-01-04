@@ -4,7 +4,7 @@ class CreateAssignments < ActiveRecord::Migration[5.0]
     create_table :assignments do |t|
       t.references :course
       t.string :name
-      t.string :description
+      t.text :description
       t.datetime :due_date
 
       t.timestamps

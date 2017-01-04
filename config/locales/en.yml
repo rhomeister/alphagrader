@@ -26,7 +26,8 @@ en:
     new: New Enrollment
 
   courses:
-    enrolled: Enrolled courses
+    list: My Courses
+    new: New Course
 
 
   activerecord:

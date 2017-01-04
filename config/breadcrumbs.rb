@@ -8,19 +8,27 @@ crumb :new_enrollment do
 end
 
 crumb :course do |course|
-  link course.name, course_path(course)
+  url = course_path(course) if course.persisted?
+  text = course.name || 'New Course'
+  link text, url
 end
 
 crumb :assignment do |assignment|
-  link assignment.name, course_assignment_path(assignment.course, assignment)
+  url = if assignment.persisted?
+    course_assignment_path(assignment.course, assignment)
+  else
+    nil
+  end
+  text = assignment.name || 'New Assignment'
+  link text, url
   parent :course, assignment.course
 end
 
 crumb :submission do |submission|
-  if submission.persisted?
-    url = assignment_submission_path(submission.assignment, submission)
+  url = if submission.persisted?
+    assignment_submission_path(submission.assignment, submission)
   else
-    url = nil
+    nil
   end
   text = submission.decorate.created_at || 'New Submission'
   link text, url

@@ -1,7 +1,11 @@
 class CourseDecorator < Draper::Decorator
   delegate_all
 
-  def instructors
+  def instructor_names
     object.instructors.map(&:name).join(', ')
+  end
+
+  def description
+    RDiscount.new(object.description).to_html.html_safe
   end
 end

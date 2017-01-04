@@ -1,10 +1,14 @@
-%h2= t('courses.enrolled')
+%h2= t('courses.list')
 
 = link_to t('enrollments.new'), new_enrollment_path, class: 'btn btn-primary'
+- if can?(:create, Course)
+  = link_to t('courses.new'), new_course_path, class: 'btn btn-primary'
 
 %table.table.table-striped
   %thead
     %tr
+      - if @instructor_courses.any?
+        %th(width='4%')
       %th= Course.human_attribute_name :name
       %th= Course.human_attribute_name :instructors
   %tbody
@@ -13,5 +17,10 @@
 
     - @courses.each do |course|
       %tr
-        %td= link_to course.name, course
-        %td= course.instructors
+        - if @instructor_courses.any?
+          %td
+            - if course.in? @instructor_courses
+              %span.glyphicon.glyphicon-star
+        %td
+          = link_to course.name, course
+        %td= course.instructor_names

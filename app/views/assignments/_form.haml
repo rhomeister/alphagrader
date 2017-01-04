@@ -1,0 +1,14 @@
+= panel title: 'Edit Assignment', context: :primary do
+  = simple_form_for(@assignment, url: [@course, @assignment]) do |f|
+    .panel-body
+      = f.error_notification
+
+      .form-inputs
+        = f.input :name, required: true, autofocus: true
+        = f.input :due_date
+        = f.input :description, input_html: { style: 'font-family: monospace; height: 300px'},
+          hint: 'This field is markdown formatted'
+    .panel-footer
+      .form-actions
+        = link_to 'Cancel', [@course, @assignment], class: 'btn btn-default'
+        = f.button :submit, "Save", class: 'btn btn-primary'

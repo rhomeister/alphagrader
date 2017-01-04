@@ -9,6 +9,8 @@ class Course < ApplicationRecord
 
   has_many :assignments
 
+  validates :name, presence: true
+
   before_save do
     next unless enrollment_code.nil?
     loop do
