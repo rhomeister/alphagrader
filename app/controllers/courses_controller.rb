@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def index
-    @courses = @courses.includes(:instructors)
+    @courses = @courses.includes(:instructors).decorate
   end
 
   def show

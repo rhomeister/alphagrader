@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :submissions
   end
 
+  resources :enrollments
+
   namespace :admin do
     # get "/stats" => "stats#stats"
     devise_scope :admin_user do

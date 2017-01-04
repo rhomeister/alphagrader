@@ -3,6 +3,10 @@ crumb :root do
   link 'Home', root_path
 end
 
+crumb :new_enrollment do
+  link t('enrollments.new'), nil
+end
+
 crumb :course do |course|
   link course.name, course_path(course)
 end

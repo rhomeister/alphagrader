@@ -10,7 +10,7 @@ class SubmissionsController < ApplicationController
   end
 
   def new
-    render 'github_login_missing_error' if current_user.github.nil?
+    render 'github_account_missing_error' if current_user.github.nil?
   end
 
   def show

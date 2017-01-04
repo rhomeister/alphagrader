@@ -31,4 +31,14 @@ describe Membership, type: :model do
     expect(membership).to be_instructor
     expect(Membership.instructor).to eq [membership]
   end
+
+  it 'can enroll based on enrollment_code' do
+    course = create(:course)
+    membership = Membership.new
+    membership.user = create(:user)
+    membership.enrollment_code = course.enrollment_code
+    membership.save!
+
+    expect(membership.course).to eq course
+  end
 end

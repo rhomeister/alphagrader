@@ -1,5 +1,7 @@
 %h2= t('courses.enrolled')
 
+= link_to t('enrollments.new'), new_enrollment_path, class: 'btn btn-primary'
+
 %table.table.table-striped
   %thead
     %tr
@@ -12,4 +14,4 @@
     - @courses.each do |course|
       %tr
         %td= link_to course.name, course
-        %td= course.instructors.map(&:name).join(', ')
+        %td= course.instructors

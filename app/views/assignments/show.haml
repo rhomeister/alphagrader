@@ -1,6 +1,8 @@
 - breadcrumb :assignment, @assignment
 
-%h1= @assignment.name
+%h1
+  = "#{Assignment.model_name.human}:"
+  = @assignment.name
 
 - unless @assignment.description.blank?
   = panel title: Assignment.human_attribute_name(:description), context: :primary do

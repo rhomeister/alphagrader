@@ -1,0 +1,29 @@
+- breadcrumb :new_enrollment
+
+- if @course
+  = panel title: 'Course found', context: :primary do
+    .panel-body
+      %h4= @course.name
+      - unless @course.instructors.blank?
+        = "#{Course.human_attribute_name(:instructors)}: "
+        = @course.instructors
+    .panel-footer
+      .buttons
+        - if current_user.courses.include?(@course)
+          = link_to 'Already Enrolled. Go to course', @course, class: 'btn btn-primary'
+        - else
+          = simple_form_for Membership.new(enrollment_code: @course.enrollment_code), url: enrollments_path do |f|
+            = f.input :enrollment_code, as: :hidden
+            = f.button :submit, "Enroll", class: "btn-primary"
+
+- else
+  - if @enrollment_code
+    = alert_box 'No course found with this code. Please try again', context: :danger
+
+  = panel title: t('enrollments.new'), context: :primary do
+    = simple_form_for Membership.new, url: url_for, method: :get do |f|
+      .panel-body
+        = f.input :enrollment_code
+      .panel-footer
+        .buttons
+          = f.button :submit, "Search", class: "btn btn-primary"

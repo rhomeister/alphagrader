@@ -8,6 +8,8 @@ class AssignmentsController < ApplicationController
   end
 
   def show
-    @submissions = @assignment.submissions.accessible_by(current_ability)
+    @submissions = @assignment.submissions
+                              .accessible_by(current_ability)
+                              .order('submissions.created_at desc')
   end
 end
