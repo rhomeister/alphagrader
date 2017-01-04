@@ -11,4 +11,12 @@ class Submission < ApplicationRecord
   before_save do
     authors << uploaded_by unless authors.include?(uploaded_by)
   end
+
+  def cleanup
+    FileUtils.rm_r tempdir
+  end
+
+  def tempdir
+    @tempdir ||= Dir.mktmpdir
+  end
 end
