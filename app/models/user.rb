@@ -36,6 +36,18 @@ class User < ApplicationRecord
   devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :omniauthable
 
+  def github
+    identities.where(provider: 'github').first
+  end
+
+  def github_client
+    @github_client ||= Octokit::Client.new(access_token: github.accesstoken)
+  end
+
+  def github_repositories
+    github_client.repositories
+  end
+
   def facebook
     identities.where(provider: 'facebook').first
   end

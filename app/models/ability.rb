@@ -10,5 +10,6 @@ class Ability
     can :read, Assignment, course: { memberships: { user_id: user.id } }
 
     can :read, Submission, authors: { id: user.id }
+    can [:new, :create], Submission, assignment: { course: { memberships: { user_id: user.id  }}}
   end
 end

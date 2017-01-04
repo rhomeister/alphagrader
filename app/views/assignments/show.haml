@@ -2,18 +2,24 @@
 
 %h1= @assignment.name
 
-%h3= Submission.model_name.human.pl
+- unless @assignment.description.blank?
+  = panel title: Assignment.human_attribute_name(:description), context: :primary do
+    .panel-body
+      = @assignment.description
 
-%table.table.table-striped
-  %thead
-    %tr
-      %th= Submission.human_attribute_name(:submission_time)
-      %th= Submission.human_attribute_name(:status)
-      %th= Submission.human_attribute_name(:uploaded_by)
-  %tbody
-    %tr
-      = no_results_found_row(3) if @submissions.to_a.empty?
-      - @submissions.decorate.each do |submission|
-        %td= l submission.created_at, format: :long
-        %td= submission.status
-        %td= submission.uploaded_by.try(:name)
+= panel title: Submission.model_name.human.pl, context: :primary do
+  .panel-body
+    = link_to 'New Submission', new_assignment_submission_path(@assignment), class: 'btn btn-primary'
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= Submission.human_attribute_name(:submission_time)
+          %th= Submission.human_attribute_name(:uploaded_by)
+          %th= Submission.human_attribute_name(:status)
+      %tbody
+        = no_results_found_row(3) if @submissions.to_a.empty?
+        - @submissions.decorate.each do |submission|
+          %tr
+            %td= link_to submission.created_at, assignment_submission_path(@assignment, submission)
+            %td= submission.uploaded_by
+            %td= submission.status

@@ -66,7 +66,6 @@ group :development do
   gem 'letter_opener'
   gem 'happy_seed'
 
-
   gem 'rubocop', require: false
 end
 

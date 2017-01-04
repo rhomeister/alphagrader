@@ -7,4 +7,8 @@ class Submission < ApplicationRecord
                                     join_table: :author_submissions,
                                     association_foreign_key: :author_id,
                                     inverse_of: :submissions
+
+  before_save do
+    authors << uploaded_by unless authors.include?(uploaded_by)
+  end
 end

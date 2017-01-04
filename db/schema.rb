@@ -87,8 +87,11 @@ ActiveRecord::Schema.define(version: 20170103063306) do
     t.integer  "status"
     t.integer  "uploaded_by_id"
     t.integer  "assignment_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "type"
+    t.string   "git_repository_url"
+    t.string   "git_commit_sha"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.index ["assignment_id"], name: "index_submissions_on_assignment_id", using: :btree
     t.index ["uploaded_by_id"], name: "index_submissions_on_uploaded_by_id", using: :btree
   end

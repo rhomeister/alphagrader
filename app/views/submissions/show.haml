@@ -1,0 +1,11 @@
+- breadcrumb :submission, @submission
+
+%h1= Submission.model_name.human
+
+= panel title: 'General Info', context: :primary do
+  %table.table.table-striped
+    - [:uploaded_by, :created_at, :git_repository_url].each do |attr|
+      %tr
+        %th= Submission.human_attribute_name(attr)
+        %td= @submission.send(attr)
+
