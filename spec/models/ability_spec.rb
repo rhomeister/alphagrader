@@ -52,4 +52,3 @@ describe Ability, type: :model do
     end
   end
 end
-

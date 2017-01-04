@@ -23,7 +23,7 @@ class GitSubmission < Submission
 
   def detect_authors
     emails = repository.commits.map(&:author).map(&:email).uniq
-    new_authors = self.authors + User.joins(:identities).where(identities: {email: emails})
+    new_authors = authors + User.joins(:identities).where(identities: { email: emails })
     self.authors = []
     self.authors = new_authors.uniq
   end

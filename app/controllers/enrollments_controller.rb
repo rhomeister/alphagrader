@@ -18,9 +18,8 @@ class EnrollmentsController < ApplicationController
   def create
     @enrollment.user = current_user
     if @enrollment.save
-      redirect_to @enrollment.course, flash: {success: "You have enrolled successfully"}
+      redirect_to @enrollment.course, flash: { success: 'You have enrolled successfully' }
     else
-      binding.pry
       redirect_to action: :new
     end
   end

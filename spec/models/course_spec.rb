@@ -11,4 +11,3 @@ describe Course, type: :model do
     expect(course.enrollment_code).to eq enrollment_code
   end
 end
-

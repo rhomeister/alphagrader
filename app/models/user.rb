@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :courses, through: :memberships
   has_many :uploads, class_name: 'Submission',
-    foreign_key: :uploaded_by_id, dependent: :destroy
+                     foreign_key: :uploaded_by_id, dependent: :destroy
 
   has_and_belongs_to_many :submissions, join_table: :author_submissions,
                                         foreign_key: :author_id,

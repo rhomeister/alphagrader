@@ -10,5 +10,4 @@ describe Assignment, type: :model do
     expect(submission.reload.assignment).to eq assignment
     expect(assignment.reload.submissions).to eq [submission]
   end
-
 end
