@@ -49,6 +49,9 @@ gem 'rdiscount'
 
 gem 'git_stats'
 
+gem 'resque'
+gem 'resque-web', require: 'resque_web'
+
 group :development, :test do
   gem 'pry'
   gem 'factory_girl_rails'

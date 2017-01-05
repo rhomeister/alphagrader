@@ -5,5 +5,5 @@
         %b Private Test
         %br
         This test was marked private by the instructor. Test results are therefore not viewable by students.
-    - if current_user.instructor? test_result.submission.assignment.course
+    - if current_user.instructor?(test_result.submission.assignment.course)
       = render "test_results/panel_body_#{test_result.type.underscore}", test_result: test_result

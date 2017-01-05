@@ -20,6 +20,10 @@ class Submission < ApplicationRecord
     authors << uploaded_by unless authors.include?(uploaded_by)
   end
 
+  after_create do
+    Resque.enqueue(SubmissionCheckJob, id)
+  end
+
   def cleanup
     FileUtils.rm_r tempdir
   end

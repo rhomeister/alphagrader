@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'resque_web'
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations',
                                     omniauth_callbacks: 'omniauth_callbacks' }
@@ -36,5 +37,20 @@ Rails.application.routes.draw do
   get 'setup' => 'setup#index'
 
   ActiveAdmin.routes(self)
+
+  resque_web_constraint = lambda do |request|
+    if Rails.env.development?
+      true
+    else
+      current_user = request.env['warden'].user
+      current_user.present? && current_user.respond_to?(:admin?) && current_user.admin?
+    end
+  end
+
+  constraints resque_web_constraint do
+    mount ResqueWeb::Engine, :at => "/resque"
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #
 end
