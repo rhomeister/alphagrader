@@ -6,6 +6,11 @@
     .pull-right
       = link_to 'Edit', edit_course_path(@course), class: 'btn btn-primary'
 
+- if current_user.instructor?(@course)
+  = alert_box context: :info do
+    To invite students, give them the following code:
+    %b= @course.enrollment_code
+
 - unless @course.description.blank?
   = panel title: Course.human_attribute_name(:description), context: :primary do
     .panel-body

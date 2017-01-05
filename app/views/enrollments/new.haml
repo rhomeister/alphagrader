@@ -6,7 +6,7 @@
       %h4= @course.name
       - unless @course.instructors.blank?
         = "#{Course.human_attribute_name(:instructors)}: "
-        = @course.instructors
+        = @course.instructor_names
     .panel-footer
       .buttons
         - if current_user.courses.include?(@course)

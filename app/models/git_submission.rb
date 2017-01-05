@@ -24,7 +24,7 @@ class GitSubmission < Submission
   private
 
   def detect_status
-    self.status = test_results(true).all?(&:success?) ? :success : :failure
+    self.status = test_results.reload.all?(&:success?) ? :success : :failure
   end
 
   def run_user_tests
