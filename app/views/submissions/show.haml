@@ -14,3 +14,7 @@
 
 - @test_results.each do |test_result|
   = render 'test_results/show_panel', test_result: test_result
+
+- unless @submission.checks_completed?
+  :javascript
+    setTimeout(function() { location.reload() }, 5000)

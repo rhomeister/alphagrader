@@ -24,6 +24,10 @@ class Submission < ApplicationRecord
     Resque.enqueue(SubmissionCheckJob, id)
   end
 
+  def checks_completed?
+    !queued? && !running?
+  end
+
   def cleanup
     FileUtils.rm_r tempdir
   end
