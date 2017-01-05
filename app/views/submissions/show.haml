@@ -4,8 +4,13 @@
 
 = panel title: 'General Info', context: :primary do
   %table.table.table-striped
-    - [:status, :uploaded_by, :created_at, :git_repository_url, :git_commit_sha, :authors].each do |attr|
+    - [:status, :uploaded_by, :created_at, :git_repository_url, :git_commit_sha,
+       :git_commit_message, :authors].each do |attr|
       %tr
         %th= Submission.human_attribute_name(attr)
         %td= @submission.send(attr)
 
+%h2 Result
+
+- @test_results.each do |test_result|
+  = render 'test_results/show_panel', test_result: test_result

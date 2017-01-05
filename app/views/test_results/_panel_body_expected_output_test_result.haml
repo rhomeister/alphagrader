@@ -1,0 +1,13 @@
+.row
+  .col-md-4
+    %h4 Input
+    %pre
+      %b= test_result.program_input
+  .col-md-4
+    %h4 Expected Output
+    %pre
+      %b= test_result.expected_program_output
+  .col-md-4
+    %h4 Actual Output
+    %pre
+      %b= test_result.result_log

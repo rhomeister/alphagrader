@@ -6,26 +6,41 @@ class GitSubmission < Submission
     `git clone #{git_repository_url} #{tempdir}`
   end
 
-  def validate
+  def run_tests
+    test_results.destroy_all
     download
     detect_authors
     detect_sha
+    detect_commit_message
+    self.status = :running
     save!
-    run_tests
+    run_user_tests
+    detect_status
+    save!
   ensure
     cleanup
   end
 
   private
 
-  def run_tests
-    assignment.tests.each do |test|
+  def detect_status
+    self.status = test_results(true).all?(&:success?) ? :success : :failure
+  end
 
+  def run_user_tests
+    assignment.tests.each do |test|
+      test_result = test.run(tempdir)
+      test_result.submission = self
+      test_result.save!
     end
   end
 
   def detect_sha
     self.git_commit_sha = repository.commits.last.sha
+  end
+
+  def detect_commit_message
+    self.git_commit_message = `git --git-dir #{tempdir}/.git log -1 --pretty=%B`
   end
 
   def detect_authors

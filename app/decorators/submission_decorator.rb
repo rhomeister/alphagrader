@@ -17,10 +17,33 @@ class SubmissionDecorator < Draper::Decorator
 
   def git_commit_sha
     raw_url = object.git_repository_url[0..-5]
-    h.link_to object.git_commit_sha, "#{raw_url}/commit/#{object.git_commit_sha}", target: :blank
+    h.content_tag :samp do
+      h.content_tag :strong do
+        h.link_to object.git_commit_sha, "#{raw_url}/commit/#{object.git_commit_sha}", target: :blank
+      end
+    end
+  end
+
+  def git_commit_message
+    h.content_tag :samp do
+      h.content_tag :strong, object.git_commit_message
+    end
   end
 
   def authors
     object.authors.map(&:name).join(', ')
+  end
+
+  def status
+    label_class = case object.status
+    when 'success'
+      'success'
+    when 'failure'
+      'danger'
+    else
+      'info'
+    end
+
+    h.content_tag :span, object.status.upcase, class: "label label-#{label_class}"
   end
 end

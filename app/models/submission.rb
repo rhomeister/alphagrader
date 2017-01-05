@@ -10,6 +10,12 @@ class Submission < ApplicationRecord
 
   has_many :test_results, dependent: :destroy
 
+  enum status: [:queued, :running, :success, :failure]
+
+  before_create do
+    self.status ||= :queued
+  end
+
   before_save do
     authors << uploaded_by unless authors.include?(uploaded_by)
   end

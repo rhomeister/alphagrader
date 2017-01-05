@@ -6,7 +6,11 @@ class ExpectedOutputTest < Test
     runner = TestRunner.new(directory, program_input, expected_program_output)
     runner.run
     ExpectedOutputTestResult.new(status: runner.status,
-                   result_log: runner.result_log)
+                                 name: name,
+                                 expected_program_output: expected_program_output,
+                                 program_input: program_input,
+                                 result_log: runner.result_log,
+                                 public: public)
   end
 
   class TestRunner

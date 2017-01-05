@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104235602) do
+ActiveRecord::Schema.define(version: 20170105184616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20170104235602) do
     t.string   "git_commit_sha"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "git_commit_message"
     t.index ["assignment_id"], name: "index_submissions_on_assignment_id", using: :btree
     t.index ["uploaded_by_id"], name: "index_submissions_on_uploaded_by_id", using: :btree
   end
@@ -103,8 +104,12 @@ ActiveRecord::Schema.define(version: 20170104235602) do
     t.integer  "status"
     t.text     "result_log"
     t.string   "type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "name"
+    t.text     "expected_program_output"
+    t.text     "program_input"
+    t.boolean  "public"
     t.index ["submission_id"], name: "index_test_results_on_submission_id", using: :btree
     t.index ["test_id"], name: "index_test_results_on_test_id", using: :btree
   end

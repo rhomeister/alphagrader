@@ -15,6 +15,7 @@ class SubmissionsController < ApplicationController
 
   def show
     @submission = @submission.decorate
+    @test_results = @submission.test_results.decorate
   end
 
   def create
