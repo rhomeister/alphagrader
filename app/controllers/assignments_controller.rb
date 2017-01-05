@@ -13,7 +13,7 @@ class AssignmentsController < ApplicationController
                               .order('submissions.created_at desc')
     @tests = @assignment.tests
                         .accessible_by(current_ability)
-                        .order('tests.created_at desc').decorate
+                        .order('tests.created_at asc').decorate
     @hidden_test_count = @assignment.tests.count - @tests.count
 
     @assignment = @assignment.decorate

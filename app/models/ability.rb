@@ -17,7 +17,7 @@ class Ability
 
     can :read, Test, public: true, assignment: { course: membership_params }
     can :read, Test, public: false, assignment: { course: instructor_membership_params }
-    can [:create, :edit, :update], Test, assignment: { course: instructor_membership_params }
+    can [:create, :edit, :update, :destroy], Test, assignment: { course: instructor_membership_params }
 
     can :read, Submission, authors: { id: user.id }
     can :read, Submission, assignment: { course: instructor_membership_params }

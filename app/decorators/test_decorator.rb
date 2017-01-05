@@ -15,10 +15,20 @@ class TestDecorator < Draper::Decorator
     h.icon 'eye-slash', library: :font_awesome, title: 'Private test: invisible to students'
   end
 
-  def panel_edit_link
-    return unless h.can?(:edit, object)
+  def panel_manage_links
     h.content_tag(:div, class: 'pull-right') do
-      h.link_to 'Edit', h.edit_assignment_test_path(assignment, object)
+      links = []
+      if h.can?(:edit, object)
+        links << h.link_to('Edit', h.edit_assignment_test_path(assignment, object))
+      end
+
+      if h.can?(:destroy, object)
+        links << h.link_to(h.icon(:trash, library: :font_awesome),
+                           h.assignment_test_path(assignment, object),
+                           data: {confirm: 'Are you sure?'}, method: :delete, class: :danger)
+      end
+
+      links.join(' | ').html_safe
     end
   end
 end

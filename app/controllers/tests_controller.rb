@@ -31,6 +31,11 @@ class TestsController < ApplicationController
     end
   end
 
+  def destroy
+    @test.destroy
+    redirect_to [@assignment.course, @assignment], flash: {success: 'Test was successfully deleted'}
+  end
+
   private
 
   def cast_test
