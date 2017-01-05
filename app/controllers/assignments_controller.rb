@@ -11,6 +11,11 @@ class AssignmentsController < ApplicationController
     @submissions = @assignment.submissions
                               .accessible_by(current_ability)
                               .order('submissions.created_at desc')
+    @tests = @assignment.tests
+                        .accessible_by(current_ability)
+                        .order('tests.created_at desc').decorate
+    @hidden_test_count = @assignment.tests.count - @tests.count
+
     @assignment = @assignment.decorate
   end
 
@@ -18,6 +23,10 @@ class AssignmentsController < ApplicationController
   end
 
   def edit
+  end
+
+  def index
+    redirect_to @course
   end
 
   def create

@@ -1,0 +1,5 @@
+= panel title: "#{index}. #{test.private_indicator} #{test.type_name} #{test.name} #{test.panel_edit_link}".html_safe do
+  .panel-body
+    - unless test.object.description.blank?
+      = test.description
+    = render "tests/panel_content_#{test.type.underscore}", test: test

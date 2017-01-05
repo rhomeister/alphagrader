@@ -6,6 +6,7 @@ feature 'Registration', type: :feature do
     visit new_user_registration_path
 
     within '#new_user' do
+      fill_in 'user_name', with: 'Test User'
       fill_in 'user_email', with: 'test@example.com'
       fill_in 'user_password', with: '123456789'
       fill_in 'user_password_confirmation', with: '123456789'
@@ -45,6 +46,7 @@ feature 'Registration', type: :feature do
     visit new_user_registration_path
 
     within '#new_user' do
+      fill_in 'user_name', with: 'Test User'
       fill_in 'user_email', with: 'test@example.com'
       fill_in 'user_password', with: '123456789'
       fill_in 'user_password_confirmation', with: '123456789'

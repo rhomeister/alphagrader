@@ -1,0 +1,2 @@
+class ExpectedOutputTestResult < TestResult
+end

@@ -10,4 +10,13 @@ describe Assignment, type: :model do
     expect(submission.reload.assignment).to eq assignment
     expect(assignment.reload.submissions).to eq [submission]
   end
+
+  it 'has tests' do
+    assignment = create(:assignment)
+    test = create(:test)
+    assignment.tests << test
+
+    expect(test.reload.assignment).to eq assignment
+    expect(assignment.reload.tests).to eq [test]
+  end
 end

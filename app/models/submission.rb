@@ -8,6 +8,8 @@ class Submission < ApplicationRecord
                                     association_foreign_key: :author_id,
                                     inverse_of: :submissions
 
+  has_many :test_results, dependent: :destroy
+
   before_save do
     authors << uploaded_by unless authors.include?(uploaded_by)
   end

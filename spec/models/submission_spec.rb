@@ -21,4 +21,14 @@ describe Submission, type: :model do
       expect(user.submissions).to eq [submission]
     end
   end
+
+  it 'has test results' do
+    submission = create(:submission)
+    submission.test_results = results = create_list(:test_result, 3)
+
+    expect(submission.reload.test_results).to match_array(results)
+    results.each do |result|
+      expect(result.submission).to eq submission
+    end
+  end
 end

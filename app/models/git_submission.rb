@@ -6,16 +6,23 @@ class GitSubmission < Submission
     `git clone #{git_repository_url} #{tempdir}`
   end
 
-  def run_tests
+  def validate
     download
     detect_authors
     detect_sha
     save!
-  rescue
+    run_tests
+  ensure
     cleanup
   end
 
   private
+
+  def run_tests
+    assignment.tests.each do |test|
+
+    end
+  end
 
   def detect_sha
     self.git_commit_sha = repository.commits.last.sha

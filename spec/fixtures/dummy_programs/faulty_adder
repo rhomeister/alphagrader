@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+$stdin.readlines.each do |line|
+  puts line.split(' ').map(&:to_i).inject(:+) + 1
+end

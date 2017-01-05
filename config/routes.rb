@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :assignments do
     resources :submissions
+    resources :tests
   end
 
   resources :enrollments

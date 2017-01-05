@@ -144,7 +144,7 @@ GEM
       thor (~> 0.19)
     buftok (0.2.0)
     builder (3.2.2)
-    cancancan (1.10.1)
+    cancancan (1.15.0)
     capybara (2.11.0)
       addressable
       mime-types (>= 1.16)

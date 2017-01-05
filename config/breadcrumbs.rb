@@ -30,3 +30,12 @@ crumb :submission do |submission|
   link text, url
   parent :assignment, submission.assignment
 end
+
+crumb :test do |test|
+  url = if test.persisted?
+          assignment_submission_path(test.assignment, test)
+        end
+  text = test.name || 'New Test'
+  link text, url
+  parent :assignment, test.assignment
+end

@@ -3,7 +3,7 @@
 %h1
   = "#{Assignment.model_name.human}:"
   = @assignment.name
-  - if can?(:edit, @assignment)
+  - if can?(:edit, @assignment.object)
     .pull-right
       = link_to 'Edit', edit_course_assignment_path(@course, @assignment), class: 'btn btn-primary'
 
@@ -11,6 +11,16 @@
   = panel title: Assignment.human_attribute_name(:description), context: :primary do
     .panel-body
       = @assignment.description
+
+= panel title: Test.model_name.human.pl, context: :primary do
+  .panel-body
+    - if can?(:create, Test.new(assignment: @assignment))
+      %p= link_to 'New Test', new_assignment_test_path(@assignment), class: 'btn btn-primary'
+    - if @hidden_test_count > 0
+      = alert_box "#{@hidden_test_count} test(s) are marked private and are not shown below.", context: :warning
+
+    - @tests.each_with_index do |test, index|
+      = render 'tests/panel_show', test: test, index: index + 1
 
 = panel title: Submission.model_name.human.pl, context: :primary do
   .panel-body

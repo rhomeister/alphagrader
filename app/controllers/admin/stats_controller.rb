@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class Admin::StatsController < ApplicationController
   before_action :authenticate_admin_user!
+  skip_authorization_check
 
   def stats
     if params[:scope].blank?
