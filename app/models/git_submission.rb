@@ -2,6 +2,9 @@
 class GitSubmission < Submission
   validates :github_repository_name, presence: true
 
+  after_create :create_github_webhook
+  after_commit :update_github_commit_status
+
   def git_repository_url
     "https://github.com/#{github_repository_name}.git"
   end
@@ -60,5 +63,17 @@ class GitSubmission < Submission
 
   def repository
     GitStats::GitData::Repo.new(path: tempdir)
+  end
+
+  def create_github_webhook
+    return unless uploaded_by
+    uploaded_by.create_github_webhook(github_repository_name)
+  rescue
+  end
+
+  def update_github_commit_status
+    return unless uploaded_by
+    client = uploaded_by.github_client
+    client.create_status(github_repository_name, git_commit_sha, status) rescue nil
   end
 end

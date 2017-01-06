@@ -10,10 +10,13 @@ class GithubWebhooksController < ActionController::Base
     submission = Submission.find_by(github_repository_name: repository_name)
     return unless submission
     assignment = submission.assignment
-    # TODO: find submitter!
+    identity = Identity.find_by(uid: payload['sender']['id'])
+    uploaded_by = identity.try :user
+
     GitSubmission.create!(github_repository_name: repository_name,
                                    git_commit_sha: commit_sha,
-                                   assignment: assignment)
+                                   assignment: assignment,
+                                   uploaded_by: uploaded_by)
   end
 
   # Handle create event
