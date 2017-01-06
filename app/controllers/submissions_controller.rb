@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
   load_and_authorize_resource :assignment
   load_and_authorize_resource through: :assignment
 
-  helper_method :git_repository_urls
+  helper_method :github_repository_names
 
   def page_title
     'Submissions'
@@ -29,14 +29,14 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  def git_repository_urls
-    current_user.github_repositories.map(&:clone_url)
+  def github_repository_names
+    current_user.github_repositories.map(&:full_name)
   end
 
   private
 
   def submission_params
     params[:submission] ||= params[:git_submission]
-    params.require(:submission).permit(:git_repository_url)
+    params.require(:submission).permit(:github_repository_name)
   end
 end

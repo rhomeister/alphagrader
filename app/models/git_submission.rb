@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 class GitSubmission < Submission
-  validates :git_repository_url, presence: true
+  validates :github_repository_name, presence: true
+
+  def git_repository_url
+    "https://github.com/#{github_repository_name}.git"
+  end
 
   def download
     `git clone #{git_repository_url} #{tempdir}`
+    return unless git_commit_sha
+    Dir.chdir(tempdir) do
+      `git checkout -f #{git_commit_sha}`
+    end
   end
 
   def run_tests
@@ -36,7 +44,7 @@ class GitSubmission < Submission
   end
 
   def detect_sha
-    self.git_commit_sha = repository.commits.last.sha
+    self.git_commit_sha ||= repository.commits.last.sha
   end
 
   def detect_commit_message

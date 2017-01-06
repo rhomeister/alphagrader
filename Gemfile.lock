@@ -212,6 +212,9 @@ GEM
       lazy_high_charts (>= 1.4)
       thor
       tilt (>= 1.4)
+    github_webhook (1.0.2)
+      activesupport (>= 4)
+      rack (>= 1.3)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     gretel (3.0.9)
@@ -524,6 +527,7 @@ DEPENDENCIES
   faker
   formtastic!
   git_stats
+  github_webhook (~> 1.0.2)
   gretel
   haml
   happy_seed

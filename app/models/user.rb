@@ -50,6 +50,14 @@ class User < ApplicationRecord
     github_client.repositories
   end
 
+  # temp
+  def create_github_webhook(repository)
+    url = Rails.application.routes.url_helpers.github_webhooks_url
+    github_client.create_hook(repository, 'web',
+                              {url: url, content_type: :json},
+                              {events: ['push'], active: true})
+  end
+
   def facebook
     identities.where(provider: 'facebook').first
   end

@@ -17,6 +17,7 @@ class Submission < ApplicationRecord
   end
 
   before_save do
+    next unless uploaded_by
     authors << uploaded_by unless authors.include?(uploaded_by)
   end
 

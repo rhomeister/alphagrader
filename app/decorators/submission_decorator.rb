@@ -8,7 +8,7 @@ class SubmissionDecorator < Draper::Decorator
   end
 
   def uploaded_by
-    object.uploaded_by.name
+    object.uploaded_by.try :name
   end
 
   def git_repository_url

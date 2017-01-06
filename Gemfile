@@ -100,6 +100,7 @@ gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'octokit'
+gem 'github_webhook', '~> 1.0.2'
 
 gem 'omniauth-google-oauth2'
 # gem 'google-api-client', require: 'google/api_client'

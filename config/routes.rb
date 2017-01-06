@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :github_webhooks, only: :create, defaults: { formats: :json }
+
   resources :courses do
     resources :assignments
   end
