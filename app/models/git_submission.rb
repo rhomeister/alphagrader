@@ -47,7 +47,7 @@ class GitSubmission < Submission
   end
 
   def detect_sha
-    self.git_commit_sha ||= repository.commits.last.sha
+    self.git_commit_sha ||= `git --git-dir #{tempdir}/.git log -1 --format=format:%H`
   end
 
   def detect_commit_message
@@ -74,6 +74,10 @@ class GitSubmission < Submission
   def update_github_commit_status
     return unless uploaded_by
     client = uploaded_by.github_client
-    client.create_status(github_repository_name, git_commit_sha, status) rescue nil
+    target_url = Rails.application.routes.url_helpers.assignment_submission_url(assignment, self)
+    client.create_status(github_repository_name, git_commit_sha, status,
+                         target_url: target_url, context: 'AlphaGrader')
+  rescue Exception => e
+    puts e.inspect
   end
 end
