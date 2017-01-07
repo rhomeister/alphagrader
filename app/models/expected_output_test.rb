@@ -46,7 +46,7 @@ class ExpectedOutputTest < Test
     private
 
     def clean_string(string)
-      string.split('\n').map(&:strip).reject(&:blank?).join('\n')
+      string.split("\n").map(&:strip).reject(&:blank?).join("\n")
     end
   end
 end
