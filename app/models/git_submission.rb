@@ -72,11 +72,16 @@ class GitSubmission < Submission
     Rails.logger.error(e)
   end
 
+  def github_commit_status
+    return :pending if running? || queued?
+    return status
+  end
+
   def update_github_commit_status
     return unless uploaded_by
     client = uploaded_by.github_client
     target_url = Rails.application.routes.url_helpers.assignment_submission_url(assignment, self)
-    client.create_status(github_repository_name, git_commit_sha, status,
+    client.create_status(github_repository_name, git_commit_sha, github_commit_status,
                          target_url: target_url, context: 'AlphaGrader')
   rescue StandardError => e
     Rails.logger.error(e)
