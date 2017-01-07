@@ -5,4 +5,3 @@ machine:
 test:
   post:
     - bundle exec rubocop -R
-    - bundle exec rspec --color --require spec_helper --format documentation spec

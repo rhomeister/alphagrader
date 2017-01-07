@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 # app/controllers/github_webhooks_controller.rb
 class GithubWebhooksController < ActionController::Base
+  protect_from_forgery
   include GithubWebhook::Processor
 
   # Handle push event

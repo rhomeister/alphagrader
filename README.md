@@ -1,4 +1,8 @@
-# README
+# AlphaGrader
+
+[![CircleCI](https://circleci.com/gh/rhomeister/alphagrader.svg?style=svg)](https://circleci.com/gh/rhomeister/alphagrader)
+
+## Todo
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
