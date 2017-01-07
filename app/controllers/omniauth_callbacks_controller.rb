@@ -47,7 +47,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @identity.update_attribute(:user_id, @user.id)
     end
 
-    @user.confirm
     @user
   end
 
@@ -57,8 +56,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       identity_value = identity.send(attr)
 
       if user_value.blank? && identity_value
-        user.update_attribute(attr, identity_value)
+        user[attr] = identity_value
       end
     end
+
+    user.skip_confirmation_notification!
+    user.save
+    user.confirm
   end
 end
