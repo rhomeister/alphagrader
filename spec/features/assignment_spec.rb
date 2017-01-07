@@ -2,8 +2,9 @@
 require 'rails_helper'
 
 feature 'Assignment', type: :feature do
+  include Warden::Test::Helpers
   it 'lets you create a new assignment as instructor' do
-    sign_in(user = create(:user))
+    login_as(user = create(:user))
     course = create(:course, instructor: user)
 
     visit course_path(course)
@@ -31,7 +32,7 @@ feature 'Assignment', type: :feature do
   end
 
   it 'does not let you create a new assignment as student' do
-    sign_in(user = create(:user))
+    login_as(user = create(:user))
     course = create(:course, student: user)
 
     visit course_path(course)
@@ -39,7 +40,7 @@ feature 'Assignment', type: :feature do
   end
 
   it 'lets you view an assignment as student' do
-    sign_in(user = create(:user))
+    login_as(user = create(:user))
     course = create(:course, student: user)
     course.assignments << assignment = create(:assignment)
 

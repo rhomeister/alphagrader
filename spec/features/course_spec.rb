@@ -3,7 +3,7 @@ require 'rails_helper'
 
 feature 'Courses', type: :feature do
   it 'lets you create a new course' do
-    sign_in(create(:user))
+    login_as(create(:user))
 
     visit root_path
 
@@ -27,7 +27,7 @@ feature 'Courses', type: :feature do
   it 'lets you enroll in a course' do
     course = create(:course)
     create(:membership, role: :instructor, course: course)
-    sign_in(create(:user))
+    login_as(create(:user))
 
     visit root_path
 
