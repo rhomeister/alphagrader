@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 feature 'Registration', type: :feature do
-  it 'should let you create a new user' do
+  it 'lets you create a new user' do
     visit new_user_registration_path
 
     within '#new_user' do
@@ -28,7 +28,7 @@ feature 'Registration', type: :feature do
     click_link 'Account'
   end
 
-  it 'should require a user to have an email address' do
+  it 'requires a user to have an email address' do
     visit new_user_registration_path
 
     within '#new_user' do
@@ -42,7 +42,7 @@ feature 'Registration', type: :feature do
     expect(page.body).to_not include('Welcome! You have signed up successfully.')
   end
 
-  it 'should let a user change their password if they enter in their existing password' do
+  it 'lets a user change their password if they enter in their existing password' do
     visit new_user_registration_path
 
     within '#new_user' do
@@ -93,7 +93,7 @@ feature 'Registration', type: :feature do
     expect(page.body).to include('Your account has been updated successfully.')
   end
 
-  it 'following a forgot password link should let you reset your password and log in' do
+  it 'following a forgot password link lets you reset your password and log in' do
     user = create :user
 
     visit new_user_password_path

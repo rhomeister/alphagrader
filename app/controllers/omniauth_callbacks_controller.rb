@@ -48,6 +48,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     @user.confirm
+    @user
   end
 
   def set_user_fields

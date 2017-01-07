@@ -64,6 +64,19 @@ RSpec.configure do |config|
     config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
     config.include ::Rails::Controller::Testing::Integration, type: type
   end
+
+  module SignInHelper
+    def sign_in(user)
+      visit new_user_session_path
+      within '#new_user' do
+        fill_in 'user_email', with: user.email
+        fill_in 'user_password', with: user.password
+      end
+      click_button 'Log in'
+    end
+  end
+
+  config.include SignInHelper, type: :feature
 end
 
 VCR.configure do |c|

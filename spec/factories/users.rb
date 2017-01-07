@@ -10,7 +10,7 @@ FactoryGirl.define do
     name { Faker::Name.name }
     email
     password '12345678'
-    password_confirmation '12345678'
+    password_confirmation { password }
     confirmed_at Time.zone.now if User.devise_modules.include?(:confirmable)
   end
 end
