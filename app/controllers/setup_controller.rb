@@ -6,7 +6,8 @@ class SetupController < ApplicationController
   layout :false
 
   def index
-    @env = File.read(File.join(Rails.root, '.env'))
+    file = Rails.env.development? ? '.env' : ".env.#{Rails.env}"
+    @env = File.read(File.join(Rails.root, file))
     @docs = files
   end
 
