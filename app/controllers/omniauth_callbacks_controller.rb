@@ -55,9 +55,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user_value = user.send(attr)
       identity_value = identity.send(attr)
 
-      if user_value.blank? && identity_value
-        user[attr] = identity_value
-      end
+      user[attr] = identity_value if user_value.blank? && identity_value
     end
 
     user.skip_confirmation_notification!
