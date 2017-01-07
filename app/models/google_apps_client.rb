@@ -20,7 +20,7 @@ class GoogleAppsClient
     @client.execute request
   end
 
-  def is_valid_user?(email, domain = 'happyfuncorp.com')
+  def valid_user?(email, domain = 'happyfuncorp.com')
     users = list_users(domain)
     users.data['users'].each do |user|
       return true if user['primaryEmail'].casecmp(email.downcase).zero?
@@ -29,20 +29,19 @@ class GoogleAppsClient
   end
 
   def ensure_user(email, first_name, last_name)
-    unless is_valid_user?(email)
-      new_user = admin_api.users.insert.request_schema.new('password' => 'happiness4u',
-                                                           'primaryEmail' => email,
-                                                           'name' => {
-                                                             'familyName' => last_name,
-                                                             'givenName' => first_name
-                                                           },
-                                                           changePasswordAtNextLogin: true)
+    return if valid_user?(email)
+    new_user = admin_api.users.insert.request_schema.new('password' => 'happiness4u',
+                                                         'primaryEmail' => email,
+                                                         'name' => {
+                                                           'familyName' => last_name,
+                                                           'givenName' => first_name
+                                                         },
+                                                         changePasswordAtNextLogin: true)
 
-      @client.execute(
-        api_method: admin_api.users.insert,
-        body_object: new_user
-      )
-    end
+    @client.execute(
+      api_method: admin_api.users.insert,
+      body_object: new_user
+    )
   end
 
   def list_groups(domain = 'happyfuncorp.com')

@@ -8,6 +8,6 @@ class AssignmentDecorator < Draper::Decorator
   end
 
   def description
-    RDiscount.new(object.description).to_html.html_safe
+    h.raw(RDiscount.new(object.description).to_html)
   end
 end

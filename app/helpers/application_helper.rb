@@ -15,6 +15,8 @@ module ApplicationHelper
   end
 
   def no_results_found_row(colspan)
-    "<tr><td class=\"none\" colspan=\"#{colspan}\">#{I18n.t(:no_results_found)}</td></tr>".html_safe
+    content_tag :tr do
+      content_tag :td, I18n.t(:no_results_found), class: 'none', colspan: colspan
+    end
   end
 end

@@ -3,7 +3,7 @@ class TestDecorator < Draper::Decorator
   delegate_all
 
   def description
-    RDiscount.new(object.description).to_html.html_safe
+    h.raw(RDiscount.new(object.description).to_html)
   end
 
   def type_name
@@ -28,7 +28,7 @@ class TestDecorator < Draper::Decorator
                            data: { confirm: 'Are you sure?' }, method: :delete, class: :danger)
       end
 
-      links.join(' | ').html_safe
+      h.safe_join(links, ' | ')
     end
   end
 end

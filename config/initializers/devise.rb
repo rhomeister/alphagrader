@@ -7,7 +7,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'ff8015c1f4ac8492d591e12af0c8a46d181244629598989393f8b051368a9409e6da9d5994263b5f07d11d55b760f34ab53a5b0ae96b10b3be62150e15634c60'
+  # config.secret_key = 'secret'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -109,7 +109,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'ebe5f793e489a4f7584a329646fe3a9484641ed91543a021d9ce22ef9d58c19f19ce5e0cc3c917baaa275343cc37e9775ee34aa0a9f77d690d390a6c32820c20'
+  # config.pepper = 'pepper'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -247,7 +247,8 @@ Devise.setup do |config|
 
   # ==> OmniAuth
   # config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
-  # config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH2_APP_ID'], ENV['GOOGLE_OAUTH2_APP_SECRET'], scope: 'email,profile,offline', prompt: 'consent'
+  # config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH2_APP_ID'], ENV['GOOGLE_OAUTH2_APP_SECRET'],
+  #                  scope: 'email,profile,offline', prompt: 'consent'
   # config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email'
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.

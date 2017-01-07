@@ -19,8 +19,8 @@ task :haml2erb do
 
     outfile = f.gsub(/\.haml/, '.erb')
 
-    if outfile =~ /templates\/haml/
-      outfile.gsub!(/templates\/haml/, 'templates/erb')
+    if outfile =~ %r{templates\/haml}
+      outfile.gsub!(%r{templates\/haml}, 'templates/erb')
       puts "outfile = #{outfile}"
 
       FileUtils.mkdir_p(Pathname.new(outfile).dirname)

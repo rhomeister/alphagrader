@@ -8,7 +8,7 @@ class TestResultDecorator < Draper::Decorator
   end
 
   def title
-    "#{result_icon} #{title_text}".html_safe
+    h.safe_join([result_icon, title_text], ' ')
   end
 
   def title_text

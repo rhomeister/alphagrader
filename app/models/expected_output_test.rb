@@ -34,7 +34,7 @@ class ExpectedOutputTest < Test
     end
 
     def status
-      return :error unless exit_code == 0
+      return :error unless exit_code.zero?
       return :failure unless correct_output?
       :success
     end

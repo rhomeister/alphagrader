@@ -68,7 +68,8 @@ class GitSubmission < Submission
   def create_github_webhook
     return unless uploaded_by
     uploaded_by.create_github_webhook(github_repository_name)
-  rescue
+  rescue StandardError => e
+    Rails.logger.error(e)
   end
 
   def update_github_commit_status
@@ -77,7 +78,7 @@ class GitSubmission < Submission
     target_url = Rails.application.routes.url_helpers.assignment_submission_url(assignment, self)
     client.create_status(github_repository_name, git_commit_sha, status,
                          target_url: target_url, context: 'AlphaGrader')
-  rescue Exception => e
-    puts e.inspect
+  rescue StandardError => e
+    Rails.logger.error(e)
   end
 end

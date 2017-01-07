@@ -18,7 +18,7 @@ feature 'Registration', type: :feature do
 
     body = ActionMailer::Base.deliveries.last.body
 
-    md = body.encoded.match /(\/users\/confirmation.*) /
+    md = body.encoded.match %r{(\/users\/confirmation.*) }
     assert(false, 'Confirmation URL not found in message') unless md
 
     visit md[1]
@@ -58,7 +58,7 @@ feature 'Registration', type: :feature do
 
     body = ActionMailer::Base.deliveries.last.body
 
-    md = body.encoded.match /(\/users\/confirmation.*) /
+    md = body.encoded.match %r{(\/users\/confirmation.*) }
     assert(false, 'Confirmation URL not found in message') unless md
 
     visit md[1]
@@ -104,11 +104,12 @@ feature 'Registration', type: :feature do
 
     click_button 'Send me reset password instructions'
 
-    expect(page.body).to include('You will receive an email with instructions on how to reset your password in a few minutes.')
+    expect(page.body).to include('You will receive an email with instructions on'\
+                                 ' how to reset your password in a few minutes.')
 
     body = ActionMailer::Base.deliveries.last.body
 
-    md = body.encoded.match /(\/users\/password\/edit\?reset.*)/
+    md = body.encoded.match %r{(\/users\/password\/edit\?reset.*)}
     assert(false, 'URL NOT FOUND IN MESSAGE') unless md
 
     visit md[1]

@@ -13,9 +13,7 @@ class SetupController < ApplicationController
   protected
 
   def require_local!
-    unless local_request?
-      redirect_to root_url, error: 'This information is only available to local requests'
-    end
+    redirect_to root_url, error: 'This information is only available to local requests' unless local_request?
   end
 
   def local_request?

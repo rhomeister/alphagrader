@@ -24,7 +24,7 @@
 
 = panel title: Assignment.model_name.human.pl, context: :primary do
   .panel-body
-    - if can?(:create, @course.assignments.build)
+    - if can?(:create, Assignment.new(course: @course))
       = link_to 'New Assignment', new_course_assignment_path(@course), class: 'btn btn-primary'
     %table.table.table-striped
       %thead

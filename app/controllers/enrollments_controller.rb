@@ -8,11 +8,10 @@ class EnrollmentsController < ApplicationController
 
   def new
     @enrollment_code = params.dig(:membership, :enrollment_code)
-    if @enrollment_code
-      @enrollment_code.upcase!
-      @course = Course.find_by(enrollment_code: @enrollment_code)
-      @course = @course.try(:decorate)
-    end
+    return unless @enrollment_code
+    @enrollment_code.upcase!
+    @course = Course.find_by(enrollment_code: @enrollment_code)
+    @course = @course.try(:decorate)
   end
 
   def create

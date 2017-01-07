@@ -39,7 +39,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :omniauthable
 
   def github
-    identities.where(provider: 'github').first
+    identities.find_by(provider: 'github')
   end
 
   def github_client
@@ -60,7 +60,7 @@ class User < ApplicationRecord
   end
 
   def facebook
-    identities.where(provider: 'facebook').first
+    identities.find_by(provider: 'facebook')
   end
 
   def facebook_client
@@ -68,7 +68,7 @@ class User < ApplicationRecord
   end
 
   def google_oauth2
-    identities.where(provider: 'google_oauth2').first
+    identities.find_by(provider: 'google_oauth2')
   end
 
   def google_oauth2_client
@@ -76,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def twitter
-    identities.where(provider: 'twitter').first
+    identities.find_by(provider: 'twitter')
   end
 
   def twitter_client
