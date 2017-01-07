@@ -25,7 +25,7 @@ class TestDecorator < Draper::Decorator
       if h.can?(:destroy, object)
         links << h.link_to(h.icon(:trash, library: :font_awesome),
                            h.assignment_test_path(assignment, object),
-                           data: {confirm: 'Are you sure?'}, method: :delete, class: :danger)
+                           data: { confirm: 'Are you sure?' }, method: :delete, class: :danger)
       end
 
       links.join(' | ').html_safe

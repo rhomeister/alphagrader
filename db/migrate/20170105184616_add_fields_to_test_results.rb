@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddFieldsToTestResults < ActiveRecord::Migration[5.0]
   def change
     add_column :test_results, :name, :string

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ExpectedOutputTest < Test
   validates :expected_program_output, presence: true
   validates :program_input, presence: true
@@ -23,8 +24,8 @@ class ExpectedOutputTest < Test
 
     def run
       Dir.chdir(directory) do
-        @output = %x[echo '#{program_input}' | ./run 2>&1]
-        @exit_code = $?.exitstatus
+        @output = `echo '#{program_input}' | ./run 2>&1`
+        @exit_code = $CHILD_STATUS.exitstatus
       end
     end
 

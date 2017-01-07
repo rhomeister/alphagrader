@@ -29,10 +29,10 @@ class Ability
   private
 
   def instructor_membership_params
-    {memberships: { user_id: user.id, role: ['instructor', Membership.roles[:instructor]] }}
+    { memberships: { user_id: user.id, role: ['instructor', Membership.roles[:instructor]] } }
   end
 
   def membership_params
-    {memberships: { user_id: user.id }}
+    { memberships: { user_id: user.id } }
   end
 end

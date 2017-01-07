@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # app/controllers/github_webhooks_controller.rb
 class GithubWebhooksController < ActionController::Base
   include GithubWebhook::Processor
@@ -14,9 +15,9 @@ class GithubWebhooksController < ActionController::Base
     uploaded_by = identity.try :user
 
     GitSubmission.create!(github_repository_name: repository_name,
-                                   git_commit_sha: commit_sha,
-                                   assignment: assignment,
-                                   uploaded_by: uploaded_by)
+                          git_commit_sha: commit_sha,
+                          assignment: assignment,
+                          uploaded_by: uploaded_by)
   end
 
   # Handle create event
@@ -24,7 +25,7 @@ class GithubWebhooksController < ActionController::Base
     # TODO: handle create webhook
   end
 
-  def webhook_secret(payload)
+  def webhook_secret(_payload)
     ENV.fetch('GITHUB_WEBHOOK_SECRET')
   end
 end

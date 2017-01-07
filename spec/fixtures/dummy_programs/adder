@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 $stdin.readlines.each do |line|
   puts line.split(' ').map(&:to_i).inject(:+)

@@ -37,12 +37,12 @@ class SubmissionDecorator < Draper::Decorator
 
   def status
     label_class = case object.status
-    when 'success'
-      'success'
-    when 'failure'
-      'danger'
-    else
-      'info'
+                  when 'success'
+                    'success'
+                  when 'failure'
+                    'danger'
+                  else
+                    'info'
     end
 
     h.content_tag :span, object.status.upcase, class: "label label-#{label_class}"

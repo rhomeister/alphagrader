@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   end
 
   constraints resque_web_constraint do
-    mount ResqueWeb::Engine, :at => "/resque"
+    mount ResqueWeb::Engine, at: '/resque'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
