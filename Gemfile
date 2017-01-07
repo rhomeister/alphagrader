@@ -70,6 +70,7 @@ group :development do
   gem 'happy_seed'
 
   gem 'rubocop', require: false
+  gem 'brakeman', require: false
 end
 
 group :test do

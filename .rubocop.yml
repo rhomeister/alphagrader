@@ -5,6 +5,7 @@ AllCops:
   Exclude:
     - lib/templates/rails/scaffold_controller/controller.rb
     - db/schema.rb
+    - vendor/**/*
 
 Rails:
   Enabled: true
