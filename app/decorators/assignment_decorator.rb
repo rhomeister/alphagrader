@@ -15,6 +15,7 @@ class AssignmentDecorator < Draper::Decorator
     return if h.current_user.course_instructor?(course)
 
     membership = course.membership_for(h.current_user)
+    return if membership.nil?
     team = membership.teams.find_by(assignment_id: id)
 
     return unless team.nil? || team.submissions.empty?
