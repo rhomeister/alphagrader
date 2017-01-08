@@ -39,7 +39,7 @@ class GitSubmission < Submission
 
   def run_user_tests
     assignment.tests.each do |test|
-      test_result = test.run(tempdir)
+      test_result = test.run(self)
       test_result.submission = self
       test_result.save!
     end
@@ -66,7 +66,7 @@ class GitSubmission < Submission
 
   def github_commit_status
     return :pending if running? || queued?
-    return status
+    status
   end
 
   def update_github_commit_status

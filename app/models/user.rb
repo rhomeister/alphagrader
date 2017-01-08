@@ -52,7 +52,7 @@ class User < ApplicationRecord
   end
 
   def github_repositories_with_admin_permissions
-    github_repositories.select{|e| e[:permissions][:admin]}
+    github_repositories.select { |e| e[:permissions][:admin] }
   end
 
   def create_github_webhook(repository)

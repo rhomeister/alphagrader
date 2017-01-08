@@ -22,9 +22,12 @@
     - @tests.each_with_index do |test, index|
       = render 'tests/panel_show', test: test, index: index + 1
 
-= panel title: Submission.model_name.human.pl, context: :primary do
+= panel title: 'My Team', context: :primary do
   .panel-body
     = render 'active_team_content'
+
+= panel title: Submission.model_name.human.pl, context: :primary do
+  .panel-body
     %table.table.table-striped
       %thead
         %tr

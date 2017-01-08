@@ -1,2 +1,14 @@
 - breadcrumb :test, @test
-= render "form"
+
+- if params[:type]
+  = render "form"
+- else
+  %h3 What kind of test would you like to add?
+
+  %ul.list-group
+    - Test::VALID_TEST_TYPES.each do |key, details|
+      %li.list-group-item
+        .pull-right
+          = link_to 'Create', url_for(type: key), class: 'btn btn-default'
+        %h4.list-group-item-heading= details.fetch(:name)
+        .list-group-item-text= details.fetch(:description)

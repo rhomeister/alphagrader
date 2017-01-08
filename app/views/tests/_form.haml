@@ -3,6 +3,8 @@
 = panel title: 'Edit Test', context: :primary do
   = simple_form_for(@test, url: url) do |f|
     .panel-body
+      %h3= @test.class.model_name.human
+
       = f.error_notification
 
       .form-inputs
@@ -10,8 +12,9 @@
         = f.input :public, hint: 'Mark as public to show the details of the test to the student'
         = f.input :description, input_html: { style: 'font-family: monospace; height: 300px'},
           hint: 'This field is markdown formatted'
-        = f.input :program_input, input_html: { style: 'font-family: monospace; height: 200px'}
-        = f.input :expected_program_output, input_html: { style: 'font-family: monospace; height: 200px'}
+
+        = render "form_#{@test.class.to_s.underscore}", f: f
+        = f.input :type, as: :hidden
     .panel-footer
       .form-actions
         = link_to 'Cancel', [@assignment.course, @assignment], class: 'btn btn-default'

@@ -13,4 +13,7 @@ FactoryGirl.define do
     program_input { "1 1\n1 2" }
     expected_program_output { "2\n3" }
   end
+
+  factory :author_contribution_test, parent: :test, class: 'AuthorContributionTest' do
+  end
 end

@@ -1,8 +1,10 @@
+# frozen_string_literal: true
 class Team < ApplicationRecord
   belongs_to :assignment, inverse_of: :teams
 
   has_and_belongs_to_many :memberships
   has_many :users, through: :memberships
+  has_many :submissions, inverse_of: :team
   belongs_to :repository_owner, class_name: 'User'
 
   after_save :create_github_webhook

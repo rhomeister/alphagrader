@@ -13,6 +13,16 @@ describe Team, type: :model do
     end
   end
 
+  it 'has submissions' do
+    team = create(:team)
+    team.submissions = submissions = create_list(:submission, 3)
+
+    expect(team.submissions).to match_array(submissions)
+    submissions.each do |submission|
+      expect(submission.team).to eq team
+    end
+  end
+
   it 'has a repository owner' do
     team = create(:team)
     user = create(:user)

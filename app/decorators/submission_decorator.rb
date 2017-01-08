@@ -35,6 +35,10 @@ class SubmissionDecorator < Draper::Decorator
     object.authors.map(&:name).join(', ')
   end
 
+  def team_members
+    object.team.users.map(&:name).join(', ')
+  end
+
   def status
     label_class =
       case object.status

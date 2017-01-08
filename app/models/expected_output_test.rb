@@ -3,7 +3,8 @@ class ExpectedOutputTest < Test
   validates :expected_program_output, presence: true
   validates :program_input, presence: true
 
-  def run(directory)
+  def run(submission)
+    directory = submission.tempdir
     runner = TestRunner.new(directory, program_input, expected_program_output)
     runner.run
     ExpectedOutputTestResult.new(status: runner.status,

@@ -1,0 +1,13 @@
+- if test_result.success?
+  = alert_box context: :success do
+    All team members have contributed to this submission
+- else
+  %p The missing contributors were:
+  %ul
+    - test_result.missing_contributers.each do |contributor|
+      %li= contributor.name
+
+
+
+
+

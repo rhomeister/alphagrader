@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateMembershipsTeamsJoinTable < ActiveRecord::Migration[5.0]
   def change
     create_table :memberships_teams, id: false do |t|

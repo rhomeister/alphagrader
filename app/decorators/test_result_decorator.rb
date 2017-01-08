@@ -8,7 +8,11 @@ class TestResultDecorator < Draper::Decorator
   end
 
   def title
-    h.safe_join([result_icon, title_text], ' ')
+    h.safe_join([result_icon, type_name, title_text], ' ')
+  end
+
+  def type_name
+    h.content_tag :span, test_type.model_name.human, class: 'label label-info'
   end
 
   def title_text

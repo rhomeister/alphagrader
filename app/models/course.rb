@@ -21,6 +21,6 @@ class Course < ApplicationRecord
   end
 
   def membership_for(current_user)
-    memberships.find{|m| m.user_id == current_user.id}
+    memberships.find { |m| m.user_id == current_user.id }
   end
 end

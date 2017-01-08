@@ -1,15 +1,13 @@
 - if @active_team
-  %h3
-    Team
-    .pull-right.text-right
-      - if can?(:edit, @active_team.object)
+  .pull-right.text-right
+    - if can?(:edit, @active_team.object)
+      = link_to 'Edit Team', edit_assignment_team_path(@assignment, @active_team),
+        class: 'btn btn-primary'
+    - else
+      %p
         = link_to 'Edit Team', edit_assignment_team_path(@assignment, @active_team),
-          class: 'btn btn-primary'
-      - else
-        %p
-          = link_to 'Edit Team', edit_assignment_team_path(@assignment, @active_team),
-            class: 'btn btn-primary disabled'
-          .small(style='font-size: 50%') Only the repository owner can edit the team
+          class: 'btn btn-primary disabled'
+        .small(style='font-size: 50%') Only the repository owner can edit the team
 
   %dl.dl-horizontal
     - [:repository_owner_name, :user_names, :git_repository_url].each do |attr|
@@ -18,8 +16,9 @@
 
   = alert_box context: :info do
     %i.fa.fa-smile-o
-    Every commit to the repository will automatically create a submission, and
-    give you feedback on your progress.
+    %b Your team has been setup!
+    Every commit to the repository will automatically
+    create a submission, and give you feedback on your progress.
 - else
   = alert_box context: :info do
     To start with this assignment, create a team first.

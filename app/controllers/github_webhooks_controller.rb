@@ -18,7 +18,8 @@ class GithubWebhooksController < ActionController::Base
     GitSubmission.create!(github_repository_name: repository_name,
                           git_commit_sha: commit_sha,
                           assignment: assignment,
-                          uploaded_by: uploaded_by)
+                          uploaded_by: uploaded_by,
+                          team: team)
   end
 
   # Handle create event

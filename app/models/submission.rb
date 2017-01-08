@@ -2,6 +2,7 @@
 class Submission < ApplicationRecord
   belongs_to :assignment
   belongs_to :uploaded_by, class_name: 'User'
+  belongs_to :team, inverse_of: :submissions
 
   has_and_belongs_to_many :authors, class_name: 'User',
                                     join_table: :author_submissions,
