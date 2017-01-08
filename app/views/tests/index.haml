@@ -1,0 +1,13 @@
+- breadcrumb :assignment, @assignment
+
+= render 'assignments/nav_tabs'
+
+= panel title: Test.model_name.human.pl, context: :primary do
+  .panel-body
+    - if can?(:create, Test.new(assignment: @assignment))
+      %p= link_to 'New Test', new_assignment_test_path(@assignment), class: 'btn btn-primary'
+    - if @hidden_test_count > 0
+      = alert_box "#{@hidden_test_count} test(s) are marked private and are not shown below.", context: :warning
+
+    - @tests.each_with_index do |test, index|
+      = render 'tests/panel_show', test: test, index: index + 1

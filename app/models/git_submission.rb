@@ -19,7 +19,7 @@ class GitSubmission < Submission
   def run_tests
     test_results.destroy_all
     download
-    detect_authors
+    detect_contributors
     detect_sha
     detect_commit_message
     self.status = :running
@@ -53,11 +53,13 @@ class GitSubmission < Submission
     self.git_commit_message = `git --git-dir #{tempdir}/.git log -1 --pretty=%B`
   end
 
-  def detect_authors
+  def detect_contributors
     emails = repository.commits.map(&:author).map(&:email).uniq
-    new_authors = authors + User.joins(:identities).where(identities: { email: emails })
-    self.authors = []
-    self.authors = new_authors.uniq
+    new_contributors = contributors + assignment.course.memberships
+                       .joins(user: :identities)
+                       .where(identities: { email: emails })
+    self.contributors = []
+    self.contributors = new_contributors.uniq
   end
 
   def repository

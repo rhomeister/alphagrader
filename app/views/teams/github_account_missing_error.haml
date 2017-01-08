@@ -1,5 +1,5 @@
 - breadcrumb :team, @team
 
 = alert_box context: :danger do
-  In order to create a new submission, you first need to connect your
-  = link_to 'Github account', edit_user_registration_path
+  In order to create a team, you first need to connect your
+  = link_to 'Github account', omniauth_authorize_path(current_user, :github)

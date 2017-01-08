@@ -4,22 +4,13 @@ class Submission < ApplicationRecord
   belongs_to :uploaded_by, class_name: 'User'
   belongs_to :team, inverse_of: :submissions
 
-  has_and_belongs_to_many :authors, class_name: 'User',
-                                    join_table: :author_submissions,
-                                    association_foreign_key: :author_id,
-                                    inverse_of: :submissions
-
-  has_many :test_results, dependent: :destroy
-
   enum status: [:queued, :running, :success, :failure]
+  has_many :test_results, dependent: :destroy
+  has_many :contributions, inverse_of: :submission
+  has_many :contributors, through: :contributions, class_name: 'Membership', source: :membership
 
   before_create do
     self.status ||= :queued
-  end
-
-  before_save do
-    next unless uploaded_by
-    authors << uploaded_by unless authors.include?(uploaded_by)
   end
 
   after_create do

@@ -19,13 +19,16 @@ class TestDecorator < Draper::Decorator
     h.content_tag(:div, class: 'pull-right') do
       links = []
       if h.can?(:edit, object)
-        links << h.link_to('Edit', h.edit_assignment_test_path(assignment, object))
+        links << h.link_to('Edit',
+                           h.edit_assignment_test_path(assignment, object),
+                           id: "edit_test_#{id}")
       end
 
       if h.can?(:destroy, object)
         links << h.link_to(h.icon(:trash, library: :font_awesome),
                            h.assignment_test_path(assignment, object),
-                           data: { confirm: 'Are you sure?' }, method: :delete, class: :danger)
+                           data: { confirm: 'Are you sure?' }, method: :delete,
+                           class: :danger, id: "delete_test_#{id}")
       end
 
       h.safe_join(links, ' | ')

@@ -16,9 +16,16 @@ class TestsController < ApplicationController
   def edit
   end
 
+  def index
+    @tests = @assignment.tests
+                        .accessible_by(current_ability)
+                        .order('tests.created_at asc').decorate
+    @hidden_test_count = @assignment.tests.count - @tests.count
+  end
+
   def update
     if @test.update_attributes(test_params)
-      redirect_to [@assignment.course, @assignment], flash: { success: 'Test was successfully updated' }
+      redirect_to assignment_tests_path(@assignment), flash: { success: 'Test was successfully updated' }
     else
       render 'new'
     end
@@ -27,7 +34,7 @@ class TestsController < ApplicationController
   def create
     cast_test!
     if @test.save
-      redirect_to [@assignment.course, @assignment], flash: { success: 'Test was successfully created' }
+      redirect_to assignment_tests_path(@assignment), flash: { success: 'Test was successfully created' }
     else
       render 'new'
     end
@@ -35,7 +42,7 @@ class TestsController < ApplicationController
 
   def destroy
     @test.destroy
-    redirect_to [@assignment.course, @assignment], flash: { success: 'Test was successfully deleted' }
+    redirect_to assignment_tests_path(@assignment), flash: { success: 'Test was successfully deleted' }
   end
 
   private

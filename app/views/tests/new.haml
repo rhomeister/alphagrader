@@ -9,6 +9,6 @@
     - Test::VALID_TEST_TYPES.each do |key, details|
       %li.list-group-item
         .pull-right
-          = link_to 'Create', url_for(type: key), class: 'btn btn-default'
+          = link_to 'Create', url_for(type: key), id: key, class: 'btn btn-default'
         %h4.list-group-item-heading= details.fetch(:name)
         .list-group-item-text= details.fetch(:description)

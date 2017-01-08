@@ -11,7 +11,7 @@
               = f.input :email, required: true
               = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
               = f.input :password_confirmation, required: true
-              = f.input :instructor, as: :boolean
+              = f.input :instructor, as: :boolean, label: 'Sign up as instructor'
           .panel-footer
             .buttons
               = f.button :submit, "Sign up", class: "btn-primary"

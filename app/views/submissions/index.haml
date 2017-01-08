@@ -1,0 +1,25 @@
+- breadcrumb :assignment, @assignment
+
+= render 'assignments/nav_tabs'
+
+= panel title: 'My Team', context: :primary do
+  .panel-body
+    = render 'active_team_content', team: @active_team
+
+= panel title: Submission.model_name.human.pl, context: :primary do
+  .panel-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= Submission.human_attribute_name(:submission_time)
+          %th= Submission.human_attribute_name(:uploaded_by)
+          %th= Submission.human_attribute_name(:contributors)
+          %th= Submission.human_attribute_name(:status)
+      %tbody
+        = no_results_found_row(4) if @submissions.to_a.empty?
+        - @submissions.decorate.each do |submission|
+          %tr
+            %td= link_to submission.created_at, assignment_submission_path(@assignment, submission)
+            %td= submission.uploaded_by
+            %td= submission.contributor_names
+            %td= submission.status

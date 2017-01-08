@@ -9,6 +9,14 @@ class SubmissionsController < ApplicationController
     'Submissions'
   end
 
+  def index
+    @submissions = @submissions.order('submissions.created_at desc')
+    @active_team = @assignment.teams.joins(:memberships)
+                              .accessible_by(current_ability)
+                              .find_by(memberships: { user_id: current_user.id })
+    @active_team = @active_team.try(:decorate)
+  end
+
   def show
     @submission = @submission.decorate
     @test_results = @submission.test_results.decorate

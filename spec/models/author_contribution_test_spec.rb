@@ -7,7 +7,7 @@ describe AuthorContributionTest, type: :model do
       user = create(:user)
       team = create(:team, memberships: [create(:membership, user: user)])
       submission = create(:submission, team: team)
-      submission.authors = [user]
+      submission.contributors = team.memberships
       test = create(:author_contribution_test)
       result = test.run(submission)
 
@@ -18,7 +18,7 @@ describe AuthorContributionTest, type: :model do
       user = create(:user)
       team = create(:team, memberships: [create(:membership, user: user)])
       submission = create(:submission, team: team)
-      submission.authors.clear
+      submission.contributors.clear
 
       test = create(:author_contribution_test)
       result = test.run(submission)

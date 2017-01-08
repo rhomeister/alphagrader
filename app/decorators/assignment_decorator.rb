@@ -10,4 +10,14 @@ class AssignmentDecorator < Draper::Decorator
   def description
     h.raw(RDiscount.new(object.description).to_html)
   end
+
+  def submission_warning
+    return if h.current_user.course_instructor?(course)
+
+    membership = course.membership_for(h.current_user)
+    team = membership.teams.find_by(assignment_id: id)
+
+    return unless team.nil? || team.submissions.empty?
+    h.icon 'exclamation-circle', library: :font_awesome
+  end
 end

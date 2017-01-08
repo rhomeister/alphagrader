@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
 
   def index
     @courses = @courses.includes(:instructors)
-    @instructor_courses = @courses.select { |c| current_user.instructor?(c) }
+    @instructor_courses = @courses.select { |c| current_user.course_instructor?(c) }
     @courses = @courses.decorate
   end
 

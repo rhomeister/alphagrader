@@ -96,4 +96,44 @@ describe Ability, type: :model do
       expect(ability.can?(:edit, test)).to be true
     end
   end
+
+  context 'submissions' do
+    it 'cannot read the submission without being a team member' do
+      ability = Ability.new(user = create(:user))
+      assignment = create(:assignment)
+      assignment.course.memberships.create!(user: user, role: :student)
+      team = create(:team, assignment: assignment)
+      submission = create(:submission, team: team, assignment: assignment)
+
+      expect(ability.can?(:read, submission)).to be false
+      expect(Submission.accessible_by(ability)).to be_empty
+    end
+
+    it 'can read the submission if team member' do
+      ability = Ability.new(user = create(:user))
+      assignment = create(:assignment)
+      membership = assignment.course.memberships.create!(user: user, role: :student)
+      team = create(:team, assignment: assignment, memberships: [membership])
+      submission = create(:submission, team: team, assignment: assignment)
+
+      expect(ability.can?(:read, submission)).to be true
+      expect(Submission.accessible_by(ability)).to eq [submission]
+    end
+
+    it 'can edit the assignment if instructor' do
+      user = create(:user)
+      assignment = create(:assignment)
+      assignment.course.memberships.create!(user: user, role: :instructor)
+      ability = Ability.new(user)
+
+      student = create(:user)
+      membership = assignment.course.memberships.create!(user: student, role: :student)
+
+      team = create(:team, assignment: assignment, memberships: [membership])
+      submission = create(:submission, team: team, assignment: assignment)
+
+      expect(Submission.accessible_by(ability)).to eq [submission]
+      expect(ability.can?(:read, submission)).to be true
+    end
+  end
 end

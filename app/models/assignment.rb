@@ -8,6 +8,6 @@ class Assignment < ApplicationRecord
   validates :name, presence: true
 
   def members_without_team
-    course.memberships - teams.flat_map(&:memberships)
+    course.memberships.student - teams.flat_map(&:memberships)
   end
 end

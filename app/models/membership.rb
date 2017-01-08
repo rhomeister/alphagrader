@@ -13,6 +13,9 @@ class Membership < ApplicationRecord
 
   validates :course, uniqueness: { scope: :user_id }
 
+  has_many :contributions, inverse_of: :user
+  has_many :submissions, through: :contributions
+
   delegate :name, to: :user
 
   before_validation do

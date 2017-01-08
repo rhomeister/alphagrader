@@ -9,7 +9,7 @@ class AuthorContributionTest < Test
 
   Runner = Struct.new(:submission, :status) do
     def run
-      self.status = if submission.team.users.sort == submission.authors.sort
+      self.status = if submission.team.memberships.sort == submission.contributors.sort
                       :success
                     else
                       :failure

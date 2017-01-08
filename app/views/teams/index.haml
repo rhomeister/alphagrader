@@ -1,0 +1,34 @@
+- breadcrumb :assignment, @assignment
+
+= render 'assignments/nav_tabs'
+
+= panel title: 'Teams', context: :primary do
+  .panel-body
+    - if @assignment.members_without_team.any?
+      = alert_box context: :warning do
+        The following members are not (yet) part of a team:
+        %ul
+          - @assignment.members_without_team.each do |member|
+            %li= member.name
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= Team.human_attribute_name(:id)
+          %th= Team.human_attribute_name(:members)
+          %th= Team.human_attribute_name(:last_submission)
+      %tbody
+        - if @assignment.teams.empty?
+          = no_results_found_row(3)
+        - @assignment.teams.includes(:submissions).decorate.each do |team|
+          %tr
+            %td= team.id
+            %td= safe_join(team.users.map(&:name), '<br>'.html_safe)
+            %td
+              - last_submission = team.submissions.decorate.last
+              - if last_submission
+                = link_to last_submission.created_at, [@assignment, last_submission]
+                = last_submission.status
+              - else
+                = t(:no_results_found)
+

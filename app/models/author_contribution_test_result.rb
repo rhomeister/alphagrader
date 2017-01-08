@@ -5,6 +5,6 @@ class AuthorContributionTestResult < TestResult
   end
 
   def missing_contributers
-    submission.team.users - submission.authors
+    submission.team.memberships - submission.contributors
   end
 end

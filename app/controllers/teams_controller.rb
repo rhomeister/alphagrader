@@ -13,13 +13,16 @@ class TeamsController < ApplicationController
     render 'github_account_missing_error' if current_user.github.nil?
   end
 
+  def index
+  end
+
   def edit
   end
 
   def update
     if @team.update_attributes(team_params)
       @team.memberships << @assignment.course.membership_for(current_user)
-      redirect_to [@assignment.course, @assignment]
+      redirect_to assignment_submissions_path(@assignment)
     else
       render 'edit'
     end
@@ -29,7 +32,7 @@ class TeamsController < ApplicationController
     @team.memberships << @assignment.course.membership_for(current_user)
     @team.repository_owner = current_user
     if @team.save
-      redirect_to [@assignment.course, @assignment]
+      redirect_to assignment_submissions_path(@assignment)
     else
       render 'new'
     end

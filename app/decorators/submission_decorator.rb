@@ -31,11 +31,12 @@ class SubmissionDecorator < Draper::Decorator
     end
   end
 
-  def authors
-    object.authors.map(&:name).join(', ')
+  def contributor_names
+    object.contributors.map(&:name).join(', ')
   end
 
   def team_members
+    return unless object.team
     object.team.users.map(&:name).join(', ')
   end
 

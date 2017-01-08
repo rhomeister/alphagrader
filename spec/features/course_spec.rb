@@ -46,4 +46,14 @@ feature 'Courses', type: :feature do
     expect(page.body).to include('You have enrolled successfully')
     expect(page.body).to_not include('To invite students, give them the following code:')
   end
+
+  it 'lists courses' do
+    course = create(:course)
+    user = create(:user)
+    create(:membership, role: :instructor, course: course, user: user)
+    login_as(user)
+
+    visit root_path
+    expect(page.body).to include(course.name)
+  end
 end

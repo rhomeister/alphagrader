@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108045626) do
+ActiveRecord::Schema.define(version: 20170108202754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +39,13 @@ ActiveRecord::Schema.define(version: 20170108045626) do
     t.index ["course_id"], name: "index_assignments_on_course_id", using: :btree
   end
 
-  create_table "author_submissions", id: false, force: :cascade do |t|
-    t.integer "author_id"
-    t.integer "submission_id"
-    t.index ["author_id"], name: "index_author_submissions_on_author_id", using: :btree
-    t.index ["submission_id"], name: "index_author_submissions_on_submission_id", using: :btree
+  create_table "contributions", force: :cascade do |t|
+    t.integer  "membership_id"
+    t.integer  "submission_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["membership_id"], name: "index_contributions_on_membership_id", using: :btree
+    t.index ["submission_id"], name: "index_contributions_on_submission_id", using: :btree
   end
 
   create_table "courses", force: :cascade do |t|
@@ -172,8 +174,8 @@ ActiveRecord::Schema.define(version: 20170108045626) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "author_submissions", "submissions"
-  add_foreign_key "author_submissions", "users", column: "author_id"
+  add_foreign_key "contributions", "memberships"
+  add_foreign_key "contributions", "submissions"
   add_foreign_key "identities", "users"
   add_foreign_key "memberships", "courses"
   add_foreign_key "memberships", "users"

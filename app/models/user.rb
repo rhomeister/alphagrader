@@ -20,10 +20,6 @@ class User < ApplicationRecord
   has_many :uploads, class_name: 'Submission',
                      foreign_key: :uploaded_by_id, dependent: :destroy
 
-  has_and_belongs_to_many :submissions, join_table: :author_submissions,
-                                        foreign_key: :author_id,
-                                        inverse_of: :authors
-
   before_save do
     self.role = :instructor if instructor == '1' || instructor == true
   end

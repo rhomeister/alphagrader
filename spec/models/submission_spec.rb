@@ -12,13 +12,15 @@ describe Submission, type: :model do
     expect(submission.reload.uploaded_by).to eq user
   end
 
-  it 'has been submitted by users' do
+  it 'has contributions' do
     submission = create(:submission)
-    submission.authors = users = create_list(:user, 3)
+    submission.contributions = contributions = create_list(:contribution, 3)
 
-    expect(submission.reload.authors).to match_array(users)
-    users.each do |user|
-      expect(user.submissions).to eq [submission]
+    expect(submission.reload.contributions).to match_array(contributions)
+    expect(submission.reload.contributors).to match_array(contributions.map(&:membership))
+    contributions.each do |contribution|
+      expect(contribution.submission).to eq submission
+      expect(contribution.membership.submissions).to eq [submission]
     end
   end
 

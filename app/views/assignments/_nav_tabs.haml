@@ -1,0 +1,15 @@
+%h1
+  = "#{Assignment.model_name.human}:"
+  = @assignment.name
+  - if can?(:edit, @assignment.decorate.object)
+    .pull-right
+      = link_to 'Edit', edit_course_assignment_path(@assignment.course, @assignment), class: 'btn btn-primary'
+
+= nav do
+  = link_to 'Overview', course_assignment_path(@assignment.course, @assignment)
+  = link_to Test.model_name.human.pl, assignment_tests_path(@assignment)
+  = link_to assignment_submissions_path(@assignment) do
+    = Submission.model_name.human.pl
+    = @assignment.decorate.submission_warning
+  - if current_user.course_instructor?(@assignment.course)
+    = link_to Team.model_name.human.pl, assignment_teams_path(@assignment)

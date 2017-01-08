@@ -17,5 +17,5 @@
         = f.input :type, as: :hidden
     .panel-footer
       .form-actions
-        = link_to 'Cancel', [@assignment.course, @assignment], class: 'btn btn-default'
+        = link_to 'Cancel', assignment_tests_path(@assignment), class: 'btn btn-default'
         = f.button :submit, "Save", class: 'btn btn-primary'
