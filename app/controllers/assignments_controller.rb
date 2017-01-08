@@ -15,6 +15,10 @@ class AssignmentsController < ApplicationController
                         .accessible_by(current_ability)
                         .order('tests.created_at asc').decorate
     @hidden_test_count = @assignment.tests.count - @tests.count
+    @active_team = @assignment.teams.joins(:memberships)
+                              .accessible_by(current_ability)
+                              .find_by(memberships: { user_id: current_user.id })
+    @active_team = @active_team.try(:decorate)
 
     @assignment = @assignment.decorate
   end

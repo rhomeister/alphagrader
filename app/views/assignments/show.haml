@@ -24,7 +24,7 @@
 
 = panel title: Submission.model_name.human.pl, context: :primary do
   .panel-body
-    = link_to 'New Submission', new_assignment_submission_path(@assignment), class: 'btn btn-primary'
+    = render 'active_team_content'
     %table.table.table-striped
       %thead
         %tr

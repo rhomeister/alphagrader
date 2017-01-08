@@ -1,0 +1,14 @@
+- breadcrumb :team, @team
+- url = @team.persisted? ? assignment_team_path(@assignment, @team) : assignment_teams_path(@assignment)
+
+= panel title: 'Edit Team', context: :primary do
+  = simple_form_for(@team, url: url) do |f|
+    .panel-body
+      = f.error_notification
+
+      .form-inputs
+        = f.input :github_repository_name, collection: github_repository_names
+        = f.association :memberships, as: :check_boxes, collection: membership_candidates
+    .panel-footer
+      .form-actions
+        = f.button :submit, "Submit", class: "btn btn-primary"

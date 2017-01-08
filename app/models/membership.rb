@@ -2,8 +2,9 @@
 class Membership < ApplicationRecord
   belongs_to :user
   belongs_to :course
+  has_and_belongs_to_many :teams
 
-  enum role: [:user, :instructor]
+  enum role: [:student, :instructor]
 
   attr_accessor :enrollment_code
 
@@ -11,6 +12,8 @@ class Membership < ApplicationRecord
   validates :course, presence: true
 
   validates :course, uniqueness: { scope: :user_id }
+
+  delegate :name, to: :user
 
   before_validation do
     next if enrollment_code.blank?

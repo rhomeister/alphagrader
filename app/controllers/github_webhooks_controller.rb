@@ -9,9 +9,9 @@ class GithubWebhooksController < ActionController::Base
     commit_sha = payload['after']
     repository_name = payload['repository']['full_name']
 
-    submission = Submission.find_by(github_repository_name: repository_name)
-    return unless submission
-    assignment = submission.assignment
+    team = Team.find_by(github_repository_name: repository_name)
+    return unless team
+    assignment = team.assignment
     identity = Identity.find_by(uid: payload['sender']['id'])
     uploaded_by = identity.try :user
 

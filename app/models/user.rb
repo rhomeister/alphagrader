@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   has_many :memberships, dependent: :destroy
   has_many :courses, through: :memberships
+  has_many :teams, through: :memberships
   has_many :uploads, class_name: 'Submission',
                      foreign_key: :uploaded_by_id, dependent: :destroy
 
@@ -39,7 +40,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :omniauthable
 
   def github
-    identities.find_by(provider: 'github')
+    @github ||= identities.find_by(provider: 'github')
   end
 
   def github_client
@@ -47,10 +48,13 @@ class User < ApplicationRecord
   end
 
   def github_repositories
-    github_client.repositories
+    @github_repositories ||= github_client.repositories
   end
 
-  # temp
+  def github_repositories_with_admin_permissions
+    github_repositories.select{|e| e[:permissions][:admin]}
+  end
+
   def create_github_webhook(repository)
     url = Rails.application.routes.url_helpers.github_webhooks_url
     github_client.create_hook(repository, 'web',

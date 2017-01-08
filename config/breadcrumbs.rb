@@ -31,6 +31,15 @@ crumb :submission do |submission|
   parent :assignment, submission.assignment
 end
 
+crumb :team do |team|
+  url = if team.persisted?
+          assignment_team_path(team.assignment, team)
+        end
+  text = team.decorate.created_at || 'New Team'
+  link text, url
+  parent :assignment, team.assignment
+end
+
 crumb :test do |test|
   url = (assignment_submission_path(test.assignment, test) if test.persisted?)
   text = test.name || 'New Test'

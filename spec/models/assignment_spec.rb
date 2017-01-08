@@ -19,4 +19,13 @@ describe Assignment, type: :model do
     expect(test.reload.assignment).to eq assignment
     expect(assignment.reload.tests).to eq [test]
   end
+
+  it 'has teams' do
+    assignment = create(:assignment)
+    team = create(:team)
+    assignment.teams << team
+
+    expect(team.reload.assignment).to eq assignment
+    expect(assignment.reload.teams).to eq [team]
+  end
 end

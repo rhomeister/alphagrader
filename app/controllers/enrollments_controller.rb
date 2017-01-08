@@ -16,6 +16,7 @@ class EnrollmentsController < ApplicationController
 
   def create
     @enrollment.user = current_user
+    @enrollment.role = :student
     if @enrollment.save
       redirect_to @enrollment.course, flash: { success: 'You have enrolled successfully' }
     else

@@ -29,11 +29,14 @@ en:
     list: My Courses
     new: New Course
 
-
   activerecord:
     models:
       course: Course
     attributes:
       submission:
         git_commit_sha: Commit Hash
-
+      team:
+        memberships: Members
+        user_names: Members
+        repository_owner_name: Repository Owner
+        git_repository_url: Repository URL

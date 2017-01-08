@@ -19,4 +19,8 @@ class Course < ApplicationRecord
       break if existing.nil?
     end
   end
+
+  def membership_for(current_user)
+    memberships.find{|m| m.user_id == current_user.id}
+  end
 end

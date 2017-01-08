@@ -16,5 +16,6 @@
   = render 'test_results/show_panel', test_result: test_result
 
 - unless @submission.checks_completed?
+  %i.fa.fa-spinner.fa-spin.fa-2x
   :javascript
     setTimeout(function() { location.reload() }, 5000)
