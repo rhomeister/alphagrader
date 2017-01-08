@@ -3,7 +3,7 @@ require 'rails_helper'
 
 feature 'Courses', type: :feature do
   it 'lets you create a new course' do
-    login_as(create(:user))
+    login_as(create(:user, role: :instructor))
 
     visit root_path
 

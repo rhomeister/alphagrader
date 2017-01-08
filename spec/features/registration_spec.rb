@@ -26,6 +26,47 @@ feature 'Registration', type: :feature do
     expect(page.body).to include('Your email address has been successfully confirmed.')
 
     click_link 'Account'
+
+    within '#new_user' do
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: '123456789'
+    end
+    click_button 'Log in'
+
+    expect(page.body).to_not include('New Course')
+  end
+
+  it 'lets you create a new instructor user' do
+    visit new_user_registration_path
+
+    within '#new_user' do
+      fill_in 'user_name', with: 'Test User'
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: '123456789'
+      fill_in 'user_password_confirmation', with: '123456789'
+      check 'user_instructor'
+    end
+
+    click_button 'Sign up'
+
+    expect(page.body).to include('A message with a confirmation link has been sent to your email address.')
+
+    body = ActionMailer::Base.deliveries.last.body
+
+    md = body.encoded.match %r{(\/users\/confirmation.*) }
+    assert(false, 'Confirmation URL not found in message') unless md
+
+    visit md[1]
+
+    expect(page.body).to include('Your email address has been successfully confirmed.')
+
+    within '#new_user' do
+      fill_in 'user_email', with: 'test@example.com'
+      fill_in 'user_password', with: '123456789'
+    end
+    click_button 'Log in'
+
+    expect(page.body).to include('New Course')
   end
 
   it 'requires a user to have an email address' do

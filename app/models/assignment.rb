@@ -6,4 +6,8 @@ class Assignment < ApplicationRecord
   has_many :teams, dependent: :destroy, inverse_of: :assignment
 
   validates :name, presence: true
+
+  def members_without_team
+    course.memberships - teams.flat_map(&:memberships)
+  end
 end

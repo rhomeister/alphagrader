@@ -8,7 +8,7 @@ class Ability
     can :manage, :all if user && user.admin?
 
     can :read, Course, membership_params
-    can :create, Course
+    can :create, Course if user.instructor? || user.admin?
 
     can [:edit, :update], Course, instructor_membership_params
 

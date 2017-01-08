@@ -2,6 +2,7 @@
 class User < ApplicationRecord
   attr_accessor :oauth_callback
   attr_accessor :current_password
+  attr_accessor :instructor
 
   validates :name, presence: { if: :email_required? }
 
@@ -23,6 +24,10 @@ class User < ApplicationRecord
                                         foreign_key: :author_id,
                                         inverse_of: :authors
 
+  before_save do
+    self.role = :instructor if instructor == '1' || instructor == true
+  end
+
   def password_required?
     return false if email.blank? || !email_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
@@ -33,7 +38,7 @@ class User < ApplicationRecord
   end
 
   has_many :identities, dependent: :destroy
-  enum role: [:user, :admin]
+  enum role: [:user, :admin, :instructor]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :confirmable, :database_authenticatable, :registerable,
@@ -92,7 +97,7 @@ class User < ApplicationRecord
     end
   end
 
-  def instructor?(course)
+  def course_instructor?(course)
     course.instructors.include? self
   end
 end
