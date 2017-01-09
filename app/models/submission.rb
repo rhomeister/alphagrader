@@ -17,6 +17,15 @@ class Submission < ApplicationRecord
     Resque.enqueue(SubmissionCheckJob, id)
   end
 
+  after_save do
+    next unless checks_completed?
+    url = Rails.application.routes.url_helpers.assignment_submission_path(assignment, self)
+    team.users.each do |user|
+      ActionCable.server.broadcast "submissions_#{user.id}",
+        {title: 'Build completed', body: "Result: #{status}", url: url}
+    end
+  end
+
   def checks_completed?
     !queued? && !running?
   end

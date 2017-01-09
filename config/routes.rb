@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations',
                                     omniauth_callbacks: 'omniauth_callbacks' }
 
+  mount ActionCable.server => '/cable'
+
   unauthenticated do
     devise_scope :user do
       root to: 'devise/sessions#new', as: :unauthenticated_root
