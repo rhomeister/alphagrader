@@ -59,7 +59,7 @@ class TestsController < ApplicationController
   def cast_test
     return unless type_param
     key = type_param.underscore.to_sym
-    test_type = Test::VALID_TEST_TYPES.fetch(key).fetch(:class)
+    test_type = Test.valid_test_types.fetch(key).fetch(:class)
     @test = @test.becomes(test_type)
     @test.type = test_type
   end
@@ -70,7 +70,7 @@ class TestsController < ApplicationController
   end
 
   def normalize_params
-    params[:test] ||= Test::VALID_TEST_TYPES.keys.map do |key|
+    params[:test] ||= Test.valid_test_types.keys.map do |key|
       params[key]
     end.compact.first
   end

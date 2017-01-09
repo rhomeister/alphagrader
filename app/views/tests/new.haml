@@ -6,7 +6,7 @@
   %h3 What kind of test would you like to add?
 
   %ul.list-group
-    - Test::VALID_TEST_TYPES.each do |key, details|
+    - Test.valid_test_types.each do |key, details|
       %li.list-group-item
         .pull-right
           = link_to 'Create', url_for(type: key), id: key, class: 'btn btn-default'

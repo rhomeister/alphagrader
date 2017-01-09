@@ -5,7 +5,7 @@ class Test < ApplicationRecord
 
   validates :name, presence: true
 
-  VALID_TEST_TYPES =
+  def self.valid_test_types
     {
       expected_output_test: {
         name: ExpectedOutputTest.model_name.human,
@@ -17,5 +17,6 @@ class Test < ApplicationRecord
         description: 'Checks whether all team members have made a commit.',
         class: AuthorContributionTest
       }
-    }.freeze
+    }
+  end
 end
