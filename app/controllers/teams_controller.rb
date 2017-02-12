@@ -22,6 +22,7 @@ class TeamsController < ApplicationController
   def update
     if @team.update_attributes(team_params)
       @team.memberships << @assignment.course.membership_for(current_user)
+      @team.remove_duplicate_members
       redirect_to assignment_submissions_path(@assignment)
     else
       render 'edit'

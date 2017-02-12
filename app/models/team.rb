@@ -7,9 +7,16 @@ class Team < ApplicationRecord
   has_many :submissions, inverse_of: :team
   belongs_to :repository_owner, class_name: 'User'
 
+  before_validation :remove_duplicate_members
   after_save :create_github_webhook
 
   validates :github_repository_name, uniqueness: true, presence: true
+
+  def remove_duplicate_members
+    all_memberships = memberships.to_a.uniq(&:id)
+    memberships.clear
+    self.memberships = all_memberships
+  end
 
   private
 
