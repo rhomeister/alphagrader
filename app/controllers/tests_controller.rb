@@ -5,6 +5,8 @@ class TestsController < ApplicationController
   load_and_authorize_resource :assignment
   load_and_authorize_resource through: :assignment
 
+  helper_method :type_param
+
   def page_title
     'Tests'
   end
@@ -48,7 +50,7 @@ class TestsController < ApplicationController
   private
 
   def type_param
-    params[:type] || params.dig(:test, :type)
+    params[:type] || params.dig(:test, :type).try(:underscore)
   end
 
   def cast_test!
