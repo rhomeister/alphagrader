@@ -1,0 +1,15 @@
+%p
+  %i.fa.fa-info-circle
+  This test runs the following command:
+  %code= "./run < [input_file]"
+  and compares the output of your program to a regular expression
+
+.row
+  .col-md-6
+    %h4 Input
+    %pre
+      %b= test.program_input
+  .col-md-6
+    %h4 Expected Output
+    %pre
+      %b= test.expected_program_output

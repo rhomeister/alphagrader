@@ -32,6 +32,8 @@ en:
   activerecord:
     models:
       course: Course
+      regexp_output_test: Regular Expression Output Test
+      expected_output_test: Expected Output Test
     attributes:
       submission:
         git_commit_sha: Commit Hash

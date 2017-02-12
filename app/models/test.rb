@@ -16,6 +16,11 @@ class Test < ApplicationRecord
         name: AuthorContributionTest.model_name.human,
         description: 'Checks whether all team members have made a commit.',
         class: AuthorContributionTest
+      },
+      regexp_output_test: {
+        name: RegexpOutputTest.model_name.human,
+        description: 'Checks whether the submitted program gives the correct output for a specific input using a regular expression.',
+        class: RegexpOutputTest
       }
     }
   end

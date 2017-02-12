@@ -7,7 +7,7 @@ class TestDecorator < Draper::Decorator
   end
 
   def type_name
-    h.content_tag :span, type.camelcase, class: 'label label-info'
+    h.content_tag :span, object.class.model_name.human, class: 'label label-info'
   end
 
   def private_indicator
