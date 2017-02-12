@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+puts 'Enter two numbers'
+$stdin.readlines.each do |line|
+  puts line.split(' ').map(&:to_i).inject(:+) + 1
+end

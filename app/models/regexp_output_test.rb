@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-class ExpectedOutputTest < OutputTest
+class RegexpOutputTest < OutputTest
   private
 
   def test_runner_class
-    ExpectedOutputTestRunner
+    RegexpOutputTestRunner
   end
 end
