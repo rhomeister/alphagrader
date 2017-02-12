@@ -12,7 +12,7 @@ class TestResultDecorator < Draper::Decorator
   end
 
   def type_name
-    h.content_tag :span, test_type.model_name.human, class: 'label label-info'
+    test_type.new.decorate.type_name_text
   end
 
   def title_text

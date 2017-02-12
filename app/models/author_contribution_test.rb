@@ -8,6 +8,10 @@ class AuthorContributionTest < Test
     }]
   end
 
+  def self.detailed_description
+    description.last.fetch(:description)
+  end
+
   def run(submission)
     runner = Runner.new(submission).run
     AuthorContributionTestResult.new(status: runner.status,

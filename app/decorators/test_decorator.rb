@@ -9,14 +9,24 @@ class TestDecorator < Draper::Decorator
   def type_name
     if help_page_url
       h.link_to help_page_url, help_page_url, target: :blank do
-        h.content_tag :span, class: 'label label-info', title: 'Click here for more info' do
-          h.safe_join([object.class.model_name.human,
-                       h.icon('info-circle', library: :font_awesome)], ' ')
-        end
+        type_name_text
       end
     else
-      h.content_tag :span, object.class.model_name.human, class: 'label label-info'
+      type_name_text
     end
+  end
+
+  def type_name_text
+    h.content_tag :abbr, class: 'label label-info',
+      data: {trigger: 'hover', html: true, toggle: 'popover', content: popover_content},
+      title: object.class.model_name.human do
+        h.safe_join([object.class.model_name.human,
+                    h.icon('info-circle', library: :font_awesome)], ' ')
+    end
+  end
+
+  def popover_content
+    object.class.detailed_description
   end
 
   def help_page_url

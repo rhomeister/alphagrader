@@ -10,6 +10,10 @@ class RequiredFileTest < Test
     }]
   end
 
+  def self.detailed_description
+    description.last.fetch(:description)
+  end
+
   def run(submission)
     directory = submission.tempdir
     status = File.exist?(directory + '/' + filename) ? 'success' : 'failure'
