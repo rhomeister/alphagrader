@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 class AuthorContributionTest < Test
+  def self.description
+    [:author_contribution_test, {
+      name: AuthorContributionTest.model_name.human,
+      description: 'Checks whether all team members have made a commit.',
+      class: AuthorContributionTest
+    }]
+  end
+
   def run(submission)
     runner = Runner.new(submission).run
     AuthorContributionTestResult.new(status: runner.status,

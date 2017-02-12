@@ -2,9 +2,17 @@
 class RequiredFileTest < Test
   validates :filename, presence: true
 
+  def self.description
+    [:required_file_test, {
+      name: RequiredFileTest.model_name.human,
+      description: 'Checks whether a file is present.',
+      class: RequiredFileTest
+    }]
+  end
+
   def run(submission)
     directory = submission.tempdir
-    status = File.exists?(directory + '/' + filename) ? 'success' : 'failure'
+    status = File.exist?(directory + '/' + filename) ? 'success' : 'failure'
     RequiredFileTestResult.new(status: status,
                                name: name,
                                filename: filename,

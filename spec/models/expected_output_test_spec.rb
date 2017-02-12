@@ -16,7 +16,7 @@ describe ExpectedOutputTest, type: :model do
       submission = create(:submission)
       # need to preload OutputTestRunner, otherwise stub_const will cause
       # problems
-      OutputTestRunner
+      expect(OutputTestRunner::TIME_LIMIT).to eq 60
       stub_const('OutputTestRunner::TIME_LIMIT', 0.01)
 
       FileUtils.cp('spec/fixtures/dummy_programs/sleeper', submission.tempdir + '/run')

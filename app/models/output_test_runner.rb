@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class OutputTestRunner
   TIME_LIMIT = 60
 
@@ -10,7 +11,7 @@ class OutputTestRunner
 
   def run
     Dir.chdir(directory) do
-      Timeout::timeout(TIME_LIMIT) do
+      Timeout.timeout(TIME_LIMIT) do
         @output = `echo '#{program_input}' | ./run 2>&1`
         @exit_code = $CHILD_STATUS.exitstatus
       end
