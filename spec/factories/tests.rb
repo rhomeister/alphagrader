@@ -22,4 +22,8 @@ FactoryGirl.define do
 
   factory :author_contribution_test, parent: :test, class: 'AuthorContributionTest' do
   end
+
+  factory :required_file_test, parent: :test, class: 'RequiredFileTest' do
+    filename 'test'
+  end
 end

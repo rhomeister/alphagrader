@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108202754) do
+ActiveRecord::Schema.define(version: 20170212050815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 20170108202754) do
     t.text     "expected_program_output"
     t.text     "program_input"
     t.boolean  "public"
+    t.string   "filename"
     t.index ["submission_id"], name: "index_test_results_on_submission_id", using: :btree
     t.index ["test_id"], name: "index_test_results_on_test_id", using: :btree
   end
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 20170108202754) do
     t.boolean  "public"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "filename"
     t.index ["assignment_id"], name: "index_tests_on_assignment_id", using: :btree
   end
 

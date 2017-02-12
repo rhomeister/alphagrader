@@ -1,0 +1,10 @@
+- if test_result.success?
+  = alert_box context: :success do
+    File
+    %code= test_result.filename
+    is present
+- else
+  = alert_box context: :danger do
+    File
+    %code= test_result.filename
+    was not found

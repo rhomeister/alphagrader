@@ -21,6 +21,11 @@ class Test < ApplicationRecord
         name: RegexpOutputTest.model_name.human,
         description: 'Checks whether the submitted program gives the correct output for a specific input using a regular expression.',
         class: RegexpOutputTest
+      },
+      required_file_test: {
+        name: RequiredFileTest.model_name.human,
+        description: 'Checks whether a file is present.',
+        class: RequiredFileTest
       }
     }
   end

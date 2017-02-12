@@ -66,7 +66,8 @@ class TestsController < ApplicationController
 
   def test_params
     params.require(:test).permit(:name, :public, :description,
-                                 :program_input, :expected_program_output)
+                                 :program_input, :expected_program_output,
+                                 :filename)
   end
 
   def normalize_params
