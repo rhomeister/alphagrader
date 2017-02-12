@@ -7,7 +7,20 @@ class TestDecorator < Draper::Decorator
   end
 
   def type_name
-    h.content_tag :span, object.class.model_name.human, class: 'label label-info'
+    if help_page_url
+      h.link_to help_page_url, help_page_url, target: :blank do
+        h.content_tag :span, class: 'label label-info', title: 'Click here for more info' do
+          h.safe_join([object.class.model_name.human,
+                       h.icon('info-circle', library: :font_awesome)], ' ')
+        end
+      end
+    else
+      h.content_tag :span, object.class.model_name.human, class: 'label label-info'
+    end
+  end
+
+  def help_page_url
+    object.class.help_page_url
   end
 
   def private_indicator

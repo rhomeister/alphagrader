@@ -4,7 +4,8 @@ class ExpectedOutputTest < OutputTest
     [:expected_output_test, {
       name: ExpectedOutputTest.model_name.human,
       description: 'Checks whether the submitted program gives the correct output for a specific input.',
-      class: ExpectedOutputTest
+      class: ExpectedOutputTest,
+      help_page_url: 'https://github.com/rhomeister/alphagrader/wiki/Expected-Output-Test'
     }]
   end
 
