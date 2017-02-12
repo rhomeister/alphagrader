@@ -12,6 +12,24 @@ describe ExpectedOutputTest, type: :model do
       expect(result).to be_success
     end
 
+    it 'still runs the program even if persmissions are not set correctly' do
+      submission = create(:submission)
+      FileUtils.cp('spec/fixtures/dummy_programs/adder_wrong_permissions',
+                   submission.tempdir + '/run')
+      test = create(:expected_output_test)
+      result = test.run(submission)
+
+      expect(result).to be_success
+    end
+
+    it 'gives an error if the run script does not exist' do
+      submission = create(:submission)
+      test = create(:expected_output_test)
+      result = test.run(submission)
+
+      expect(result).to be_error
+    end
+
     it 'returns failure if the program takes too much time' do
       submission = create(:submission)
       # need to preload OutputTestRunner, otherwise stub_const will cause

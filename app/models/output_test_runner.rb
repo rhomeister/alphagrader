@@ -11,6 +11,8 @@ class OutputTestRunner
 
   def run
     Dir.chdir(directory) do
+      return run_file_not_exists_error unless File.exist?('run')
+      FileUtils.chmod 'u=wrx', 'run'
       Timeout.timeout(TIME_LIMIT) do
         @output = `echo '#{program_input}' | ./run 2>&1`
         @exit_code = $CHILD_STATUS.exitstatus
@@ -24,6 +26,12 @@ class OutputTestRunner
 
   def result_log
     output
+  end
+
+  def run_file_not_exists_error
+    @exit_code = 1
+    @output ||= ''
+    @output += '\nFile does not exist: run'
   end
 
   def status
