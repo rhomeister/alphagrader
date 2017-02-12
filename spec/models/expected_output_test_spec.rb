@@ -12,6 +12,21 @@ describe ExpectedOutputTest, type: :model do
       expect(result).to be_success
     end
 
+    it 'returns failure if the program takes too much time' do
+      submission = create(:submission)
+      # need to preload OutputTestRunner, otherwise stub_const will cause
+      # problems
+      OutputTestRunner
+      stub_const('OutputTestRunner::TIME_LIMIT', 0.01)
+
+      FileUtils.cp('spec/fixtures/dummy_programs/sleeper', submission.tempdir + '/run')
+      test = create(:expected_output_test)
+      result = test.run(submission)
+
+      expect(result).to be_error
+      expect(result.result_log).to_not be_blank
+    end
+
     it 'returns failure if the program gives wrong output' do
       submission = create(:submission)
       FileUtils.cp('spec/fixtures/dummy_programs/faulty_adder', submission.tempdir + '/run')
