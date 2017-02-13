@@ -20,7 +20,7 @@ Paperclip::Attachment.default_options[:s3_permissions] = :private
 Paperclip::Attachment.default_options[:s3_protocol] = 'https'
 
 Paperclip::Attachment.default_options[:path] =
-  'images/:class/:id_partition/:attachment/:style-:fingerprint.:extension'
+  "#{Rails.env}/:class/:id_partition/:attachment/:style-:fingerprint.:extension"
 
 if Rails.env.test?
   # for testing, use the local file system
