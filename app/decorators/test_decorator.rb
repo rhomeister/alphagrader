@@ -18,10 +18,10 @@ class TestDecorator < Draper::Decorator
 
   def type_name_text
     h.content_tag :abbr, class: 'label label-info',
-      data: {trigger: 'hover', html: true, toggle: 'popover', content: popover_content},
-      title: object.class.model_name.human do
-        h.safe_join([object.class.model_name.human,
-                    h.icon('info-circle', library: :font_awesome)], ' ')
+                         data: { trigger: 'hover', html: true, toggle: 'popover', content: popover_content },
+                         title: object.class.model_name.human do
+      h.safe_join([object.class.model_name.human,
+                   h.icon('info-circle', library: :font_awesome)], ' ')
     end
   end
 
