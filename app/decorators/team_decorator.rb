@@ -17,6 +17,7 @@ class TeamDecorator < Draper::Decorator
   end
 
   def git_repository_url
+    return h.content_tag(:i, 'Not set up') if github_repository_name.blank?
     git_repository_url = "https://github.com/#{github_repository_name}.git"
     h.link_to git_repository_url, git_repository_url, target: :blank
   end

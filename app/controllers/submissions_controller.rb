@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 class SubmissionsController < ApplicationController
+  before_action :normalize_params
+
   load_and_authorize_resource :assignment
+  before_action :build_resource, only: [:create]
   load_and_authorize_resource through: :assignment
 
   helper_method :github_repository_names
@@ -22,10 +25,41 @@ class SubmissionsController < ApplicationController
     @test_results = @submission.test_results.decorate
   end
 
+  def new
+    @submission = @submission.becomes(FileSubmission)
+  end
+
+  def create
+    @submission.team = current_user.teams.find_by(assignment_id: @assignment.id)
+    @submission.uploaded_by = current_user
+    if @submission.update_attributes(submission_params)
+      redirect_to assignment_submission_path(@assignment, @submission),
+                  flash: { success: 'Submission was successfully created' }
+    else
+      render 'new'
+    end
+  end
+
   private
 
+  def normalize_params
+    params[:submission] ||= [:file_submission].map do |key|
+      params[key]
+    end.compact.first
+  end
+
   def submission_params
-    params[:submission] ||= params[:git_submission]
-    params.require(:submission).permit(:github_repository_name)
+    params[:submission] ||= params[:git_submission] || params[:file_submission]
+    params.require(:submission).permit(:github_repository_name, :file)
+  end
+
+  def type_param
+    params[:type] || params.dig(:submission, :type).try(:underscore)
+  end
+
+  def build_resource
+    @submission = FileSubmission.new(submission_params)
+    @submission.assignment = @assignment
+    @submission
   end
 end

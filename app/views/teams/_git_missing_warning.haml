@@ -1,0 +1,11 @@
+= alert_box context: :warning do
+  %p
+    In order to enable submissions using git, your first need to connect
+    Github account. The advantage of this is that you'll immediately get
+    feedback after every commit. Without this, you can only submit using file
+    upload.
+
+  - if current_user.github && @active_team
+    %p= link_to 'Select Github repository', edit_assignment_team_path(@assignment, @active_team)
+  - else
+    %p= link_to 'Connect my Github account', omniauth_authorize_path(current_user, :github)

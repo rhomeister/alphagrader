@@ -14,6 +14,7 @@ Paperclip::Attachment.default_options[:url] = ':s3_alias_url'
 Paperclip::Attachment.default_options[:s3_host_alias] = ENV.fetch('ASSET_HOST')
 
 Paperclip::Attachment.default_options[:s3_region] = ENV.fetch('S3_REGION')
+Paperclip::Attachment.default_options[:s3_permissions] = :private
 
 # always enforce SSL on paperclip assets
 Paperclip::Attachment.default_options[:s3_protocol] = 'https'

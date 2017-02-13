@@ -7,7 +7,11 @@
       = f.error_notification
 
       .form-inputs
-        = f.input :github_repository_name, collection: github_repository_names
+        - if current_user.github
+          = f.input :github_repository_name, collection: github_repository_names
+        - else
+          = render 'git_missing_warning'
+
         = f.association :memberships, as: :check_boxes, collection: membership_candidates
     .panel-footer
       .form-actions

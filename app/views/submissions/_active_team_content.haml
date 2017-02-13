@@ -14,11 +14,15 @@
       %dt= Team.human_attribute_name(attr)
       %dd= @active_team.send attr
 
-  = alert_box context: :info do
-    %i.fa.fa-smile-o
-    %b Your team has been setup!
-    Every commit to the repository will automatically
-    create a submission, and give you feedback on your progress.
+  - if @active_team.object.github_repository_name.blank?
+    = render 'teams/git_missing_warning'
+  - else
+    = alert_box context: :info do
+      %i.fa.fa-smile-o
+      %b Your team has been setup!
+      Every commit to the repository will automatically
+      create a submission, and give you feedback on your progress.
+
 - else
   = alert_box context: :info do
     To start with this assignment, first create a team.

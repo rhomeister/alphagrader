@@ -16,6 +16,7 @@
           %th= Submission.human_attribute_name(:contributors)
           %th= Submission.human_attribute_name(:status)
       %tbody
+        = link_to 'Upload New Submission', new_assignment_submission_path(@assignment), class: 'btn btn-primary'
         = no_results_found_row(4) if @submissions.to_a.empty?
         - @submissions.decorate.each do |submission|
           %tr

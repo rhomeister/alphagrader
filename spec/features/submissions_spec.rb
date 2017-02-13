@@ -23,7 +23,7 @@ feature 'Submissions', type: :feature do
     # you shouldn't be able to see other people's submissions
     expect(page.body).to include I18n.t(:no_results_found)
 
-    team.submissions << create(:submission, assignment: assignment)
+    team.submissions << create(:file_submission, assignment: assignment)
     visit assignment_submissions_path(assignment)
     expect(page.body).to_not include I18n.t(:no_results_found)
     expect(page.body).to include submission.decorate.created_at
@@ -38,11 +38,11 @@ feature 'Submissions', type: :feature do
 
     membership1 = course.memberships.create!(role: :student, user: create(:user))
     team1 = create(:team, memberships: [membership1], assignment: assignment)
-    team1.submissions << submission1 = create(:submission, assignment: assignment)
+    team1.submissions << submission1 = create(:file_submission, assignment: assignment)
 
     membership2 = course.memberships.create!(role: :student, user: create(:user))
     team2 = create(:team, memberships: [membership2], assignment: assignment)
-    team2.submissions << submission2 = create(:submission, assignment: assignment)
+    team2.submissions << submission2 = create(:file_submission, assignment: assignment)
 
     login_as(user)
     visit assignment_submissions_path(assignment)

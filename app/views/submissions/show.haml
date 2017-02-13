@@ -6,8 +6,7 @@
 
 = panel title: 'General Info', context: :primary do
   %table.table.table-striped
-    - [:status, :uploaded_by, :created_at, :git_repository_url, :git_commit_sha,
-       :git_commit_message, :contributor_names, :team_members].each do |attr|
+    - @submission.attributes.each do |attr|
       %tr
         %th= Submission.human_attribute_name(attr)
         %td= @submission.send(attr)

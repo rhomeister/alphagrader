@@ -1,0 +1,15 @@
+- breadcrumb :submission, @submission
+- url = assignment_submissions_path(@assignment)
+
+= panel title: 'New Submission', context: :primary do
+  = simple_form_for(@submission, url: url) do |f|
+    .panel-body
+      = f.error_notification
+
+      .form-inputs
+        = f.input :file, required: true, autofocus: true, hint: 'File must be a zip file'
+        = f.input :type, as: :hidden
+    .panel-footer
+      .form-actions
+        = link_to 'Cancel', assignment_submissions_path(@assignment), class: 'btn btn-default'
+        = f.button :submit, "Save", class: 'btn btn-primary'

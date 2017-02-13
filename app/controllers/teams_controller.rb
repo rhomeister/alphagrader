@@ -10,7 +10,6 @@ class TeamsController < ApplicationController
   end
 
   def new
-    render 'github_account_missing_error' if current_user.github.nil?
   end
 
   def index
