@@ -25,6 +25,10 @@ gem 'haml'
 
 gem 'postmark-rails', '>= 0.10.0'
 
+gem "paperclip", "~> 5.0"
+gem 'aws-sdk', '~> 2.3.0'
+gem 'rubyzip'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -132,6 +132,12 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (6.6.0)
       execjs
+    aws-sdk (2.3.22)
+      aws-sdk-resources (= 2.3.22)
+    aws-sdk-core (2.3.22)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.3.22)
+      aws-sdk-core (= 2.3.22)
     bcrypt (3.1.11)
     bh (1.3.6)
       actionpack
@@ -246,6 +252,7 @@ GEM
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jmespath (1.3.1)
     jquery-rails (4.2.2)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -283,6 +290,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     modernizr-rails (2.7.1)
@@ -326,6 +334,12 @@ GEM
       json (~> 1.3)
       omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
+    paperclip (5.1.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
     parser (2.3.1.4)
       ast (~> 2.2)
     pg (0.18.2)
@@ -430,6 +444,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    rubyzip (1.1.7)
     safe_yaml (1.0.4)
     sass (3.4.23)
     sass-rails (5.0.6)
@@ -514,6 +529,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activemodel-serializers-xml!
+  aws-sdk (~> 2.3.0)
   bh
   bootstrap-sass
   brakeman
@@ -549,6 +565,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-oauth2 (= 1.3.1)
   omniauth-twitter
+  paperclip (~> 5.0)
   pg
   postmark-rails (>= 0.10.0)
   premailer-rails
@@ -566,6 +583,7 @@ DEPENDENCIES
   rspec-mocks
   rspec-rails
   rubocop
+  rubyzip
   sass-rails (~> 5.0)
   simple_form
   spring

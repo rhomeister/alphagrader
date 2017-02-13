@@ -18,6 +18,15 @@ class Team < ApplicationRecord
     self.memberships = all_memberships
   end
 
+  def create_github_submission(git_commit_sha: nil, uploaded_by: nil)
+    submission = GitSubmission.new(github_repository_name: github_repository_name,
+                                   assignment: assignment,
+                                   git_commit_sha: git_commit_sha,
+                                   uploaded_by: uploaded_by)
+    submissions << submission
+    submission
+  end
+
   private
 
   def create_github_webhook

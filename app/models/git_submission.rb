@@ -16,33 +16,12 @@ class GitSubmission < Submission
     end
   end
 
-  def run_tests
-    test_results.destroy_all
-    download
+  private
+
+  def run_pre_test_checks
     detect_contributors
     detect_sha
     detect_commit_message
-    self.status = :running
-    save!
-    run_user_tests
-    detect_status
-    save!
-  ensure
-    cleanup
-  end
-
-  private
-
-  def detect_status
-    self.status = test_results.reload.all?(&:success?) ? :success : :failure
-  end
-
-  def run_user_tests
-    assignment.tests.each do |test|
-      test_result = test.run(self)
-      test_result.submission = self
-      test_result.save!
-    end
   end
 
   def detect_sha

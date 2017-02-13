@@ -31,7 +31,7 @@ class OutputTestRunner
   def run_file_not_exists_error
     @exit_code = 1
     @output ||= ''
-    @output += '\nFile does not exist: run'
+    @output += "\nFile does not exist: run"
   end
 
   def status

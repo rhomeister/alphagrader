@@ -6,24 +6,37 @@ class Submission < ApplicationRecord
 
   enum status: [:queued, :running, :success, :failure]
   has_many :test_results, dependent: :destroy
-  has_many :contributions, inverse_of: :submission
+  has_many :contributions, inverse_of: :submission, dependent: :destroy
   has_many :contributors, through: :contributions, class_name: 'Membership', source: :membership
 
   before_create do
     self.status ||= :queued
   end
 
-  after_create do
+  after_commit on: :create do
     Resque.enqueue(SubmissionCheckJob, id)
   end
 
   after_save do
     next unless checks_completed?
-    url = Rails.application.routes.url_helpers.assignment_submission_path(assignment, self)
-    team.users.each do |user|
-      ActionCable.server.broadcast "submissions_#{user.id}",
-                                   title: 'Build completed', body: "Result: #{status}", url: url
-    end
+    notify_users
+  end
+
+  def detect_status
+    self.status = test_results.reload.all?(&:success?) ? :success : :failure
+  end
+
+  def run_tests
+    test_results.destroy_all
+    download
+    run_pre_test_checks
+    self.status = :running
+    save!
+    run_user_tests
+    detect_status
+    save!
+  ensure
+    cleanup
   end
 
   def checks_completed?
@@ -36,5 +49,27 @@ class Submission < ApplicationRecord
 
   def tempdir
     @tempdir ||= Dir.mktmpdir
+  end
+
+  private
+
+  def notify_users
+    return unless team
+    url = Rails.application.routes.url_helpers.assignment_submission_path(assignment, self)
+    team.users.each do |user|
+      ActionCable.server.broadcast "submissions_#{user.id}",
+                                   title: 'Build completed', body: "Result: #{status}", url: url
+    end
+  end
+
+  def run_pre_test_checks
+  end
+
+  def run_user_tests
+    assignment.tests.each do |test|
+      test_result = test.run(self)
+      test_result.submission = self
+      test_result.save!
+    end
   end
 end
