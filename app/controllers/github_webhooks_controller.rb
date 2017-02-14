@@ -14,7 +14,7 @@ class GithubWebhooksController < ActionController::Base
     identity = Identity.find_by(uid: payload['sender']['id'])
     uploaded_by = identity.try :user
 
-    team.create_github_submission(commit_sha, uploaded_by)
+    team.create_github_submission(git_commit_sha: commit_sha, uploaded_by: uploaded_by)
   end
 
   # Handle create event
