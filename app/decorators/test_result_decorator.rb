@@ -12,7 +12,7 @@ class TestResultDecorator < Draper::Decorator
   end
 
   def type_name
-    test_type.new.decorate.type_name_text
+    test_type.new.decorate.type_name
   end
 
   def title_text
