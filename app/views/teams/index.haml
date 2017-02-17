@@ -25,7 +25,7 @@
             %td= team.id
             %td= safe_join(team.users.map(&:name), '<br>'.html_safe)
             %td
-              - last_submission = team.submissions.decorate.last
+              - last_submission = team.submissions.order(:created_at).decorate.last
               - if last_submission
                 = link_to last_submission.created_at,
                     assignment_submission_path(@assignment, last_submission)
