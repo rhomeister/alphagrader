@@ -34,9 +34,14 @@ class GitSubmission < Submission
 
   def detect_contributors
     emails = repository.commits.map(&:author).map(&:email).uniq
-    new_contributors = contributors + assignment.course.memberships
-                       .joins(user: :identities)
-                       .where(identities: { email: emails })
+    names = repository.commits.map(&:author).map(&:name).uniq
+    new_contributors = contributors
+    new_contributors += assignment.course.memberships
+                                  .joins(user: :identities)
+                                  .where(identities: { email: emails })
+    new_contributors += assignment.course.memberships
+                                  .joins(user: :identities)
+                                  .where(identities: { name: names })
     self.contributors = []
     self.contributors = new_contributors.uniq
   end
