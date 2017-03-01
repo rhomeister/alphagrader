@@ -9,10 +9,13 @@ describe ExpectedOutputTest, type: :model do
       test = create(:expected_output_test)
       result = test.run(submission)
 
+      expect(result.exit_code).to eq 0
+      expect(result.timeout).to eq false
+      expect(result.execution_time).to be > 0
       expect(result).to be_success
     end
 
-    it 'still runs the program even if persmissions are not set correctly' do
+    it 'still runs the program even if permissions are not set correctly' do
       submission = create(:submission)
       FileUtils.cp('spec/fixtures/dummy_programs/adder_wrong_permissions',
                    submission.tempdir + '/run')
@@ -27,6 +30,7 @@ describe ExpectedOutputTest, type: :model do
       test = create(:expected_output_test)
       result = test.run(submission)
 
+      expect(result.error_log).to include 'File does not exist: run'
       expect(result).to be_error
     end
 
@@ -42,7 +46,8 @@ describe ExpectedOutputTest, type: :model do
       result = test.run(submission)
 
       expect(result).to be_error
-      expect(result.result_log).to_not be_blank
+      expect(result.error_log).to include 'Execution time limit exceeded'
+      expect(result.timeout).to eq true
     end
 
     it 'returns failure if the program gives wrong output' do
@@ -62,6 +67,8 @@ describe ExpectedOutputTest, type: :model do
       result = test.run(submission)
 
       expect(result).to be_error
+      expect(result.error_log).to include 'Received non-zero exit code'
+      expect(result.exit_code).to_not eq 0
       expect(result.result_log).to_not be_blank
     end
   end

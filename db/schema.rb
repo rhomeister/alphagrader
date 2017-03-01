@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213012612) do
+ActiveRecord::Schema.define(version: 20170301174316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,13 +132,17 @@ ActiveRecord::Schema.define(version: 20170213012612) do
     t.integer  "status"
     t.text     "result_log"
     t.string   "type"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "name"
     t.text     "expected_program_output"
     t.text     "program_input"
     t.boolean  "public"
     t.string   "filename"
+    t.boolean  "timeout",                 default: false
+    t.text     "error_log"
+    t.float    "execution_time"
+    t.integer  "exit_code"
     t.index ["submission_id"], name: "index_test_results_on_submission_id", using: :btree
     t.index ["test_id"], name: "index_test_results_on_test_id", using: :btree
   end

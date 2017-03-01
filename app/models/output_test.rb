@@ -11,6 +11,10 @@ class OutputTest < Test
                                  name: name,
                                  expected_program_output: expected_program_output,
                                  program_input: program_input,
+                                 exit_code: runner.exit_code,
+                                 timeout: runner.timeout,
+                                 execution_time: runner.execution_time,
+                                 error_log: runner.error_log,
                                  result_log: runner.result_log,
                                  public: public)
   end

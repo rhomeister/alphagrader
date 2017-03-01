@@ -2,11 +2,15 @@
 class OutputTestRunner
   TIME_LIMIT = 60
 
-  attr_accessor :directory, :output, :exit_code, :program_input, :expected_program_output
+  attr_accessor :directory, :output, :exit_code, :program_input,
+                :expected_program_output, :execution_time, :timeout
+
   def initialize(directory, program_input, expected_program_output)
     @directory = directory
     @program_input = program_input
     @expected_program_output = expected_program_output
+    @errors = []
+    @timeout = false
   end
 
   def run
@@ -14,24 +18,24 @@ class OutputTestRunner
       return run_file_not_exists_error unless File.exist?('run')
       FileUtils.chmod 'u=wrx', 'run'
       Timeout.timeout(TIME_LIMIT) do
-        @output = `echo '#{program_input}' | ./run 2>&1`
-        @exit_code = $CHILD_STATUS.exitstatus
+        capture_output
       end
     end
   rescue Timeout::Error
-    @output ||= ''
-    @output += "\nExecution time limit exceeded. Maximum execution time is #{TIME_LIMIT} seconds."
-    @exit_code = 2
+    register_timeout_error
   end
 
   def result_log
     output
   end
 
+  def error_log
+    @errors.join("\n")
+  end
+
   def run_file_not_exists_error
     @exit_code = 1
-    @output ||= ''
-    @output += "\nFile does not exist: run"
+    @errors << 'File does not exist: run'
   end
 
   def status
@@ -46,6 +50,20 @@ class OutputTestRunner
   end
 
   private
+
+  def register_timeout_error
+    @errors << "Execution time limit exceeded. Maximum execution time is #{TIME_LIMIT} seconds."
+    @timeout = true
+    @exit_code = 2
+  end
+
+  def capture_output
+    start = Time.zone.now
+    @output = `echo '#{program_input}' | ./run 2>&1`
+    @execution_time = Time.zone.now - start
+    @exit_code = $CHILD_STATUS.exitstatus
+    @errors << "Received non-zero exit code: #{@exit_code}" unless @exit_code.zero?
+  end
 
   def clean_string(string)
     string.split("\n").map(&:strip).reject(&:blank?).join("\n")
