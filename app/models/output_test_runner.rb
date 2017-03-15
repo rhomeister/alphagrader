@@ -26,6 +26,7 @@ class OutputTestRunner
   end
 
   def result_log
+    return '' if output.nil?
     output.encode('utf-8', invalid: :replace)
   end
 
