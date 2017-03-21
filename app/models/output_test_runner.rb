@@ -7,7 +7,7 @@ class OutputTestRunner
 
   def initialize(directory, program_input, expected_program_output)
     @directory = directory
-    @program_input = program_input
+    @program_input = program_input.gsub(/\r\n?/, "\n") # normalize line endings
     @expected_program_output = expected_program_output
     @errors = []
     @timeout = false

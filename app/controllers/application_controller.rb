@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def authenticate_admin_user!
     redirect_to root_path unless current_user.try(:admin?)
   end
+
+  rescue_from CanCan::AccessDenied do |_exception|
+    authenticate_user!
+  end
 end
