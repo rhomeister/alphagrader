@@ -1,2 +1,6 @@
 #!/bin/sh
+if [ ! -f program.py ]; then
+    echo "Program file not found!"
+    exit
+fi
 python3 program.py

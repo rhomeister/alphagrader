@@ -1,2 +1,6 @@
 #!/bin/sh
+if [ ! -f program.rb ]; then
+    echo "Program file not found!"
+    exit
+fi
 ruby program.rb

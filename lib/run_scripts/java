@@ -1,2 +1,6 @@
 #!/bin/sh
-java -jar myjar.jar
+if [ ! -f program.jar ]; then
+    echo "Program file not found!"
+    exit
+fi
+java -jar program.jar

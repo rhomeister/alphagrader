@@ -1,2 +1,6 @@
 #!/bin/sh
-node my_program.js
+if [ ! -f program.js ]; then
+    echo "Program file not found!"
+    exit
+fi
+node program.js

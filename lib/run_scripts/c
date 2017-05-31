@@ -1,3 +1,7 @@
 #!/bin/sh
+if [ ! -f program.c ]; then
+    echo "Program file not found!"
+    exit
+fi
 gcc program.c -o program
 ./program
