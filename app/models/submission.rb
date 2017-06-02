@@ -29,6 +29,7 @@ class Submission < ApplicationRecord
   def run_tests
     test_results.destroy_all
     download
+    inject_runfile_if_not_exists
     run_pre_test_checks
     self.status = :running
     save!
@@ -52,6 +53,15 @@ class Submission < ApplicationRecord
   end
 
   private
+
+  def inject_runfile_if_not_exists
+    return if language.blank?
+    Dir.chdir(tempdir) do
+      return if File.exist?('run')
+      file = LanguageSpecificRunfile.find(language)
+      FileUtils.copy_file(file, File.join(tempdir, 'run'))
+    end
+  end
 
   def notify_users
     return unless team

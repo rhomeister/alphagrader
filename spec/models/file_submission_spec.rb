@@ -14,4 +14,30 @@ describe FileSubmission, type: :model do
 
     Resque.inline = false
   end
+
+  it 'injects the run file if its missing and a programming language has been chosen' do
+    Resque.inline = true
+    assignment = create(:assignment)
+    assignment.tests << create(:expected_output_test)
+
+    submission = build(:file_submission, assignment: assignment, language: 'ruby')
+    submission.file = File.new('spec/fixtures/dummy_submissions/correct_without_runfile.zip')
+    submission.save!
+    expect(submission.reload.status).to eq 'success'
+
+    Resque.inline = false
+  end
+
+  it 'does not overwrite the run file submitted by the user' do
+    Resque.inline = true
+    assignment = create(:assignment)
+    assignment.tests << create(:expected_output_test)
+
+    submission = build(:file_submission, assignment: assignment, language: 'cplus')
+    submission.file = File.new('spec/fixtures/dummy_submissions/correct.zip')
+    submission.save!
+    expect(submission.reload.status).to eq 'success'
+
+    Resque.inline = false
+  end
 end

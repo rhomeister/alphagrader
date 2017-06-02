@@ -8,7 +8,8 @@
 
       .form-inputs
         - if current_user.github
-          = f.input :github_repository_name, collection: github_repository_names
+          = f.input :github_repository_name, collection: github_repository_names,
+            hint: 'If you leave this blank, you can only upload submissions as a ZIP-file'
         - else
           = render 'git_missing_warning'
 

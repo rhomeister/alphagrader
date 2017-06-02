@@ -37,6 +37,7 @@ en:
     attributes:
       submission:
         git_commit_sha: Commit Hash
+        human_readable_language: Language
       team:
         memberships: Members
         user_names: Members

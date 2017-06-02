@@ -10,7 +10,7 @@ class Team < ApplicationRecord
   before_validation :remove_duplicate_members
   after_save :create_github_webhook
 
-  validates :github_repository_name, uniqueness: true, allow_nil: true
+  validates :github_repository_name, uniqueness: true, allow_nil: true, allow_blank: true
 
   def remove_duplicate_members
     all_memberships = memberships.to_a.uniq(&:id)

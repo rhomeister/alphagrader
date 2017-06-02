@@ -3,7 +3,12 @@ class FileSubmissionDecorator < SubmissionDecorator
   delegate_all
 
   def attributes
-    [:status, :uploaded_by, :created_at, :team_members, :file_size, :download_url]
+    [:status, :uploaded_by, :created_at, :team_members, :file_size,
+     :download_url, :human_readable_language]
+  end
+
+  def human_readable_language
+    LanguageSpecificRunfile::HUMAN_READABLE[language]
   end
 
   def file_size

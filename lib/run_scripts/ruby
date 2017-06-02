@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -f program.rb ]; then
-    echo "Program file not found!"
-    exit
+    echo "Program file 'program.rb' not found. Did you add this to your submission?"
+    exit 1
 fi
 ruby program.rb

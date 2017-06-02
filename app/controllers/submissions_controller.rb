@@ -50,7 +50,7 @@ class SubmissionsController < ApplicationController
 
   def submission_params
     params[:submission] ||= params[:git_submission] || params[:file_submission]
-    params.require(:submission).permit(:github_repository_name, :file)
+    params.require(:submission).permit(:github_repository_name, :file, :language)
   end
 
   def type_param

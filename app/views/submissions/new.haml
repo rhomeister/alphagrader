@@ -9,6 +9,7 @@
       .form-inputs
         = f.input :file, required: true, autofocus: true, hint: 'File must be a zip file'
         = f.input :type, as: :hidden
+        = f.input :language, collection: LanguageSpecificRunfile.options_for_select
     .panel-footer
       .form-actions
         = link_to 'Cancel', assignment_submissions_path(@assignment), class: 'btn btn-default'
