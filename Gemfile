@@ -23,8 +23,6 @@ gem 'coffee-rails', '~> 4.2'
 #
 gem 'haml'
 
-gem 'postmark-rails', '>= 0.10.0'
-
 gem 'paperclip', '~> 5.0'
 gem 'aws-sdk', '~> 2.3.0'
 gem 'rubyzip'
