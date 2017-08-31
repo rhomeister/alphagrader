@@ -73,6 +73,19 @@ group :development do
 
   gem 'rubocop', require: false
   gem 'brakeman', require: false
+
+  # capistrano
+
+  gem 'capistrano', '~> 3.8', require: false, group: :development
+  # Deploy with capistrano, see config/deploy.rb
+  gem 'capistrano-rails', '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-safe-deploy-to', '~> 1.1.1', require: false
+  gem 'rvm1-capistrano3', '~> 1.3.2', require: false
+  gem 'capistrano-postgresql', '~> 4.2.1', require: false
+  # gem 'capistrano-memcached', '~> 1.2.0', require: false
+  gem 'capistrano-unicorn-nginx', '~> 4.1', require: false
+  # gem 'capistrano-faster-assets', '~> 1.0.2', require: false
 end
 
 group :test do
