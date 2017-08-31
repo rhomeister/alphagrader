@@ -67,6 +67,7 @@ class OutputTestRunner
   end
 
   def clean_string(string)
+    string = string.force_encoding('ISO-8859-2').encode!('UTF-8')
     string.split("\n").map(&:strip).reject(&:blank?).join("\n")
   end
 end

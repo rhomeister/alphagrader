@@ -16,7 +16,7 @@ feature 'Submissions', type: :feature do
 
     other_membership = course.memberships.create!(role: :student, user: create(:user))
     other_team = create(:team, memberships: [other_membership], assignment: assignment)
-    other_team.submissions << submission = create(:submission, assignment: assignment)
+    other_team.submissions << submission = create(:file_submission, assignment: assignment)
 
     login_as(user)
     visit assignment_submissions_path(assignment)

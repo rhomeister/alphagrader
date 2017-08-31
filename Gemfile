@@ -10,8 +10,8 @@ end
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-# Use Puma as the app server
-gem 'puma', '~> 3.0'
+# Use Unicorn as the app server
+gem 'unicorn'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -31,6 +31,7 @@ gem 'rubyzip'
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'redis-namespace'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -51,8 +52,10 @@ gem 'rdiscount'
 
 gem 'git_stats'
 
-gem 'resque'
-gem 'resque-web', require: 'resque_web'
+# gem 'resque'
+# gem 'resque-web', require: 'resque_web'
+
+gem 'sidekiq'
 
 group :development, :test do
   gem 'pry'
@@ -73,6 +76,20 @@ group :development do
 
   gem 'rubocop', require: false
   gem 'brakeman', require: false
+
+  # capistrano
+
+  gem 'capistrano', '~> 3.8', require: false, group: :development
+  # Deploy with capistrano, see config/deploy.rb
+  gem 'capistrano-rails', '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-safe-deploy-to', '~> 1.1.1', require: false
+  gem 'rvm1-capistrano3', '~> 1.3.2', require: false
+  gem 'capistrano-postgresql', '~> 4.2.1', require: false
+  # gem 'capistrano-memcached', '~> 1.2.0', require: false
+  gem 'capistrano-unicorn-nginx', '~> 4.1', require: false
+  # gem 'capistrano-faster-assets', '~> 1.0.2', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 group :test do

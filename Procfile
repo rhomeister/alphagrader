@@ -1,2 +1,2 @@
-web: bundle exec puma -C config/puma.rb
-resque: env QUEUE=* TERM_CHILD=1 bundle exec rake resque:work
+web: bundle exec unicorn -C config/unicorn.rb
+sidekiq: bundle exec sidekiq -C config/sidekiq.yml

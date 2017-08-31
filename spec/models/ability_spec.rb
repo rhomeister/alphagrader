@@ -103,7 +103,7 @@ describe Ability, type: :model do
       assignment = create(:assignment)
       assignment.course.memberships.create!(user: user, role: :student)
       team = create(:team, assignment: assignment)
-      submission = create(:submission, team: team, assignment: assignment)
+      submission = create(:file_submission, team: team, assignment: assignment)
 
       expect(ability.can?(:read, submission)).to be false
       expect(Submission.accessible_by(ability)).to be_empty
@@ -114,7 +114,7 @@ describe Ability, type: :model do
       assignment = create(:assignment)
       membership = assignment.course.memberships.create!(user: user, role: :student)
       team = create(:team, assignment: assignment, memberships: [membership])
-      submission = create(:submission, team: team, assignment: assignment)
+      submission = create(:file_submission, team: team, assignment: assignment)
 
       expect(ability.can?(:read, submission)).to be true
       expect(Submission.accessible_by(ability)).to eq [submission]
@@ -130,7 +130,7 @@ describe Ability, type: :model do
       membership = assignment.course.memberships.create!(user: student, role: :student)
 
       team = create(:team, assignment: assignment, memberships: [membership])
-      submission = create(:submission, team: team, assignment: assignment)
+      submission = create(:file_submission, team: team, assignment: assignment)
 
       expect(Submission.accessible_by(ability)).to eq [submission]
       expect(ability.can?(:read, submission)).to be true

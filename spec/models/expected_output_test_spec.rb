@@ -3,6 +3,8 @@ require 'rails_helper'
 
 describe ExpectedOutputTest, type: :model do
   context 'run' do
+    before { Sidekiq::Testing.fake! }
+
     it 'returns success if the program runs and returns the correct output' do
       submission = create(:submission)
       FileUtils.cp('spec/fixtures/dummy_programs/adder', submission.tempdir + '/run')

@@ -71,4 +71,4 @@ production:
   <<: *default
   database: alphagrader_production
   username: alphagrader
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>

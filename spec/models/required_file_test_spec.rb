@@ -3,6 +3,8 @@ require 'rails_helper'
 
 describe RequiredFileTest, type: :model do
   context 'run' do
+    before { Sidekiq::Testing.fake! }
+
     it 'returns success if the file is present' do
       submission = create(:submission)
       File.open(submission.tempdir + '/report.pdf', 'w') do |file|

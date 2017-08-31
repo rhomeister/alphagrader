@@ -4,7 +4,7 @@ require 'rails_helper'
 describe Assignment, type: :model do
   it 'has submissions' do
     assignment = create(:assignment)
-    submission = create(:submission)
+    submission = build(:file_submission)
     assignment.submissions << submission
 
     expect(submission.reload.assignment).to eq assignment

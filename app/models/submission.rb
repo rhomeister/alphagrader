@@ -14,7 +14,7 @@ class Submission < ApplicationRecord
   end
 
   after_commit on: :create do
-    Resque.enqueue(SubmissionCheckJob, id)
+    SubmissionCheckWorker.perform_async(id)
   end
 
   after_save do
