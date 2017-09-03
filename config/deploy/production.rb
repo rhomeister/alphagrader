@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 set :stage, :production
 set :rails_env, fetch(:stage) # set the rails environment
 
-set :branch, 'master'
+set :branch, 'capistrano'
 
 ansible_roles('config/ansible/production_linode') # load roles from ansible repository
 
