@@ -39,7 +39,7 @@ set :sidekiq_role, :worker
 set :sidekiq_config, 'config/sidekiq.yml'
 set :sidekiq_user, 'deploy'
 set :sidekiq_default_hooks, false
-after 'deploy:published', 'sidekiq:monit:restart' # restart using monit, not systemctl
+# after 'deploy:published', 'sidekiq:monit:restart' # restart using monit, not systemctl
 
 set :assets_roles, [:app, :worker, :db]
 
