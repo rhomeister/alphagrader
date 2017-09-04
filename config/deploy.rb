@@ -59,7 +59,6 @@ before 'deploy:compile_assets', 'deploy:symlink:linked_files'
 
 # set :log_level, :info
 
-before 'deploy', 'ssh:add'
 before 'setup', 'rvm1:install:rvm'
 before 'deploy', 'rvm1:install:ruby'
 
