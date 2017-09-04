@@ -63,15 +63,6 @@ before 'deploy', 'ssh:add'
 before 'setup', 'rvm1:install:rvm'
 before 'deploy', 'rvm1:install:ruby'
 
-# namespace :ssh do
-# desc 'Run ssh-add'
-# task :add do
-# run_locally do
-# execute 'ssh-add'
-# end
-# end
-# end
-
 task :setup do
   invoke 'dotenv:setup'
   invoke 'sidekiq:monit:config'
