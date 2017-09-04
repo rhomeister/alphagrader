@@ -7,4 +7,4 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV['REDISTOGO_URL'] %>
+  url: redis://:<%= ENV['REDIS_PASSWORD']%>@localhost:6379
