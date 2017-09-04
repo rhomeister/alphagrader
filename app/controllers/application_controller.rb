@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def redirect_to_primary_domain
     return if Rails.application.config.consider_all_requests_local || request.local?
     return if request.host == ENV.fetch('DOMAIN_NAME').split(':').first
-    # redirect_to "#{request.protocol}#{ENV.fetch('DOMAIN_NAME')}#{request.fullpath}", status: :moved_permanently
+    redirect_to "#{request.protocol}#{ENV.fetch('DOMAIN_NAME')}#{request.fullpath}", status: :moved_permanently
   end
 
   def page_title
