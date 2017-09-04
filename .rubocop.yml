@@ -6,6 +6,7 @@ AllCops:
     - lib/templates/rails/scaffold_controller/controller.rb
     - db/schema.rb
     - vendor/**/*
+    - lib/capistrano/**/*
 
 Rails:
   Enabled: true
