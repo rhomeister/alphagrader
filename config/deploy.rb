@@ -13,7 +13,7 @@ set :repo_url, 'git@github.com:rhomeister/alphagrader.git'
 
 set :pty, true
 
-set :pg_extensions, %w[hstore unaccent]
+set :pg_extensions, %w(hstore unaccent)
 
 set :memcached_ip, :all # make memcached listen to all IP addresses. The firewall blocks any unauthorized connection
 
@@ -33,16 +33,16 @@ code_release_roles = -> { [:app, :worker, fetch(:migration_role)] }
 
 set :rvm1_roles, code_release_roles # only install Ruby on release roles that are going to need the code
 set :bundle_roles, code_release_roles # bundling is only necessary on nodes that have the Ruby code
-set :memcached_roles, %i[app worker]
+set :memcached_roles, %i(app worker)
 set :console_role, :worker
 
 set :sidekiq_role, :worker
 set :sidekiq_config, 'config/sidekiq.yml'
 set :sidekiq_user, 'deploy'
 set :sidekiq_default_hooks, false
-# after 'deploy:published', 'sidekiq:monit:restart' # restart using monit, not systemctl
+after 'deploy:published', 'sidekiq:monit:restart' # restart using monit, not systemctl
 
-set :assets_roles, %i[app worker db]
+set :assets_roles, %i(app worker db)
 
 # split whenever scripts per environment (stage)
 set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
@@ -63,14 +63,14 @@ before 'deploy', 'ssh:add'
 before 'setup', 'rvm1:install:rvm'
 before 'deploy', 'rvm1:install:ruby'
 
-namespace :ssh do
-  desc 'Run ssh-add'
-  task :add do
-    run_locally do
-      execute 'ssh-add'
-    end
-  end
-end
+# namespace :ssh do
+# desc 'Run ssh-add'
+# task :add do
+# run_locally do
+# execute 'ssh-add'
+# end
+# end
+# end
 
 task :setup do
   invoke 'dotenv:setup'

@@ -15,7 +15,8 @@ describe Team, type: :model do
 
   it 'has submissions' do
     team = create(:team)
-    team.submissions = submissions = create_list(:submission, 3)
+    Sidekiq::Testing.fake!
+    team.submissions = submissions = create_list(:file_submission, 3)
 
     expect(team.submissions).to match_array(submissions)
     submissions.each do |submission|

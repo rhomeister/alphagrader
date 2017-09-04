@@ -31,6 +31,7 @@ gem 'rubyzip'
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'redis-namespace'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -51,8 +52,10 @@ gem 'rdiscount'
 
 gem 'git_stats'
 
-gem 'resque'
-gem 'resque-web', require: 'resque_web'
+# gem 'resque'
+# gem 'resque-web', require: 'resque_web'
+
+gem 'sidekiq'
 
 group :development, :test do
   gem 'pry'
@@ -86,6 +89,7 @@ group :development do
   # gem 'capistrano-memcached', '~> 1.2.0', require: false
   gem 'capistrano-unicorn-nginx', '~> 4.1', require: false
   # gem 'capistrano-faster-assets', '~> 1.0.2', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 group :test do

@@ -3,6 +3,7 @@ require 'rails_helper'
 
 describe Submission, type: :model do
   it 'has been uploaded by a user' do
+    Sidekiq::Testing.fake!
     submission = create(:submission)
     user = create(:user)
 
@@ -13,6 +14,7 @@ describe Submission, type: :model do
   end
 
   it 'has contributions' do
+    Sidekiq::Testing.fake!
     submission = create(:submission)
     submission.contributions = contributions = create_list(:contribution, 3)
 
@@ -25,6 +27,7 @@ describe Submission, type: :model do
   end
 
   it 'has test results' do
+    Sidekiq::Testing.fake!
     submission = create(:submission)
     submission.test_results = results = create_list(:test_result, 3)
 

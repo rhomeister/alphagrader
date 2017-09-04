@@ -3,6 +3,8 @@ require 'rails_helper'
 
 describe AuthorContributionTest, type: :model do
   context 'run' do
+    before { Sidekiq::Testing.fake! }
+
     it 'returns success if all team members are authors' do
       user = create(:user)
       team = create(:team, memberships: [create(:membership, user: user)])

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'resque_web'
+# require 'resque_web'
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations',
                                     omniauth_callbacks: 'omniauth_callbacks' }
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  resque_web_constraint = lambda do |request|
+  sidekiq_web_constraint = lambda do |request|
     if Rails.env.development?
       true
     else
@@ -52,8 +52,8 @@ Rails.application.routes.draw do
     end
   end
 
-  constraints resque_web_constraint do
-    mount ResqueWeb::Engine, at: '/resque'
+  constraints sidekiq_web_constraint do
+    # mount ResqueWeb::Engine, at: '/resque'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

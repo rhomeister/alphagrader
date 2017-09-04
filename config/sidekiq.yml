@@ -1,0 +1,11 @@
+:concurrency: 20
+:pidfile: tmp/pids/sidekiq.pid
+staging:
+  :concurrency: 5
+production:
+  :concurrency: 6
+:queues:
+  - high
+  - default
+  - mailers
+  - low

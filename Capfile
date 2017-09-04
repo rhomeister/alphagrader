@@ -24,8 +24,8 @@ require 'rvm1/capistrano3'
 
 # require 'capistrano/wal_e'
 
-# require 'capistrano/sidekiq'
-# require 'capistrano/sidekiq/monit'
+require 'capistrano/sidekiq'
+require 'capistrano/sidekiq/monit'
 
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git
