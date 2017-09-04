@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-# require 'resque_web'
+
+require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations',
                                     omniauth_callbacks: 'omniauth_callbacks' }
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
   end
 
   constraints sidekiq_web_constraint do
-    # mount ResqueWeb::Engine, at: '/resque'
+    mount Sidekiq::Web => '/admin/sidekiq'
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
