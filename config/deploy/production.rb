@@ -10,7 +10,7 @@ ansible_roles('config/ansible/production_linode') # load roles from ansible repo
 set :migration_role, :db # the primary (first) DB performs the migrations
 set :pg_host, primary(:db).hostname # setting the host name of PostgreSQL in the database.yml config
 
-set :unicorn_workers, 4 # run two unicorn workers per app server
+set :unicorn_workers, 2 # run two unicorn workers per app server
 
 set :memcached_memory_limit, 128
 
