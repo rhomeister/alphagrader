@@ -57,7 +57,7 @@ class User < ApplicationRecord
   end
 
   def create_github_webhook(repository)
-    url = Rails.application.routes.url_helpers.github_webhooks_url
+    url = Rails.application.routes.url_helpers.github_webhooks_url(protocol: 'https')
     github_client.create_hook(repository, 'web',
                               { url: url, content_type: :json,
                                 secret: ENV.fetch('GITHUB_WEBHOOK_SECRET') },
