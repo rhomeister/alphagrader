@@ -3,5 +3,5 @@ if [ ! -f program.c ]; then
     echo "Program file 'program.c' not found. Did you add this to your submission?"
     exit 1
 fi
-gcc program.c -o program
+gcc program.c -o program -lm
 ./program
