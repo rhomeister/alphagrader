@@ -3,7 +3,7 @@
 set :stage, :production
 set :rails_env, fetch(:stage) # set the rails environment
 
-set :branch, 'capistrano'
+set :branch, 'master'
 
 ansible_roles('config/ansible/production_linode') # load roles from ansible repository
 
