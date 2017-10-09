@@ -63,6 +63,7 @@ class OutputTestRunner
     start = Time.zone.now
     docker_options = '-i --read-only --sig-proxy --net=none --workdir=/submission --user=default'
     docker_options += " --name #{docker_container_name}"
+    docker_options += ' --rm' unless Rails.env.test?
     volume = "--volume=#{directory}:/submission"
     image = 'rhomeister/alphagrader'
     docker_command = "docker run #{docker_options} #{volume} #{image} ./run 2>&1"
@@ -77,8 +78,7 @@ class OutputTestRunner
   end
 
   def kill_docker
-    `docker kill #{docker_container_name} > /dev/null 2>&1`
-    `docker rm #{docker_container_name} > /dev/null 2>&1`
+    `docker rm -f #{docker_container_name} > /dev/null 2>&1`
   end
 
   def clean_string(string)
