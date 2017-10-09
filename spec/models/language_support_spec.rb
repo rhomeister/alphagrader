@@ -46,6 +46,13 @@ describe FileSubmission, type: :model do
     expect(submission.reload.status).to eq 'success'
   end
 
+  it 'works with Javascript' do
+    submission = build(:file_submission, assignment: assignment, language: 'javascript')
+    submission.file = File.new('spec/fixtures/language_support_submissions/js.zip')
+    submission.save!
+    expect(submission.reload.status).to eq 'success'
+  end
+
   it 'works with Python 3.6' do
     submission = build(:file_submission, assignment: assignment)
     submission.file = File.new('spec/fixtures/language_support_submissions/python36.zip')
