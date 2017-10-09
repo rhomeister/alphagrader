@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class OutputTestRunner
-  TIME_LIMIT = 60
+  TIME_LIMIT = 30
 
   attr_accessor :directory, :output, :exit_code, :program_input,
                 :expected_program_output, :execution_time, :timeout
@@ -22,6 +22,8 @@ class OutputTestRunner
     end
   rescue Timeout::Error
     register_timeout_error
+  ensure
+    kill_docker
   end
 
   def result_log
@@ -60,12 +62,23 @@ class OutputTestRunner
   def capture_output
     start = Time.zone.now
     docker_options = '-i --read-only --sig-proxy --net=none --workdir=/submission --user=default'
+    docker_options += " --name #{docker_container_name}"
     volume = "--volume=#{directory}:/submission"
     image = 'rhomeister/alphagrader'
-    @output = `echo '#{program_input}' | docker run #{docker_options} #{volume} #{image} ./run 2>&1`
+    docker_command = "docker run #{docker_options} #{volume} #{image} ./run 2>&1"
+    @output = `echo '#{program_input}' | timeout #{TIME_LIMIT} #{docker_command}`
     @execution_time = Time.zone.now - start
     @exit_code = $CHILD_STATUS.exitstatus
     @errors << "Received non-zero exit code: #{@exit_code}" unless @exit_code.zero?
+  end
+
+  def docker_container_name
+    @docker_container_name ||= SecureRandom.hex
+  end
+
+  def kill_docker
+    `docker kill #{docker_container_name} > /dev/null 2>&1`
+    `docker rm #{docker_container_name} > /dev/null 2>&1`
   end
 
   def clean_string(string)

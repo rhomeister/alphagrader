@@ -40,10 +40,28 @@ describe ExpectedOutputTest, type: :model do
       submission = create(:submission)
       # need to preload OutputTestRunner, otherwise stub_const will cause
       # problems
-      expect(OutputTestRunner::TIME_LIMIT).to eq 60
+      expect(OutputTestRunner::TIME_LIMIT).to be > 0
       stub_const('OutputTestRunner::TIME_LIMIT', 0.01)
 
       FileUtils.cp('spec/fixtures/dummy_programs/sleeper', submission.tempdir + '/run')
+      test = create(:expected_output_test)
+      result = test.run(submission)
+
+      expect(result).to be_error
+      expect(result.error_log).to include 'Execution time limit exceeded'
+      expect(result.timeout).to eq true
+    end
+
+    it 'stops all processes if the program is running infinitely long' do
+      submission = create(:submission)
+      # need to preload OutputTestRunner, otherwise stub_const will cause
+      # problems
+      expect(OutputTestRunner::TIME_LIMIT).to be > 0
+      stub_const('OutputTestRunner::TIME_LIMIT', 1)
+
+      FileUtils.cp('spec/fixtures/dummy_programs/infinite.c', submission.tempdir + '/program.c')
+      FileUtils.cp('lib/run_scripts/c', submission.tempdir + '/run')
+
       test = create(:expected_output_test)
       result = test.run(submission)
 
