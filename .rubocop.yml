@@ -7,6 +7,7 @@ AllCops:
     - db/schema.rb
     - vendor/**/*
     - lib/capistrano/**/*
+    - spec/fixtures/language_support_submissions/program.rb
 
 Rails:
   Enabled: true
