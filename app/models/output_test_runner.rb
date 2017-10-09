@@ -14,12 +14,11 @@ class OutputTestRunner
   end
 
   def run
-    Dir.chdir(directory) do
-      return run_file_not_exists_error unless File.exist?('run')
-      FileUtils.chmod 'u=wrx', 'run'
-      Timeout.timeout(TIME_LIMIT) do
-        capture_output
-      end
+    runfile = File.join(directory, 'run')
+    return run_file_not_exists_error unless File.exist?(runfile)
+    FileUtils.chmod 'u=wrx', runfile
+    Timeout.timeout(TIME_LIMIT) do
+      capture_output
     end
   rescue Timeout::Error
     register_timeout_error
@@ -60,7 +59,10 @@ class OutputTestRunner
 
   def capture_output
     start = Time.zone.now
-    @output = `echo '#{program_input}' | ./run 2>&1`
+    docker_options = '-i --read-only --sig-proxy --net=none --workdir=/submission --user=default'
+    volume = "--volume=#{directory}:/submission"
+    image = 'rhomeister/alphagrader'
+    @output = `echo '#{program_input}' | docker run #{docker_options} #{volume} #{image} ./run 2>&1`
     @execution_time = Time.zone.now - start
     @exit_code = $CHILD_STATUS.exitstatus
     @errors << "Received non-zero exit code: #{@exit_code}" unless @exit_code.zero?

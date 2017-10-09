@@ -3,4 +3,4 @@ if [ ! -f program.jar ]; then
     echo "Program file 'program.jar' not found. Did you add this to your submission?"
     exit 1
 fi
-java -jar program.jar
+java -cp program.jar Main
