@@ -63,6 +63,7 @@ class OutputTestRunner
     start = Time.zone.now
     docker_options = '-i --read-only --sig-proxy --net=none --workdir=/submission --user=default'
     docker_options += " --name #{docker_container_name}"
+    docker_options += ' -m=128M'
     volume = "--volume=#{directory}:/submission"
     image = 'rhomeister/alphagrader'
     docker_command = "docker run #{docker_options} #{volume} #{image} ./run 2>&1"
