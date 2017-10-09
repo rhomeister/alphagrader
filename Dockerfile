@@ -32,4 +32,8 @@ RUN apt-get install -y curl
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
 RUN apt-get install -y nodejs
 
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt-get update
+RUN apt-get install -y python3.6
+
 RUN useradd -r default -u 1000
