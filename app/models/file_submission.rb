@@ -8,7 +8,7 @@ class FileSubmission < Submission
   def download
     file.copy_to_local_file(:original, tempdir + '/zipfile.zip')
     Dir.chdir(tempdir) do
-      raise 'Error while unzipping' unless system('unzip zipfile.zip')
+      `unzip zipfile.zip`
     end
   end
 end

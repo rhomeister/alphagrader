@@ -55,7 +55,7 @@ class OutputTestRunner
   private
 
   def fix_runfile_encoding
-    raise unless system("dos2unix #{directory}/run")
+    `dos2unix #{directory}/run`
   end
 
   def register_timeout_error
