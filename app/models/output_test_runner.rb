@@ -15,6 +15,7 @@ class OutputTestRunner
 
   def run
     runfile = File.join(directory, 'run')
+    fix_runfile_encoding
     return run_file_not_exists_error unless File.exist?(runfile)
     FileUtils.chmod 'u=wrx', runfile
     Timeout.timeout(TIME_LIMIT) do
@@ -52,6 +53,10 @@ class OutputTestRunner
   end
 
   private
+
+  def fix_runfile_encoding
+    raise unless system("dos2unix #{directory}/run")
+  end
 
   def register_timeout_error
     @errors << "Execution time limit exceeded. Maximum execution time is #{TIME_LIMIT} seconds."
