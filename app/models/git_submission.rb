@@ -11,9 +11,8 @@ class GitSubmission < Submission
   def download
     `git clone #{git_repository_url} #{tempdir}`
     return unless git_commit_sha
-    Dir.chdir(tempdir) do
-      `git checkout -f #{git_commit_sha}`
-    end
+    raise unless system("git --git-dir=#{tempdir}/.git "\
+                       "checkout -f #{git_commit_sha}")
   end
 
   private

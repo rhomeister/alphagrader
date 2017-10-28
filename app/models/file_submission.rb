@@ -7,8 +7,6 @@ class FileSubmission < Submission
 
   def download
     file.copy_to_local_file(:original, tempdir + '/zipfile.zip')
-    Dir.chdir(tempdir) do
-      `unzip zipfile.zip`
-    end
+    `unzip #{tempdir}/zipfile.zip -d #{tempdir}`
   end
 end

@@ -56,11 +56,9 @@ class Submission < ApplicationRecord
 
   def inject_runfile_if_not_exists
     return if language.blank?
-    Dir.chdir(tempdir) do
-      return if File.exist?('run')
-      file = LanguageSpecificRunfile.find(language)
-      FileUtils.copy_file(file, File.join(tempdir, 'run'))
-    end
+    return if File.exist?("#{tempdir}/run")
+    file = LanguageSpecificRunfile.find(language)
+    FileUtils.copy_file(file, File.join(tempdir, 'run'))
   end
 
   def notify_users
