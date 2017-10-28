@@ -73,6 +73,7 @@ class OutputTestRunner
     image = 'rhomeister/alphagrader'
     docker_command = "docker run #{docker_options} #{volume} #{image} ./run 2>&1"
     @output = `echo '#{program_input}' | timeout #{TIME_LIMIT} #{docker_command}`
+    @output = clean_string(output)
     @execution_time = Time.zone.now - start
     @exit_code = $CHILD_STATUS.exitstatus
     @errors << "Received non-zero exit code: #{@exit_code}" unless @exit_code.zero?
@@ -88,6 +89,7 @@ class OutputTestRunner
 
   def clean_string(string)
     string = string.force_encoding('ISO-8859-2').encode!('UTF-8')
-    string.split("\n").map(&:strip).reject(&:blank?).join("\n")
+    string = string.split("\n").map(&:strip).reject(&:blank?).join("\n")
+    string.delete("\u0000")
   end
 end
