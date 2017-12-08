@@ -5,6 +5,10 @@ class Test < ApplicationRecord
 
   validates :name, presence: true
 
+  amoeba do
+    exclude_association :test_results
+  end
+
   def self.help_page_url
     description.last[:help_page_url]
   end

@@ -18,6 +18,10 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    puts "Hello world"
+    @course = current_user.courses.find(params[:id])
+    @course = @course.amoeba_dup
+    render :new
   end
 
   def create
@@ -35,6 +39,13 @@ class CoursesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def duplicate
+    puts "What the fuck?"
+    @course = current_user.courses.find(params[:id])
+    @course = @course.amoeba_dup
+    render :new
   end
 
   private

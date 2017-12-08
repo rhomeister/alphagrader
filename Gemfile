@@ -139,5 +139,7 @@ gem 'draper', github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'dateslices'
 gem 'gretel'
+# For duplication
+gem 'amoeba'
 
 ruby '2.3.1'

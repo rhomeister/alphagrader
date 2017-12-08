@@ -3,8 +3,8 @@ default: &default
   encoding: unicode
   host: localhost
   pool: 5
-  username: alphagrader
-  password: alphagrader
+  username: postgres
+  password: postgres
   prepared_statements: false
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling

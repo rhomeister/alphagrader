@@ -4,12 +4,17 @@ class Course < ApplicationRecord
   has_many :users, through: :memberships
 
   has_many :instructor_memberships, -> { instructor },
-           class_name: 'Membership', source: :course
+    class_name: 'Membership', source: :course
   has_many :instructors, through: :instructor_memberships, class_name: 'User', source: :user
 
   has_many :assignments
 
   validates :name, presence: true
+
+  amoeba do
+    exclude_association [:memberships, :users]
+    prepend :name => "Copy of "
+  end
 
   before_save do
     next unless enrollment_code.nil?
@@ -23,4 +28,5 @@ class Course < ApplicationRecord
   def membership_for(current_user)
     memberships.find { |m| m.user_id == current_user.id }
   end
+
 end
