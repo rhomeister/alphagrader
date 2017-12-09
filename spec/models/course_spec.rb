@@ -24,9 +24,21 @@ describe Course, type: :model do
     course.assignments << assignment1 = create(:assignment)
     course.assignments << assignment2 = create(:assignment)
 
+    # Add tests to assignments
     assignment1.tests << test11 = create(:test)
     assignment1.tests << test12 = create(:test)
     assignment2.tests << test21 = create(:test)
+
+    # Add test results to tests
+    test11.test_results << create(:test_result)
+    test11.test_results << create(:test_result)
+    test12.test_results << create(:test_result)
+    test21.test_results << create(:test_result)
+
+    # Add submissions to assingments
+    assignment1.submissions << create(:submission)
+    assignment1.submissions << create(:submission)
+    assignment2.submissions << create(:submission)
 
     new_course = course.copy
 
@@ -46,5 +58,15 @@ describe Course, type: :model do
     new_assignment2 = new_course.assignments.find { |e| e.name == assignment2.name }
     expect(new_assignment2.tests).to have(1).items
     expect(new_assignment2.tests.first.name).to eq test21.name
+
+    # Test that the assingment tests don't have test results
+    expect(new_assignment1.test11.test_results).to have(0).items
+    expect(new_assignment1.test12.test_results).to have(0).items
+    expect(new_assignment2.test21.test_results).to have(0).items
+
+    # Test that the assignments don't have submissions
+    expect(new_assignment1.submissions).to have(0).items
+    expect(new_assignment2.submissions).to have(0).items
+
   end
 end
