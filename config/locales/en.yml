@@ -28,6 +28,7 @@ en:
   courses:
     list: My Courses
     new: New Course
+    copied_succesfully: Your course has been copied successfully
 
   activerecord:
     models:

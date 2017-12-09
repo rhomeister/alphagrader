@@ -23,7 +23,7 @@ class Ability
     can :read, Course, membership_params
     can :create, Course if user.instructor? || user.admin?
 
-    can [:edit, :update], Course, instructor_membership_params
+    can [:edit, :update, :duplicate], Course, instructor_membership_params
   end
 
   def setup_assignment_rights

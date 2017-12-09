@@ -4,9 +4,8 @@
   = @course.name
   - if can?(:edit, @course.object)
     .pull-right
+      = link_to 'Clone', duplicate_course_path(@course), class: 'btn btn-default'
       = link_to 'Edit', edit_course_path(@course), class: 'btn btn-primary'
-    .pull-right
-      = link_to 'Clone', duplicate_course_path(@course), class: 'btn btn-primary'
 
 - if current_user.course_instructor?(@course)
   = alert_box context: :info do

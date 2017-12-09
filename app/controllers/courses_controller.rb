@@ -18,10 +18,6 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    puts "Hello world"
-    @course = current_user.courses.find(params[:id])
-    @course = @course.amoeba_dup
-    render :new
   end
 
   def create
@@ -42,10 +38,9 @@ class CoursesController < ApplicationController
   end
 
   def duplicate
-    puts "What the fuck?"
     @course = current_user.courses.find(params[:id])
-    @course = @course.amoeba_dup
-    render :new
+    @course = @course.copy
+    redirect_to @course, flash: { success: t('courses.copied_succesfully') }
   end
 
   private

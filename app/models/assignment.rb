@@ -7,11 +7,13 @@ class Assignment < ApplicationRecord
 
   validates :name, presence: true
 
-  amoeba do
-    exclude_association [:submissions, :teams]
-  end
-
   def members_without_team
     course.memberships.student - teams.flat_map(&:memberships)
+  end
+
+  def copy
+    result = dup
+    result.tests = tests.map(&:dup)
+    result
   end
 end
