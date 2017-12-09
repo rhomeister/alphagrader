@@ -26,6 +26,9 @@ class Submission < ApplicationRecord
     self.status = test_results.reload.all?(&:success?) ? :success : :failure
   end
 
+  def download
+  end
+
   def run_tests
     test_results.destroy_all
     download
