@@ -38,9 +38,7 @@ class CoursesController < ApplicationController
   end
 
   def duplicate
-    @course = current_user.courses.find(params[:id])
-    @course = @course.copy
-    redirect_to @course, flash: { success: t('courses.copied_succesfully') }
+    redirect_to @course.copy, flash: { success: t('courses.copied_succesfully') }
   end
 
   private
