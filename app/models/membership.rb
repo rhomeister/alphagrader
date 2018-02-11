@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+
 class Membership < ApplicationRecord
   belongs_to :user
   belongs_to :course
   has_and_belongs_to_many :teams
 
-  enum role: [:student, :instructor]
+  enum role: %i[student instructor]
 
   attr_accessor :enrollment_code
 

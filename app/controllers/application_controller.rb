@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   check_authorization unless: :devise_controller?
 
@@ -12,8 +13,7 @@ class ApplicationController < ActionController::Base
     redirect_to "#{request.protocol}#{ENV.fetch('DOMAIN_NAME')}#{request.fullpath}", status: :moved_permanently
   end
 
-  def page_title
-  end
+  def page_title; end
 
   def access_denied(exception)
     redirect_to root_path, alert: exception.message

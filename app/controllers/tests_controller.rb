@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class TestsController < ApplicationController
   before_action :normalize_params
 
@@ -15,8 +16,7 @@ class TestsController < ApplicationController
     cast_test
   end
 
-  def edit
-  end
+  def edit; end
 
   def index
     @tests = @assignment.tests

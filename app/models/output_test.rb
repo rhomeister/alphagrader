@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class OutputTest < Test
   validates :expected_program_output, presence: true
   validates :program_input, presence: true

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AssignmentsController < ApplicationController
   load_and_authorize_resource :course
   load_and_authorize_resource through: :course
@@ -11,11 +12,9 @@ class AssignmentsController < ApplicationController
     @assignment = @assignment.decorate
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def index
     redirect_to @course

@@ -9,7 +9,7 @@ redis_config = {
 Sidekiq.options[:poll_interval] = 2
 
 Sidekiq.configure_server do |config|
-  sidekiq_config = YAML.load(File.new("#{Rails.root}/config/sidekiq.yml"))
+  sidekiq_config = YAML.safe_load(File.new("#{Rails.root}/config/sidekiq.yml"))
   config.redis = redis_config
   schedule_file = 'config/sidekiq_schedule.yml'
 
@@ -25,9 +25,7 @@ Sidekiq.configure_server do |config|
     ActiveRecord::Base.establish_connection(config)
   end
 
-  if File.exist?(schedule_file) && Sidekiq.server?
-    Sidekiq::Cron::Job.load_from_hash! YAML.load_file(schedule_file)
-  end
+  Sidekiq::Cron::Job.load_from_hash! YAML.load_file(schedule_file) if File.exist?(schedule_file) && Sidekiq.server?
 end
 
 Sidekiq.configure_client do |config|

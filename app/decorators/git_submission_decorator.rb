@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+
 class GitSubmissionDecorator < SubmissionDecorator
   delegate_all
 
   def attributes
-    [:status, :uploaded_by, :created_at, :git_repository_url, :git_commit_sha,
-     :git_commit_message, :contributor_names, :team_members]
+    %i[status uploaded_by created_at git_repository_url git_commit_sha
+       git_commit_message contributor_names team_members]
   end
 
   def git_repository_url

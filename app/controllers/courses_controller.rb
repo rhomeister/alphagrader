@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CoursesController < ApplicationController
   load_and_authorize_resource
 
@@ -17,8 +18,7 @@ class CoursesController < ApplicationController
     @course = @course.decorate
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     if @course.update_attributes(course_params)

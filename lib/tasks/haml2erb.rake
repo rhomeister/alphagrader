@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 desc 'Converts everything to erb'
 task :haml2erb do
   require 'httparty'

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -25,8 +26,8 @@ gem 'coffee-rails', '~> 4.2'
 #
 gem 'haml'
 
-gem 'paperclip', '~> 5.0'
 gem 'aws-sdk', '~> 2.3.0'
+gem 'paperclip', '~> 5.0'
 gem 'rubyzip'
 
 # Use jquery as the JavaScript library
@@ -60,34 +61,34 @@ gem 'git_stats'
 gem 'sidekiq'
 
 group :development, :test do
-  gem 'pry'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'pry'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'letter_opener'
   gem 'happy_seed'
+  gem 'letter_opener'
 
-  gem 'rubocop', require: false
   gem 'brakeman', require: false
+  gem 'rubocop', require: false
 
   # capistrano
 
   gem 'capistrano', '~> 3.8', require: false, group: :development
   # Deploy with capistrano, see config/deploy.rb
-  gem 'capistrano-rails', '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-postgresql', '~> 4.2.1', require: false
+  gem 'capistrano-rails', '~> 1.1', require: false
   gem 'capistrano-safe-deploy-to', '~> 1.1.1', require: false
   gem 'rvm1-capistrano3', '~> 1.3.2', require: false
-  gem 'capistrano-postgresql', '~> 4.2.1', require: false
   # gem 'capistrano-memcached', '~> 1.2.0', require: false
   gem 'capistrano-unicorn-nginx', '~> 4.1', require: false
   # gem 'capistrano-faster-assets', '~> 1.0.2', require: false
@@ -95,49 +96,49 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'rspec-mocks'
-  gem 'spring-commands-rspec'
+  gem 'capybara'
+  gem 'rails-controller-testing'
   gem 'rspec-collection_matchers'
+  gem 'rspec-mocks'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
   gem 'vcr'
   gem 'webmock'
-  gem 'rails-controller-testing'
-  gem 'capybara'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'bootstrap-sass'
-gem 'modernizr-rails'
-gem 'meta-tags', require: 'meta_tags'
-gem 'responders', '~> 2.0'
 gem 'bh'
-gem 'premailer-rails'
-gem 'nokogiri'
-gem 'devise', '~> 4.2'
+gem 'bootstrap-sass'
 gem 'cancancan'
+gem 'devise', '~> 4.2'
+gem 'github_webhook', '~> 1.0.2'
+gem 'meta-tags', require: 'meta_tags'
+gem 'modernizr-rails'
+gem 'nokogiri'
+gem 'octokit'
 gem 'omniauth'
-gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
-gem 'octokit'
-gem 'github_webhook', '~> 1.0.2'
+gem 'omniauth-oauth2', '1.3.1'
+gem 'premailer-rails'
+gem 'responders', '~> 2.0'
 
 gem 'omniauth-google-oauth2'
 # gem 'google-api-client', require: 'google/api_client'
 
-gem 'omniauth-twitter'
-gem 'twitter'
-gem 'ckeditor'
 gem 'activeadmin', github: 'activeadmin'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'ransack', github: 'activerecord-hackery/ransack'
-gem 'kaminari', github: 'amatsuda/kaminari', branch: '0-17-stable'
-gem 'formtastic', github: 'justinfrench/formtastic'
-gem 'draper', github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'ckeditor'
 gem 'dateslices'
+gem 'draper', github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
+gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'gretel'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'kaminari', github: 'amatsuda/kaminari', branch: '0-17-stable'
+gem 'omniauth-twitter'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'twitter'
 
 ruby '~> 2.4'

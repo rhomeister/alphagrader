@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class DevisePreview < ActionMailer::Preview
   if User.devise_modules.include? :confirmable
     def confirmation_instructions

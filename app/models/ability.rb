@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Ability
   include CanCan::Ability
   attr_accessor :user
@@ -6,7 +7,7 @@ class Ability
   def initialize(user)
     return if user.nil?
     @user = user
-    can :manage, :all if user && user.admin?
+    can :manage, :all if user&.admin?
 
     setup_course_rights
     setup_assignment_rights
@@ -23,31 +24,31 @@ class Ability
     can :read, Course, membership_params
     can :create, Course if user.instructor? || user.admin?
 
-    can [:edit, :update, :duplicate], Course, instructor_membership_params
+    can %i[edit update duplicate], Course, instructor_membership_params
   end
 
   def setup_assignment_rights
     can :read, Assignment, course: { memberships: { user_id: user.id } }
-    can [:create, :edit, :update], Assignment, course: instructor_membership_params
+    can %i[create edit update], Assignment, course: instructor_membership_params
   end
 
   def setup_test_rights
     can :read, Test, public: true, assignment: { course: membership_params }
     can :read, Test, public: false, assignment: { course: instructor_membership_params }
-    can [:create, :edit, :update, :destroy], Test, assignment: { course: instructor_membership_params }
+    can %i[create edit update destroy], Test, assignment: { course: instructor_membership_params }
   end
 
   def setup_submission_rights
     can :read, Submission, team: membership_params
     can :read, Submission, assignment: { course_id: instructor_course_ids }
-    can [:new, :create], Submission, assignment: { course: membership_params }
+    can %i[new create], Submission, assignment: { course: membership_params }
   end
 
   def setup_team_rights
     can [:read], Team, memberships: { user_id: user.id }
-    can [:edit, :update], Team, repository_owner_id: user.id
-    can [:read, :edit, :update], Team, assignment: { course_id: instructor_course_ids }
-    can [:new, :create], Team, assignment: { course: membership_params }
+    can %i[edit update], Team, repository_owner_id: user.id
+    can %i[read edit update], Team, assignment: { course_id: instructor_course_ids }
+    can %i[new create], Team, assignment: { course: membership_params }
   end
 
   def instructor_course_ids

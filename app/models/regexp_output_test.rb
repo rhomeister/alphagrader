@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RegexpOutputTest < OutputTest
   def self.description
     [:regexp_output_test, {

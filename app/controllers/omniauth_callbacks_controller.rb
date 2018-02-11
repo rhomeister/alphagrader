@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     generic_callback('facebook')
@@ -51,7 +52,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def set_user_fields
-    [:email, :name].each do |attr|
+    %i[email name].each do |attr|
       user_value = user.send(attr)
       identity_value = identity.send(attr)
 

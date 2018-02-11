@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class GoogleAppsClient
   def initialize(client)
     @client = client

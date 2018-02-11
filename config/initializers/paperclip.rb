@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Paperclip::Attachment.default_options[:storage] = :s3
 Paperclip::Attachment.default_options[:s3_credentials] =
   "#{Rails.root}/config/amazon_s3.yml"

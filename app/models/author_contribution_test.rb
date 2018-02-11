@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AuthorContributionTest < Test
   def self.description
     [:author_contribution_test, {

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class TeamsController < ApplicationController
   load_and_authorize_resource :assignment
   load_and_authorize_resource through: :assignment
@@ -9,14 +10,11 @@ class TeamsController < ApplicationController
     'Teams'
   end
 
-  def new
-  end
+  def new; end
 
-  def index
-  end
+  def index; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @team.update_attributes(team_params)

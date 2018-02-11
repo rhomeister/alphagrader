@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RequiredFileTest < Test
   validates :filename, presence: true
 

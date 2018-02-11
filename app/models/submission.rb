@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+
 class Submission < ApplicationRecord
   belongs_to :assignment
   belongs_to :uploaded_by, class_name: 'User'
   belongs_to :team, inverse_of: :submissions
 
-  enum status: [:queued, :running, :success, :failure]
+  enum status: %i[queued running success failure]
   has_many :test_results, dependent: :destroy
   has_many :contributions, inverse_of: :submission, dependent: :destroy
   has_many :contributors, through: :contributions, class_name: 'Membership', source: :membership
@@ -26,8 +27,7 @@ class Submission < ApplicationRecord
     self.status = test_results.reload.all?(&:success?) ? :success : :failure
   end
 
-  def download
-  end
+  def download; end
 
   def run_tests
     test_results.destroy_all
@@ -73,8 +73,7 @@ class Submission < ApplicationRecord
     end
   end
 
-  def run_pre_test_checks
-  end
+  def run_pre_test_checks; end
 
   def run_user_tests
     assignment.tests.each do |test|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ExpectedOutputTest < OutputTest
   def self.description
     [:expected_output_test, {

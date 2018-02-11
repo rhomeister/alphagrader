@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CreateAuthorSubmissionJoinTable < ActiveRecord::Migration[5.0]
   def change
     create_table :author_submissions, id: false do |t|

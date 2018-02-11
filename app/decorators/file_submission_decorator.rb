@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+
 class FileSubmissionDecorator < SubmissionDecorator
   delegate_all
 
   def attributes
-    [:status, :uploaded_by, :created_at, :team_members, :file_size,
-     :download_url, :human_readable_language]
+    %i[status uploaded_by created_at team_members file_size
+       download_url human_readable_language]
   end
 
   def human_readable_language

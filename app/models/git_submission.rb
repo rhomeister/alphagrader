@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class GitSubmission < Submission
   validates :github_repository_name, presence: true
 

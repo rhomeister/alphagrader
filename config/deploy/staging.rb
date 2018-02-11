@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 set :stage, :staging
 set :rails_env, fetch(:stage) # set the rails environment
 

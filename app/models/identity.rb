@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-class Identity < ActiveRecord::Base
+
+class Identity < ApplicationRecord
   belongs_to :user, required: false
   validates :uid, :provider, presence: true
   validates :uid, uniqueness: { scope: :provider }

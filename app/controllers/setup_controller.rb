@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rdiscount'
 class SetupController < ApplicationController
   skip_authorization_check

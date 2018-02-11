@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 crumb :root do
   link 'Home', root_path
 end
@@ -14,18 +15,14 @@ crumb :course do |course|
 end
 
 crumb :assignment do |assignment|
-  url = if assignment.persisted?
-          course_assignment_path(assignment.course, assignment)
-        end
+  url = (course_assignment_path(assignment.course, assignment) if assignment.persisted?)
   text = assignment.name || 'New Assignment'
   link text, url
   parent :course, assignment.course
 end
 
 crumb :submission do |submission|
-  url = if submission.persisted?
-          assignment_submission_path(submission.assignment, submission)
-        end
+  url = (assignment_submission_path(submission.assignment, submission) if submission.persisted?)
   text = submission.decorate.created_at || 'New Submission'
   link text, url
   parent :assignment, submission.assignment

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class FileSubmission < Submission
   validates :file, presence: true
   has_attached_file :file

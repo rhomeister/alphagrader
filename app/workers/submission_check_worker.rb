@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class SubmissionCheckWorker
   include Sidekiq::Worker
   sidekiq_options queue: 'high'

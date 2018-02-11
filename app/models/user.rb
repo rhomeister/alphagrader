@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class User < ApplicationRecord
   attr_accessor :oauth_callback
   attr_accessor :current_password
@@ -34,7 +35,7 @@ class User < ApplicationRecord
   end
 
   has_many :identities, dependent: :destroy
-  enum role: [:user, :admin, :instructor]
+  enum role: %i[user admin instructor]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :confirmable, :database_authenticatable, :registerable,

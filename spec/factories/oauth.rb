@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 FactoryGirl.define do
   factory :oauth_user, class: 'User' do
     before(:create) do |user, _evaluator|
