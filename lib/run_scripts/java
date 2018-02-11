@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -f program.jar ]; then
-    echo "Program file 'program.jar' not found. Did you add this to your submission?"
+    echo "Program file 'program.jar' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
 java -cp program.jar Main

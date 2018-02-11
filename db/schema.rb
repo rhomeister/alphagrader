@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602190751) do
+ActiveRecord::Schema.define(version: 20180211211043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
+  enable_extension "pg_stat_statements"
+  enable_extension "unaccent"
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -144,6 +147,7 @@ ActiveRecord::Schema.define(version: 20170602190751) do
     t.text     "error_log"
     t.float    "execution_time"
     t.integer  "exit_code"
+    t.boolean  "run_file_missing",        default: false
     t.index ["submission_id"], name: "index_test_results_on_submission_id", using: :btree
     t.index ["test_id"], name: "index_test_results_on_test_id", using: :btree
   end

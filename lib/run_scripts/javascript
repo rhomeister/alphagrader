@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -f program.js ]; then
-    echo "Program file 'program.js' not found. Did you add this to your submission?"
+    echo "Program file 'program.js' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
 node program.js

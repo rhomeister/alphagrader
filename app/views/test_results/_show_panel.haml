@@ -3,14 +3,23 @@
     - if test_result.error?
       = alert_box context: :danger do
         %h4 Errors detected
+        - if test_result.run_file_missing
+          %p
+            = icon('exclamation-triangle', library: :font_awesome)
+            Your submission is missing a file named
+            %code run
+            (without extension), which is used by AlphaGrader to run your
+            submission. To fix this, please see the
+            = link_to 'instructions', test_result.help_page_url
         - if test_result.exit_code != 0
-          %b Exit code:
-          = test_result.exit_code
-          (Must be 0)
-        %br
-        %b Error log:
-        %br
-        %pre= test_result.error_log
+          %p
+            %b Exit code:
+            = test_result.exit_code
+            (Must be 0)
+        %p
+          %b Error log:
+          %br
+          %pre= test_result.error_log
 
     - unless test_result.public
       = alert_box do

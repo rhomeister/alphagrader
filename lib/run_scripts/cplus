@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -f program.cpp ]; then
-    echo "Program file 'program.cpp' not found. Did you add this to your submission?"
+    echo "Program file 'program.cpp' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
 g++ program.cpp -o program

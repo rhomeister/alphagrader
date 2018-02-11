@@ -17,6 +17,7 @@ class OutputTest < Test
                                  execution_time: runner.execution_time,
                                  error_log: runner.error_log,
                                  result_log: runner.result_log,
+                                 run_file_missing: runner.run_file_missing,
                                  public: public)
   end
 end

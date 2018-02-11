@@ -12,6 +12,10 @@ class TestResultDecorator < Draper::Decorator
     h.safe_join([result_icon, type_name, title_text, execution_time], ' ')
   end
 
+  def help_page_url
+    test_type.new.decorate.help_page_url
+  end
+
   def type_name
     test_type.new.decorate.type_name
   end

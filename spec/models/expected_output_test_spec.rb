@@ -34,6 +34,7 @@ describe ExpectedOutputTest, type: :model do
       result = test.run(submission)
 
       expect(result.error_log).to include 'File does not exist: run'
+      expect(result.run_file_missing).to eq true
       expect(result).to be_error
     end
 

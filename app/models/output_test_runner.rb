@@ -4,7 +4,8 @@ class OutputTestRunner
   TIME_LIMIT = 30
 
   attr_accessor :directory, :output, :exit_code, :program_input,
-                :expected_program_output, :execution_time, :timeout
+                :expected_program_output, :execution_time, :timeout,
+                :run_file_missing
 
   def initialize(directory, program_input, expected_program_output)
     @directory = directory
@@ -40,6 +41,7 @@ class OutputTestRunner
   def run_file_not_exists_error
     @exit_code = 1
     @errors << 'File does not exist: run'
+    self.run_file_missing = true
   end
 
   def status

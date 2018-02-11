@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ ! -f program.c ]; then
-    echo "Program file 'program.c' not found. Did you add this to your submission?"
+    echo "Program file 'program.c' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
 gcc program.c -o program -lm
