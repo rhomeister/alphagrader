@@ -1,13 +1,15 @@
 # frozen_string_literal: true
+
 class LanguageSpecificRunfile
-  ROOT_SCRIPT_DIR = "#{Rails.root}/lib/run_scripts"
+  ROOT_SCRIPT_DIR = Rails.root.join('lib', 'run_scripts')
   FILES = {
     'c' => "#{ROOT_SCRIPT_DIR}/c",
     'cplus' => "#{ROOT_SCRIPT_DIR}/cplus",
     'java' => "#{ROOT_SCRIPT_DIR}/java",
     'javascript' => "#{ROOT_SCRIPT_DIR}/javascript",
     'python' => "#{ROOT_SCRIPT_DIR}/python",
-    'ruby' => "#{ROOT_SCRIPT_DIR}/ruby"
+    'ruby' => "#{ROOT_SCRIPT_DIR}/ruby",
+    'lisp' => "#{ROOT_SCRIPT_DIR}/lisp"
   }.freeze
 
   HUMAN_READABLE = {
@@ -16,7 +18,8 @@ class LanguageSpecificRunfile
     'java' => 'Java',
     'javascript' => 'Javascript',
     'python' => 'Python',
-    'ruby' => 'Ruby'
+    'ruby' => 'Ruby',
+    'lisp' => 'LISP'
   }.freeze
 
   def self.find(language)

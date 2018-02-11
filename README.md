@@ -2,6 +2,21 @@
 
 [![CircleCI](https://circleci.com/gh/rhomeister/alphagrader.svg?style=svg)](https://circleci.com/gh/rhomeister/alphagrader)
 
+## Dependencies
+
+- `dos2unix`
+- `docker`
+
+## Docker
+Alphagrader uses a docker image to run submissions in isolation.
+
+Common tasks:
+
+- Install image: `docker pull rhomeister/alphagrader`
+- Building a new image:
+  - `docker build -t rhomeister/alphagrader .`
+  - `docker push rhomeister/alphagrader:latest`
+
 ## Todo
 
 This README would normally document whatever steps are necessary to get the

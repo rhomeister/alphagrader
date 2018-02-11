@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe FileSubmission, type: :model do
@@ -56,6 +57,13 @@ describe FileSubmission, type: :model do
   it 'works with Python 3.6' do
     submission = build(:file_submission, assignment: assignment)
     submission.file = File.new('spec/fixtures/language_support_submissions/python36.zip')
+    submission.save!
+    expect(submission.reload.status).to eq 'success'
+  end
+
+  it 'works with Lisp' do
+    submission = build(:file_submission, assignment: assignment, language: 'lisp')
+    submission.file = File.new('spec/fixtures/language_support_submissions/lisp.zip')
     submission.save!
     expect(submission.reload.status).to eq 'success'
   end

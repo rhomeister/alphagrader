@@ -140,4 +140,4 @@ gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'dateslices'
 gem 'gretel'
 
-ruby '2.3.1'
+ruby '~> 2.4'

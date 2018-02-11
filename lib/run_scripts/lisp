@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ ! -f program.lisp ]; then
+    echo "Program file 'program.lisp' not found. Did you add this to your submission?"
+    exit 1
+fi
+clisp program.lisp
