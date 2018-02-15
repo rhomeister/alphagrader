@@ -9,7 +9,7 @@ redis_config = {
 Sidekiq.options[:poll_interval] = 2
 
 Sidekiq.configure_server do |config|
-  sidekiq_config = YAML.safe_load(File.new("#{Rails.root}/config/sidekiq.yml"))
+  sidekiq_config = YAML.safe_load(File.new("#{Rails.root}/config/sidekiq.yml"), [Symbol])
   config.redis = redis_config
   schedule_file = 'config/sidekiq_schedule.yml'
 
