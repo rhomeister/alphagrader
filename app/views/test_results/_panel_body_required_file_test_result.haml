@@ -2,7 +2,7 @@
   = alert_box context: :success do
     File
     - if test_result.file_url
-      = link_to test_result.filename, target: :blank do
+      = link_to test_result.file_url, target: :blank do
         %code= test_result.filename
     - else
       %code= test_result.filename
