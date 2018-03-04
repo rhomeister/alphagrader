@@ -5,6 +5,11 @@ class GitSubmission < Submission
 
   after_commit :update_github_commit_status
 
+  # A git submission can have automatically detected contributors
+  def detectable_contributors?
+    true
+  end
+
   def git_repository_url
     "https://github.com/#{github_repository_name}.git"
   end
@@ -14,6 +19,12 @@ class GitSubmission < Submission
     return unless git_commit_sha
     raise unless system("git --git-dir=#{tempdir}/.git "\
                        "checkout -f #{git_commit_sha}")
+  end
+
+  # Returns the url to a specific file on github
+  def file_url(filename)
+    raw_url = git_repository_url[0..-5]
+    "#{raw_url}/blob/#{git_commit_sha}/#{filename}"
   end
 
   private
@@ -38,10 +49,10 @@ class GitSubmission < Submission
     new_contributors = contributors
     new_contributors += assignment.course.memberships
                                   .joins(user: :identities)
-                                  .where(identities: { email: emails })
+                                  .where('LOWER(identities.email) IN (?)', emails)
     new_contributors += assignment.course.memberships
                                   .joins(user: :identities)
-                                  .where(identities: { name: names })
+                                  .where('LOWER(identities.name) IN (?)', names)
     self.contributors = []
     self.contributors = new_contributors.uniq
   end

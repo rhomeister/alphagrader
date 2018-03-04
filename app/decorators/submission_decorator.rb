@@ -32,6 +32,16 @@ class SubmissionDecorator < Draper::Decorator
         'info'
       end
 
-    h.content_tag :span, object.status.upcase, class: "label label-#{label_class}"
+    h.content_tag :span, status_text, class: "label label-#{label_class}"
+  end
+
+  private
+
+  def status_text
+    if object.status == 'failure'
+      "FAILURE (#{successful_test_results_count}/#{test_results.size})"
+    else
+      object.status.upcase
+    end
   end
 end

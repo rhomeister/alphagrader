@@ -1,6 +1,8 @@
 - if test_result.success?
   = alert_box context: :success do
     All team members have contributed to this submission
+- elsif test_result.skipped?
+  %i Could not detect contributors. Skipping
 - else
   %p The missing contributors were:
   %ul

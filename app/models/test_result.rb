@@ -2,7 +2,11 @@
 
 class TestResult < ApplicationRecord
   belongs_to :test
-  belongs_to :submission
+  belongs_to :submission, counter_cache: true
 
-  enum status: %i[success failure error]
+  enum status: %i[success failure error skipped]
+
+  def success_or_skipped?
+    success? || skipped?
+  end
 end

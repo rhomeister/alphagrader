@@ -23,8 +23,22 @@ class Submission < ApplicationRecord
     notify_users
   end
 
+  def successful_test_results_count
+    value = self[:successful_test_results_count]
+    return value if value
+    self.successful_test_results_count = test_results.where(status: %w[success skipped]).count
+    save
+    successful_test_results_count
+  end
+
   def detect_status
-    self.status = test_results.reload.all?(&:success?) ? :success : :failure
+    self.status = test_results.reload.all?(&:success_or_skipped?) ? :success : :failure
+  end
+
+  # Whether a submission has automatically detectable contributors. Default
+  # implementation that can be overridden by subclasses
+  def detectable_contributors?
+    true
   end
 
   def download; end

@@ -1,7 +1,8 @@
 - if test_result.success?
   = alert_box context: :success do
     File
-    %code= test_result.filename
+    = link_to_if test_result.file_url, test_result.file_url, target: :blank do
+      %code= test_result.filename
     is present
 - else
   = alert_box context: :danger do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211211043) do
+ActiveRecord::Schema.define(version: 20180304195428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20180211211043) do
     t.datetime "updated_at",   null: false
     t.string   "refreshtoken"
     t.string   "secrettoken"
+    t.index "lower((email)::text)", name: "index_identities_on_lower_email", using: :btree
+    t.index "lower((name)::text)", name: "index_identities_on_lower_name", using: :btree
     t.index ["user_id"], name: "index_identities_on_user_id", using: :btree
   end
 
@@ -103,8 +105,8 @@ ActiveRecord::Schema.define(version: 20180211211043) do
     t.string   "type"
     t.string   "git_repository_url"
     t.string   "git_commit_sha"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "git_commit_message"
     t.string   "github_repository_name"
     t.integer  "team_id"
@@ -114,6 +116,8 @@ ActiveRecord::Schema.define(version: 20180211211043) do
     t.datetime "file_updated_at"
     t.string   "file_fingerprint"
     t.string   "language"
+    t.integer  "test_results_count",            default: 0
+    t.integer  "successful_test_results_count"
     t.index ["assignment_id"], name: "index_submissions_on_assignment_id", using: :btree
     t.index ["team_id"], name: "index_submissions_on_team_id", using: :btree
     t.index ["uploaded_by_id"], name: "index_submissions_on_uploaded_by_id", using: :btree
