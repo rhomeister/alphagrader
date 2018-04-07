@@ -1,13 +1,30 @@
 - if test_result.success?
   = alert_box context: :success do
     All team members have contributed to this submission
+
 - elsif test_result.skipped?
   %i Could not detect contributors. Skipping
 - else
-  %p The missing contributors were:
-  %ul
-    - test_result.missing_contributers.each do |contributor|
-      %li= contributor.name
+  %p There are missing contributors.
+
+  %p
+    %b Expected (accounts in AlphaGrader):
+    %ul
+      - test_result.submission.team.memberships.map do |member|
+        %li
+          = member.name
+          = "<#{member.email}>"
+    %b But got (Git commit authors):
+    %ul
+      - test_result.submission.commit_authors.map do |member|
+        %li
+          = member.name
+          = "<#{member.email}>"
+
+  %p
+    For information on how to setup your git information correctly, see
+    = link_to 'https://help.github.com/articles/setting-your-commit-email-address-in-git/',
+      'https://help.github.com/articles/setting-your-commit-email-address-in-git/'
 
 
 

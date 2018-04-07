@@ -27,6 +27,13 @@ class GitSubmission < Submission
     "#{raw_url}/blob/#{git_commit_sha}/#{filename}"
   end
 
+  def commit_authors
+    download
+    repository.commits.map(&:author).uniq
+  ensure
+    cleanup
+  end
+
   private
 
   def run_pre_test_checks

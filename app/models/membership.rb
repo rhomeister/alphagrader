@@ -17,7 +17,7 @@ class Membership < ApplicationRecord
   has_many :contributions, inverse_of: :user
   has_many :submissions, through: :contributions
 
-  delegate :name, to: :user
+  delegate :name, :email, to: :user
 
   before_validation do
     next if enrollment_code.blank?
