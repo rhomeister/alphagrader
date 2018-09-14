@@ -3,5 +3,8 @@ if [ ! -f program.cpp ]; then
     echo "Program file 'program.cpp' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
+
+echo "No file 'run' supplied. Assuming defaults"
+echo "Running: 'g++ program.cpp -o program -lm && ./program'"
 g++ program.cpp -o program
 ./program

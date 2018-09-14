@@ -3,4 +3,7 @@ if [ ! -f program.py ]; then
     echo "Program file 'program.py' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
+
+echo "No file 'run' supplied. Assuming defaults"
+echo "Running: 'python3 program.py'"
 python3 program.py

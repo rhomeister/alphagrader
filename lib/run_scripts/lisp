@@ -3,4 +3,7 @@ if [ ! -f program.lisp ]; then
     echo "Program file 'program.lisp' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
+
+echo "No file 'run' supplied. Assuming defaults"
+echo "Running: 'clisp program.lisp'"
 clisp program.lisp

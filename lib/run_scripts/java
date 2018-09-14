@@ -3,4 +3,8 @@ if [ ! -f program.jar ]; then
     echo "Program file 'program.jar' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
+
+echo "No file 'run' supplied. Assuming defaults"
+echo "Note: Your Main class is assumed to be named 'Main'"
+echo "Running: 'java -cp program.jar Main'"
 java -cp program.jar Main

@@ -3,5 +3,8 @@ if [ ! -f program.c ]; then
     echo "Program file 'program.c' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
+
+echo "No file 'run' supplied. Assuming defaults"
+echo "Running: 'gcc program.c -o program -lm && ./program'"
 gcc program.c -o program -lm
 ./program
