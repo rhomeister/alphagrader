@@ -4,7 +4,10 @@ if [ ! -f program.jar ]; then
     exit 1
 fi
 
-echo "No file 'run' supplied. Assuming defaults"
-echo "Note: Your Main class is assumed to be named 'Main'"
-echo "Running: 'java -cp program.jar Main'"
-java -cp program.jar Main
+java -cp program.jar Main || java -jar program.jar
+
+if [ $? -ne 0 ]; then
+  echo "No file 'run' supplied. Assuming defaults"
+  echo "Note: Your Main class is assumed to be named 'Main'"
+  echo "Running: 'java -cp program.jar Main'"
+fi
