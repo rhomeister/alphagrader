@@ -3,6 +3,14 @@ if [ ! -f program.rb ]; then
     echo "Program file 'program.rb' not found. Did you add this to the root of your ZIP file (no subdirectories)?"
     exit 1
 fi
-echo "No file 'run' supplied. Assuming defaults"
-echo "Running: 'ruby program.rb'"
+
 ruby program.rb
+
+if [ $? -ne 0 ]; then
+  echo
+  echo "WARNING: there were problems with your submission."
+  echo "Some tips below"
+  echo
+  echo "No file 'run' supplied. Assuming defaults"
+  echo "Running: 'ruby program.rb'"
+fi

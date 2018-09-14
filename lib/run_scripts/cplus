@@ -4,7 +4,14 @@ if [ ! -f program.cpp ]; then
     exit 1
 fi
 
-echo "No file 'run' supplied. Assuming defaults"
-echo "Running: 'g++ program.cpp -o program -lm && ./program'"
-g++ program.cpp -o program
-./program
+g++ program.cpp -o program && ./program
+
+
+if [ $? -ne 0 ]; then
+  echo
+  echo "WARNING: there were problems with your submission."
+  echo "Some tips below"
+  echo
+  echo "No file 'run' supplied. Assuming defaults"
+  echo "Running: 'g++ program.cpp -o program -lm && ./program'"
+fi

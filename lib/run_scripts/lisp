@@ -4,6 +4,13 @@ if [ ! -f program.lisp ]; then
     exit 1
 fi
 
-echo "No file 'run' supplied. Assuming defaults"
-echo "Running: 'clisp program.lisp'"
 clisp program.lisp
+
+if [ $? -ne 0 ]; then
+  echo
+  echo "WARNING: there were problems with your submission."
+  echo "Some tips below"
+  echo
+  echo "No file 'run' supplied. Assuming defaults"
+  echo "Running: 'clisp program.lisp'"
+fi
