@@ -66,8 +66,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.0)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     airbrake (4.3.8)
       builder
       multi_json
@@ -139,7 +139,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
-    css_parser (1.4.7)
+    css_parser (1.6.0)
       addressable
     dateslices (0.0.4)
       rails (> 4)
@@ -279,17 +279,18 @@ GEM
       ast (~> 2.3)
     pg (0.18.2)
     powerpack (0.1.1)
-    premailer (1.8.7)
-      css_parser (>= 1.4.5)
+    premailer (1.11.1)
+      addressable
+      css_parser (>= 1.6.0)
       htmlentities (>= 4.0.0)
-    premailer-rails (1.9.5)
+    premailer-rails (1.10.2)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    public_suffix (2.0.5)
+    public_suffix (3.0.3)
     rack (2.0.5)
     rack-protection (2.0.4)
       rack
