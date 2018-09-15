@@ -1,44 +1,4 @@
 GIT
-  remote: https://github.com/activeadmin/activeadmin.git
-  revision: 4f494073c6c0c016ba4902faad65f07ee034bb1a
-  specs:
-    activeadmin (1.0.0.pre4)
-      arbre (~> 1.0, >= 1.0.2)
-      bourbon
-      coffee-rails
-      formtastic (~> 3.1)
-      formtastic_i18n
-      inherited_resources (~> 1.6)
-      jquery-rails
-      jquery-ui-rails
-      kaminari (~> 0.15)
-      railties (>= 3.2, < 5.1)
-      ransack (~> 1.3)
-      sass-rails
-      sprockets (< 4.1)
-
-GIT
-  remote: https://github.com/activeadmin/inherited_resources.git
-  revision: 4434f0ae72f790cf371728838c927c338100555d
-  specs:
-    inherited_resources (1.6.0)
-      actionpack (>= 3.2, < 5.1)
-      has_scope (~> 0.6)
-      railties (>= 3.2, < 5.1)
-      responders
-
-GIT
-  remote: https://github.com/activerecord-hackery/ransack.git
-  revision: 1f1ec180ea6e29cfe717fccd45c2e06878d59257
-  specs:
-    ransack (1.8.2)
-      actionpack (>= 3.0)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      i18n
-      polyamorous (~> 1.3)
-
-GIT
   remote: https://github.com/amatsuda/kaminari.git
   revision: e83d6cebf69fd78e3c9830992209601fdc3e0f23
   branch: 0-17-stable
@@ -48,33 +8,11 @@ GIT
       activesupport (>= 3.0.0)
 
 GIT
-  remote: https://github.com/audionerd/draper.git
-  revision: e816e0e5876b76c648c0928f1c3f2aa2c7a3d1f2
-  ref: e816e0e587
-  branch: rails5
-  specs:
-    draper (2.1.0)
-      actionpack (>= 3.0)
-      activemodel (>= 3.0)
-      activesupport (>= 3.0)
-      request_store (~> 1.0)
-
-GIT
   remote: https://github.com/justinfrench/formtastic.git
   revision: 5a973148c8c48401e3857b9d6454ecd7177eca78
   specs:
     formtastic (3.2.0.pre)
       actionpack (>= 4.1.0)
-
-GIT
-  remote: https://github.com/rails/activemodel-serializers-xml.git
-  revision: 570ee7ed33d60e44ca1f3ccbec3d1fbf61d52cbf
-  specs:
-    activemodel-serializers-xml (1.0.1)
-      activemodel (> 5.x)
-      activerecord (> 5.x)
-      activesupport (> 5.x)
-      builder (~> 3.1)
 
 GIT
   remote: https://github.com/rhomeister/rich_pluralization.git
@@ -115,6 +53,10 @@ GEM
       globalid (>= 0.3.6)
     activemodel (5.0.7)
       activesupport (= 5.0.7)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (5.0.7)
       activemodel (= 5.0.7)
       activesupport (= 5.0.7)
@@ -131,8 +73,6 @@ GEM
       multi_json
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    arbre (1.1.1)
-      activesupport (>= 3.0.0)
     arel (7.1.4)
     ast (2.4.0)
     autoprefixer-rails (6.6.0)
@@ -151,11 +91,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bourbon (4.2.7)
-      sass (~> 3.4)
-      thor (~> 0.19)
     brakeman (3.4.1)
-    buftok (0.2.0)
     builder (3.2.3)
     cancancan (1.15.0)
     capistrano (3.8.2)
@@ -186,9 +122,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    ckeditor (4.2.2)
-      cocaine
-      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -217,13 +150,16 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
-    domain_name (0.5.20161129)
-      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
-    equalizer (0.0.11)
+    draper (3.0.1)
+      actionpack (~> 5.0)
+      activemodel (~> 5.0)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (~> 5.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
@@ -236,7 +172,6 @@ GEM
     faraday (0.10.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
-    formtastic_i18n (0.6.0)
     git_stats (1.0.14)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
@@ -259,22 +194,10 @@ GEM
       rack (~> 2.x)
       rails (~> 5.0.0)
       thor
-    has_scope (0.7.0)
-      actionpack (>= 4.1, < 5.1)
-      activesupport (>= 4.1, < 5.1)
     hash-deep-merge (0.1.1)
     hashdiff (0.3.2)
     hashie (3.5.7)
     htmlentities (4.3.4)
-    http (2.1.0)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 1.0.1)
-      http_parser.rb (~> 0.6.0)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
-    http-form_data (1.0.1)
-    http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.6.1)
@@ -285,9 +208,6 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (6.0.1)
-      railties (>= 3.2.16)
-    json (1.8.6)
     json_pure (2.0.2)
     jwt (1.5.6)
     kgio (2.11.0)
@@ -305,8 +225,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
-    memoizable (0.4.2)
-      thread_safe (~> 0.3, >= 0.3.1)
     meta-tags (2.4.0)
       actionpack (>= 3.2.0, <= 5.1.0)
     method_source (0.8.2)
@@ -321,14 +239,12 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    naught (1.1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
-    oauth (0.5.1)
     oauth2 (1.3.0)
       faraday (>= 0.8, < 0.11)
       jwt (~> 1.0)
@@ -340,8 +256,6 @@ GEM
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
-    omniauth-facebook (4.0.0)
-      omniauth-oauth2 (~> 1.2)
     omniauth-github (1.1.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
@@ -350,15 +264,9 @@ GEM
       multi_json (~> 1.3)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.3.1)
-    omniauth-oauth (1.1.0)
-      oauth
-      omniauth (~> 1.0)
     omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-    omniauth-twitter (1.2.1)
-      json (~> 1.3)
-      omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -370,8 +278,6 @@ GEM
     parser (2.4.0.2)
       ast (~> 2.3)
     pg (0.18.2)
-    polyamorous (1.3.1)
-      activerecord (>= 3.0)
     powerpack (0.1.1)
     premailer (1.8.7)
       css_parser (>= 1.4.5)
@@ -426,7 +332,8 @@ GEM
     redis (3.3.3)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    request_store (1.3.2)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rspec-collection_matchers (1.1.3)
@@ -479,7 +386,6 @@ GEM
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
-    simple_oauth (0.3.1)
     slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
@@ -501,23 +407,10 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.5)
-    twitter (6.0.0)
-      addressable (~> 2.5)
-      buftok (~> 0.2.0)
-      equalizer (= 0.0.11)
-      faraday (~> 0.10.0)
-      http (~> 2.1)
-      http_parser.rb (~> 0.6.0)
-      memoizable (~> 0.4.2)
-      naught (~> 1.1)
-      simple_oauth (~> 0.3.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.2)
     unicode-display_width (1.3.0)
     unicorn (5.3.0)
       kgio (~> 2.6)
@@ -544,8 +437,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin!
-  activemodel-serializers-xml!
   airbrake (~> 4.1)
   aws-sdk (~> 2.3.0)
   bh
@@ -560,12 +451,11 @@ DEPENDENCIES
   capistrano-sidekiq
   capistrano-unicorn-nginx (~> 4.1)
   capybara
-  ckeditor
   coffee-rails (~> 4.2)
   dateslices
   devise (~> 4.2)
   dotenv-rails
-  draper!
+  draper
   factory_girl_rails
   faker
   formtastic!
@@ -574,7 +464,6 @@ DEPENDENCIES
   gretel
   haml
   happy_seed
-  inherited_resources!
   jbuilder (~> 2.5)
   jquery-rails
   kaminari!
@@ -585,18 +474,15 @@ DEPENDENCIES
   nokogiri
   octokit
   omniauth
-  omniauth-facebook
   omniauth-github
   omniauth-google-oauth2
   omniauth-oauth2 (= 1.3.1)
-  omniauth-twitter
   paperclip (~> 5.0)
   pg
   premailer-rails
   pry
   rails (~> 5.0.1)
   rails-controller-testing
-  ransack!
   rdiscount
   redis-namespace
   responders (~> 2.0)
@@ -613,7 +499,6 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
-  twitter
   tzinfo-data
   uglifier (>= 1.3.0)
   unicorn

@@ -43,8 +43,6 @@ Rails.application.routes.draw do
 
   get 'setup' => 'setup#index'
 
-  ActiveAdmin.routes(self)
-
   sidekiq_web_constraint = lambda do |request|
     if Rails.env.development?
       true
