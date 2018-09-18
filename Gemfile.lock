@@ -192,7 +192,7 @@ GEM
       rails (~> 5.0.0)
       thor
     hash-deep-merge (0.1.1)
-    hashdiff (0.3.2)
+    hashdiff (0.3.7)
     hashie (3.5.7)
     htmlentities (4.3.4)
     i18n (1.1.0)
@@ -427,7 +427,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webmock (2.3.2)
+    webmock (3.4.2)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
