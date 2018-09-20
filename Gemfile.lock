@@ -419,7 +419,7 @@ GEM
     unicorn (5.3.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    vcr (3.0.3)
+    vcr (4.0.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.7.0)
