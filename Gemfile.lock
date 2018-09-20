@@ -488,6 +488,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   rails-controller-testing
   rdiscount
+  redis (~> 4.0)
   redis-namespace
   responders (~> 2.0)
   rich_pluralization!
