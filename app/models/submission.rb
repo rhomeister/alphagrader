@@ -79,12 +79,12 @@ class Submission < ApplicationRecord
   end
 
   def notify_users
-    return unless team
-    url = Rails.application.routes.url_helpers.assignment_submission_path(assignment, self)
-    team.users.each do |user|
-      ActionCable.server.broadcast "submissions_#{user.id}",
-                                   title: 'Build completed', body: "Result: #{status}", url: url
-    end
+    # return unless team
+    # url = Rails.application.routes.url_helpers.assignment_submission_path(assignment, self)
+    # team.users.each do |user|
+    # ActionCable.server.broadcast "submissions_#{user.id}",
+    # title: 'Build completed', body: "Result: #{status}", url: url
+    # end
   end
 
   def run_pre_test_checks; end
