@@ -1,13 +1,13 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 MAINTAINER Ruben Stranders
 
 RUN mkdir -p /usr/share/man/man1 && mkdir /submission
 
 RUN apt-get update && \
-    apt-get install -y curl gnupg && \
+    apt-get install -y curl gnupg --no-install-recommends && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
-#Install all the languages/compilers we are supporting.
+#Install all the languages/compilers we support
 RUN apt-get install -y --no-install-recommends \
           gcc \
           g++ \
@@ -15,7 +15,9 @@ RUN apt-get install -y --no-install-recommends \
           python python3 \
           mono-xsp mono-xsp4-base mono-vbnc \
           nodejs \
-          default-jre \
-          golang
+          default-jre-headless \
+          golang \
+          clisp \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -r default -u 1000
