@@ -125,7 +125,7 @@ gem 'omniauth-oauth2'
 gem 'premailer-rails'
 gem 'responders'
 
-gem 'omniauth-google-oauth2'
+# gem 'omniauth-google-oauth2'
 # gem 'google-api-client', require: 'google/api_client'
 
 # gem 'activeadmin', github: 'activeadmin'
