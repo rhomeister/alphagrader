@@ -36,6 +36,7 @@ class TestDecorator < Draper::Decorator
 
   def private_indicator
     return if public
+
     h.icon 'eye-slash', library: :font_awesome, title: 'Private test: invisible to students'
   end
 

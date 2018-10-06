@@ -14,11 +14,13 @@ FactoryGirl.define do
 
     after(:create) do |course, evaluator|
       next unless evaluator.instructor
+
       course.memberships.create!(user: evaluator.instructor, role: :instructor)
     end
 
     after(:create) do |course, evaluator|
       next unless evaluator.student
+
       course.memberships.create!(user: evaluator.student)
     end
   end

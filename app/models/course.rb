@@ -14,6 +14,7 @@ class Course < ApplicationRecord
 
   before_save do
     next unless enrollment_code.nil?
+
     assign_enrollment_code
   end
 

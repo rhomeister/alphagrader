@@ -5,6 +5,7 @@ class AssignmentDecorator < Draper::Decorator
 
   def due_date
     return nil if object.due_date.nil?
+
     I18n.l object.due_date, format: :long
   end
 
@@ -17,9 +18,11 @@ class AssignmentDecorator < Draper::Decorator
 
     membership = course.membership_for(h.current_user)
     return if membership.nil?
+
     team = membership.teams.find_by(assignment_id: id)
 
     return unless team.nil? || team.submissions.empty?
+
     h.icon 'exclamation-circle', library: :font_awesome
   end
 end

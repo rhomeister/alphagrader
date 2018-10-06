@@ -20,12 +20,14 @@ class Submission < ApplicationRecord
 
   after_save do
     next unless checks_completed?
+
     notify_users
   end
 
   def successful_test_results_count
     value = self[:successful_test_results_count]
     return value if value
+
     self.successful_test_results_count = test_results.where(status: %w[success skipped]).count
     save
     successful_test_results_count
@@ -74,6 +76,7 @@ class Submission < ApplicationRecord
   def inject_runfile_if_not_exists
     return if language.blank?
     return if File.exist?("#{tempdir}/run")
+
     file = LanguageSpecificRunfile.find(language)
     FileUtils.copy_file(file, File.join(tempdir, 'run'))
   end

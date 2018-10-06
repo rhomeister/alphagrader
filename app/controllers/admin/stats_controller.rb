@@ -7,7 +7,7 @@ module Admin
 
     def stats
       if params[:scope].blank?
-        render json: { errors: 'scope not set' }, status: 422
+        render json: { errors: 'scope not set' }, status: :unprocessable_entity
       else
         cls = User
         cls = Identity.where('provider = ?', 'twitter') if params[:scope] == 'twitter_users'

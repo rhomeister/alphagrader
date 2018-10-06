@@ -26,7 +26,7 @@ class TestsController < ApplicationController
   end
 
   def update
-    if @test.update_attributes(test_params)
+    if @test.update(test_params)
       redirect_to assignment_tests_path(@assignment), flash: { success: 'Test was successfully updated' }
     else
       render 'new'
@@ -55,11 +55,13 @@ class TestsController < ApplicationController
 
   def cast_test!
     raise unless type_param
+
     cast_test
   end
 
   def cast_test
     return unless type_param
+
     key = type_param.underscore.to_sym
     test_type = Test.valid_test_types.fetch(key).fetch(:class)
     @test = @test.becomes(test_type)

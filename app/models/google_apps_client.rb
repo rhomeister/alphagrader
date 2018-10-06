@@ -31,6 +31,7 @@ class GoogleAppsClient
 
   def ensure_user(email, first_name, last_name)
     return if valid_user?(email)
+
     new_user = admin_api.users.insert.request_schema.new('password' => 'happiness4u',
                                                          'primaryEmail' => email,
                                                          'name' => {
