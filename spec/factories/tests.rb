@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :test do
     name { SecureRandom.hex[0..10] }
     description { Faker::Lorem.paragraph }
@@ -25,6 +23,6 @@ FactoryGirl.define do
   end
 
   factory :required_file_test, parent: :test, class: 'RequiredFileTest' do
-    filename 'test'
+    filename { 'test' }
   end
 end

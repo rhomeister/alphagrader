@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :course do
     name { SecureRandom.hex }
     description { Faker::Lorem.paragraph }
 
     transient do
-      instructor nil
-      student nil
+      instructor { nil }
+      student { nil }
     end
 
     after(:create) do |course, evaluator|
