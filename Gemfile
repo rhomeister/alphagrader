@@ -74,7 +74,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
 
-  gem 'happy_seed'
+  # gem 'happy_seed'
   gem 'letter_opener'
 
   gem 'brakeman', require: false
