@@ -33,7 +33,7 @@ class SubmissionsController < ApplicationController
   def create
     @submission.team = current_user.teams.find_by(assignment_id: @assignment.id)
     @submission.uploaded_by = current_user
-    if @submission.update_attributes(submission_params)
+    if @submission.update(submission_params)
       redirect_to assignment_submission_path(@assignment, @submission),
                   flash: { success: 'Submission was successfully created' }
     else

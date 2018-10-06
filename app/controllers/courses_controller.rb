@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
   def edit; end
 
   def create
-    if @course.update_attributes(course_params)
+    if @course.update(course_params)
       @course.memberships.create!(user: current_user, role: :instructor)
       redirect_to @course
     else
@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
   end
 
   def update
-    if @course.update_attributes(course_params)
+    if @course.update(course_params)
       redirect_to @course
     else
       render 'edit'

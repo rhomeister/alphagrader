@@ -14,6 +14,7 @@ class GitSubmissionDecorator < SubmissionDecorator
 
   def git_commit_sha
     return nil if object.git_commit_sha.blank?
+
     raw_url = object.git_repository_url[0..-5]
     h.content_tag :samp do
       h.content_tag :strong do

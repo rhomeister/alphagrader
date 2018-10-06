@@ -5,6 +5,7 @@ class TestResultDecorator < Draper::Decorator
 
   def created_at
     return nil if object.created_at.nil?
+
     I18n.l object.created_at, format: :long
   end
 
@@ -34,6 +35,7 @@ class TestResultDecorator < Draper::Decorator
 
   def execution_time
     return nil if object.execution_time.nil?
+
     content = "Execution Time: #{h.number_with_precision object.execution_time, precision: 2}s"
     h.content_tag :span, content, class: 'label label-info pull-right'
   end

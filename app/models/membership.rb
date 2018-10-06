@@ -21,6 +21,7 @@ class Membership < ApplicationRecord
 
   before_validation do
     next if enrollment_code.blank?
+
     self.course = Course.find_by(enrollment_code: enrollment_code)
   end
 end

@@ -12,6 +12,7 @@ class GithubWebhooksController < ActionController::Base
 
     team = Team.find_by(github_repository_name: repository_name)
     return unless team
+
     identity = Identity.find_by(uid: payload['sender']['id'])
     uploaded_by = identity.try :user
 

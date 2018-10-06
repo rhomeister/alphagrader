@@ -19,6 +19,7 @@ class OutputTestRunner
     runfile = File.join(directory, 'run')
     fix_runfile_encoding
     return run_file_not_exists_error unless File.exist?(runfile)
+
     FileUtils.chmod 'u=wrx', runfile
     Timeout.timeout(TIME_LIMIT) do
       capture_output
@@ -31,6 +32,7 @@ class OutputTestRunner
 
   def result_log
     return '' if output.nil?
+
     output.encode('utf-8', invalid: :replace)
   end
 
@@ -47,6 +49,7 @@ class OutputTestRunner
   def status
     return :error unless exit_code.zero?
     return :failure unless correct_output?
+
     :success
   end
 

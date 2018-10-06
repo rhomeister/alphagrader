@@ -21,7 +21,7 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    if @assignment.update_attributes(assignment_params)
+    if @assignment.update(assignment_params)
       redirect_to [@course, @assignment]
     else
       render 'edit'
@@ -29,7 +29,7 @@ class AssignmentsController < ApplicationController
   end
 
   def update
-    if @assignment.update_attributes(assignment_params)
+    if @assignment.update(assignment_params)
       redirect_to [@course, @assignment]
     else
       render 'edit'

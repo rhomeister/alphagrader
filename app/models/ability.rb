@@ -6,6 +6,7 @@ class Ability
 
   def initialize(user)
     return if user.nil?
+
     @user = user
     can :manage, :all if user&.admin?
 

@@ -5,6 +5,7 @@ class SubmissionDecorator < Draper::Decorator
 
   def created_at
     return nil if object.created_at.nil?
+
     I18n.l object.created_at, format: :long
   end
 
@@ -18,6 +19,7 @@ class SubmissionDecorator < Draper::Decorator
 
   def team_members
     return unless object.team
+
     object.team.users.map(&:name).join(', ')
   end
 
