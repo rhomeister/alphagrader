@@ -27,7 +27,7 @@ gem 'coffee-rails'
 #
 gem 'haml'
 
-gem 'aws-sdk'
+gem 'aws-sdk-s3'
 gem 'paperclip'
 gem 'rubyzip'
 
