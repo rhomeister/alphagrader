@@ -188,10 +188,6 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
-    happy_seed (0.0.21)
-      rack (~> 2.x)
-      rails (~> 5.0.0)
-      thor
     hash-deep-merge (0.1.1)
     hashdiff (0.3.7)
     hashie (3.5.7)
@@ -469,7 +465,6 @@ DEPENDENCIES
   github_webhook
   gretel
   haml
-  happy_seed
   jbuilder
   jquery-rails
   kaminari!
