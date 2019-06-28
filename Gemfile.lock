@@ -119,8 +119,8 @@ GEM
       capistrano-bundler (~> 1.1)
     capistrano-safe-deploy-to (1.1.1)
       capistrano (>= 3.0)
-    capistrano-sidekiq (0.10.0)
-      capistrano
+    capistrano-sidekiq (1.0.2)
+      capistrano (>= 3.9.0)
       sidekiq (>= 3.4)
     capistrano-unicorn-nginx (4.2.0)
       capistrano (>= 3.1)
