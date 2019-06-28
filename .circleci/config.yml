@@ -1,0 +1,65 @@
+version: 2 # use CircleCI 2.0
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+    parallelism: 1
+    docker: # run the steps with Docker
+      - image: circleci/ruby:2.5-node-browsers-legacy
+        environment: # environment variables for primary container
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+      - image: circleci/postgres:9.5-alpine # database image
+        environment: # environment variables for database
+          POSTGRES_USER: alphagrader
+          POSTGRES_DB: alphagrader_test
+          POSTGRES_PASSWORD: alphagrader
+    steps: # a collection of executable commands
+      - checkout # special step to check out source code to working directory
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      # Restore bundle cache
+      # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run: # Install Ruby dependencies
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      # Store bundle cache for Ruby dependencies
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Install dos2unix
+          command: sudo apt-get update && sudo apt-get install dos2unix
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:migrate --trace
+
+      # - run:
+          # name: Run rspec in parallel
+          # command: |
+            # bundle exec rspec --profile 10 \
+                              # --out test_results/rspec.xml \
+                              # --format progress
+
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop
