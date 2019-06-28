@@ -61,7 +61,7 @@ class OutputTestRunner
   private
 
   def fix_runfile_encoding
-    `dos2unix #{directory}/run`
+    `dos2unix #{directory}/run > /dev/null 2>&1`
   end
 
   def register_timeout_error
