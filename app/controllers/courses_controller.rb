@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @assignments = @course.assignments.order(:due_date)
+    @assignments = @course.assignments.order(:name)
     @course = @course.decorate
   end
 

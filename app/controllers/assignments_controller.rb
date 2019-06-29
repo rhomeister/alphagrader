@@ -20,6 +20,11 @@ class AssignmentsController < ApplicationController
     redirect_to @course
   end
 
+  def destroy
+    @assignment.destroy
+    redirect_to course_path(@course), flash: { success: 'Assignment was successfully deleted' }
+  end
+
   def create
     if @assignment.update(assignment_params)
       redirect_to [@course, @assignment]

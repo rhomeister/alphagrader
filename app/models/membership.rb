@@ -7,6 +7,8 @@ class Membership < ApplicationRecord
 
   enum role: %i[student instructor]
 
+  scope :student, -> { where(role: [nil, :student]) }
+
   attr_accessor :enrollment_code
 
   validates :user, presence: true
@@ -23,5 +25,14 @@ class Membership < ApplicationRecord
     next if enrollment_code.blank?
 
     self.course = Course.find_by(enrollment_code: enrollment_code)
+  end
+
+  def instructor
+    instructor?
+  end
+
+  def instructor=(value)
+    value = ActiveRecord::Type::Boolean.new.cast(value)
+    self.role = value ? :instructor : nil
   end
 end

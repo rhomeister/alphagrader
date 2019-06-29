@@ -25,6 +25,6 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |_exception|
-    authenticate_user!
+    redirect_to root_path, flash: { error: 'You do not have access to the requested page' }
   end
 end

@@ -8,6 +8,10 @@ class Course < ApplicationRecord
            class_name: 'Membership', source: :course
   has_many :instructors, through: :instructor_memberships, class_name: 'User', source: :user
 
+  has_many :student_memberships, -> { student },
+           class_name: 'Membership', source: :course
+  has_many :students, through: :student_memberships, class_name: 'User', source: :user
+
   has_many :assignments, dependent: :destroy
 
   validates :name, presence: true

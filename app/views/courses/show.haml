@@ -7,11 +7,6 @@
       = link_to 'Clone', duplicate_course_path(@course), class: 'btn btn-default'
       = link_to 'Edit', edit_course_path(@course), class: 'btn btn-primary'
 
-- if current_user.course_instructor?(@course)
-  = alert_box context: :info do
-    To invite students, give them the following code:
-    %b= @course.enrollment_code
-
 - unless @course.description.blank?
   = panel title: Course.human_attribute_name(:description), context: :primary do
     .panel-body
@@ -19,9 +14,34 @@
 
 = panel title: Course.human_attribute_name(:instructors), context: :primary do
   .panel-body
-    %ul
-      - @course.instructors.each do |instructor|
-        %li= instructor.name
+    %table.table.table-condensed
+      - @course.instructor_memberships.each do |membership|
+        %tr
+          %td= membership.name
+          %td= membership.email
+          %td
+            = simple_form_for membership do |f|
+              = f.input :instructor, as: :hidden, input_html: { value: false }
+              = f.submit 'Revoke instructor role', class: 'btn btn-default btn-sm',
+                disabled: @course.instructor_memberships.size == 1 || membership.user == current_user
+
+- if current_user.course_instructor?(@course)
+  = panel title: Course.human_attribute_name(:students), context: :primary do
+    .panel-body
+      - if current_user.course_instructor?(@course)
+        = alert_box context: :info do
+          To invite students, give them the following code:
+          %b= @course.enrollment_code
+
+      %table.table.table-condensed
+        - @course.student_memberships.each do |student|
+          %td= student.name
+          %td
+            = simple_form_for student, html: { style: 'display: inline' } do |f|
+              = f.input :instructor, as: :hidden, input_html: { value: true }
+              = f.submit 'Make instructor', class: 'btn btn-default btn-sm'
+            = link_to 'Unenroll', student,
+                data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-sm'
 
 = panel title: Assignment.model_name.human.pl, context: :primary do
   .panel-body

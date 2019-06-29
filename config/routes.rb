@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :memberships, only: %i[update destroy]
+
   resource :github_webhooks, only: :create, defaults: { formats: :json }
 
   resources :courses do

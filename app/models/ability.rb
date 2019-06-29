@@ -15,11 +15,16 @@ class Ability
     setup_test_rights
     setup_submission_rights
     setup_team_rights
+    setup_membership_rights
 
     can :create, Membership, course_id: nil
   end
 
   private
+
+  def setup_membership_rights
+    can %i[update destroy], Membership, course: instructor_membership_params
+  end
 
   def setup_course_rights
     can :read, Course, membership_params
@@ -30,7 +35,7 @@ class Ability
 
   def setup_assignment_rights
     can :read, Assignment, course: { memberships: { user_id: user.id } }
-    can %i[create edit update], Assignment, course: instructor_membership_params
+    can %i[create edit update destroy], Assignment, course: instructor_membership_params
   end
 
   def setup_test_rights

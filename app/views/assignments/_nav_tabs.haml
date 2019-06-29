@@ -3,6 +3,10 @@
   = @assignment.name
   - if can?(:edit, @assignment.decorate.object)
     .pull-right
+      = link_to icon(:trash, library: :font_awesome),
+                course_assignment_path(@assignment.course, @assignment),
+                data: { confirm: 'Are you sure?' }, method: :delete,
+                class: 'btn btn-danger', id: "delete_assignment_#{@assignment.id}"
       = link_to 'Edit', edit_course_assignment_path(@assignment.course, @assignment), class: 'btn btn-primary'
 
 = nav do
