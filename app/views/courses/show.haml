@@ -35,13 +35,15 @@
 
       %table.table.table-condensed
         - @course.student_memberships.each do |student|
-          %td= student.name
-          %td
-            = simple_form_for student, html: { style: 'display: inline' } do |f|
-              = f.input :instructor, as: :hidden, input_html: { value: true }
-              = f.submit 'Make instructor', class: 'btn btn-default btn-sm'
-            = link_to 'Unenroll', student,
-                data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-sm'
+          %tr
+            %td= student.name
+            %td= student.email
+            %td
+              = simple_form_for student, html: { style: 'display: inline' } do |f|
+                = f.input :instructor, as: :hidden, input_html: { value: true }
+                = f.submit 'Make instructor', class: 'btn btn-default btn-sm'
+              = link_to 'Unenroll', student,
+                  data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger btn-sm'
 
 = panel title: Assignment.model_name.human.pl, context: :primary do
   .panel-body
