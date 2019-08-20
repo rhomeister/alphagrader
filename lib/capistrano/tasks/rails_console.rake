@@ -26,7 +26,7 @@ namespace :rails do
   desc 'Remote console'
   task :console do
     on primary fetch(:console_role) do |h|
-      run_interactively "bundle exec rails console #{fetch(:rails_env)}", h.user
+      run_interactively "bundle exec rails console -e #{fetch(:rails_env)}", h.user
     end
   end
   before 'rails:console', 'rails:setup_console'

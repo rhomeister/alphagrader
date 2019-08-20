@@ -1,9 +1,10 @@
-FROM debian:buster-slim
+FROM debian:stable-slim
 MAINTAINER Ruben Stranders
 
 RUN mkdir -p /usr/share/man/man1 && mkdir /submission
 
-RUN apt-get update && \
+RUN echo "deb http://ftp.us.debian.org/debian sid main" >> /etc/apt/sources.list && \
+    apt-get update && \
     apt-get install -y curl gnupg --no-install-recommends && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
@@ -13,9 +14,9 @@ RUN apt-get install -y --no-install-recommends \
           g++ \
           ruby \
           python python3 \
-          mono-xsp mono-xsp4-base mono-vbnc \
+          mono-xsp \
           nodejs \
-          default-jre-headless \
+          openjdk-12-jdk \
           golang \
           clisp \
     && rm -rf /var/lib/apt/lists/*
