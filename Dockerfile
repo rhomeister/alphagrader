@@ -16,7 +16,7 @@ RUN apt-get install -y --no-install-recommends \
           python python3 \
           mono-xsp \
           nodejs \
-          openjdk-12-jdk \
+          openjdk-13-jdk \
           golang \
           clisp \
     && rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+docker build -t rhomeister/alphagrader:latest .
+docker push rhomeister/alphagrader
