@@ -115,7 +115,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    brakeman (4.5.1)
+    brakeman (4.8.0)
     builder (3.2.3)
     cancancan (3.0.1)
     capistrano (3.11.0)
