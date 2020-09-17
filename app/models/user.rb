@@ -39,8 +39,13 @@ class User < ApplicationRecord
   enum role: %i[user admin instructor]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :confirmable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :omniauthable
+  # devise :confirmable, :database_authenticatable, :registerable,
+  # :recoverable, :rememberable, :trackable, :omniauthable
+
+  # Turning off confirmable and recoverable for now. We don't have a working
+  # SMTP server at the moment
+  devise :database_authenticatable, :registerable,
+         :rememberable, :trackable, :omniauthable
 
   def github
     @github ||= identities.find_by(provider: 'github')

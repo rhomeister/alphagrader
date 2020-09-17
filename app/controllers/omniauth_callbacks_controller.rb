@@ -59,8 +59,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       user[attr] = identity_value if user_value.blank? && identity_value
     end
 
-    user.skip_confirmation_notification!
+    user.try(:skip_confirmation_notification!)
     user.save
-    user.confirm
+    user.try(:confirm)
   end
 end

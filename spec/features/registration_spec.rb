@@ -15,24 +15,24 @@ feature 'Registration', type: :feature do
 
     click_button 'Sign up'
 
-    expect(page.body).to include('A message with a confirmation link has been sent to your email address.')
-
-    body = ActionMailer::Base.deliveries.last.body
-
-    md = body.encoded.match %r{(\/users\/confirmation.*) }
-    assert(false, 'Confirmation URL not found in message') unless md
-
-    visit md[1]
-
-    expect(page.body).to include('Your email address has been successfully confirmed.')
-
-    click_link 'Account'
-
-    within '#new_user' do
-      fill_in 'user_email', with: 'test@example.com'
-      fill_in 'user_password', with: '123456789'
-    end
-    click_button 'Log in'
+    # expect(page.body).to include('A message with a confirmation link has been sent to your email address.')
+    #
+    # body = ActionMailer::Base.deliveries.last.body
+    #
+    # md = body.encoded.match %r{(\/users\/confirmation.*) }
+    # assert(false, 'Confirmation URL not found in message') unless md
+    #
+    # visit md[1]
+    #
+    # expect(page.body).to include('Your email address has been successfully confirmed.')
+    #
+    # click_link 'Account'
+    #
+    # within '#new_user' do
+    #   fill_in 'user_email', with: 'test@example.com'
+    #   fill_in 'user_password', with: '123456789'
+    # end
+    # click_button 'Log in'
 
     expect(page.body).to_not include('New Course')
   end
@@ -50,22 +50,22 @@ feature 'Registration', type: :feature do
 
     click_button 'Sign up'
 
-    expect(page.body).to include('A message with a confirmation link has been sent to your email address.')
-
-    body = ActionMailer::Base.deliveries.last.body
-
-    md = body.encoded.match %r{(\/users\/confirmation.*) }
-    assert(false, 'Confirmation URL not found in message') unless md
-
-    visit md[1]
-
-    expect(page.body).to include('Your email address has been successfully confirmed.')
-
-    within '#new_user' do
-      fill_in 'user_email', with: 'test@example.com'
-      fill_in 'user_password', with: '123456789'
-    end
-    click_button 'Log in'
+    # expect(page.body).to include('A message with a confirmation link has been sent to your email address.')
+    #
+    # body = ActionMailer::Base.deliveries.last.body
+    #
+    # md = body.encoded.match %r{(\/users\/confirmation.*) }
+    # assert(false, 'Confirmation URL not found in message') unless md
+    #
+    # visit md[1]
+    #
+    # expect(page.body).to include('Your email address has been successfully confirmed.')
+    #
+    # within '#new_user' do
+    #   fill_in 'user_email', with: 'test@example.com'
+    #   fill_in 'user_password', with: '123456789'
+    # end
+    # click_button 'Log in'
 
     expect(page.body).to include('New Course')
   end
@@ -96,22 +96,22 @@ feature 'Registration', type: :feature do
 
     click_button 'Sign up'
 
-    expect(page.body).to include('A message with a confirmation link has been sent to your email address.')
-
-    body = ActionMailer::Base.deliveries.last.body
-
-    md = body.encoded.match %r{(\/users\/confirmation.*) }
-    assert(false, 'Confirmation URL not found in message') unless md
-
-    visit md[1]
-
-    expect(page.body).to include('Your email address has been successfully confirmed.')
-
-    within '#new_user' do
-      fill_in 'user_email', with: 'test@example.com'
-      fill_in 'user_password', with: '123456789'
-    end
-    click_button 'Log in'
+    # expect(page.body).to include('A message with a confirmation link has been sent to your email address.')
+    #
+    # body = ActionMailer::Base.deliveries.last.body
+    #
+    # md = body.encoded.match %r{(\/users\/confirmation.*) }
+    # assert(false, 'Confirmation URL not found in message') unless md
+    #
+    # visit md[1]
+    #
+    # expect(page.body).to include('Your email address has been successfully confirmed.')
+    #
+    # within '#new_user' do
+    #   fill_in 'user_email', with: 'test@example.com'
+    #   fill_in 'user_password', with: '123456789'
+    # end
+    # click_button 'Log in'
 
     click_link 'Profile'
 
@@ -135,7 +135,7 @@ feature 'Registration', type: :feature do
     expect(page.body).to include('Your account has been updated successfully.')
   end
 
-  it 'following a forgot password link lets you reset your password and log in' do
+  pending 'following a forgot password link lets you reset your password and log in' do
     user = create :user
 
     visit new_user_password_path
