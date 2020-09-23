@@ -9,14 +9,15 @@ RUN echo "deb http://ftp.us.debian.org/debian sid main" >> /etc/apt/sources.list
     curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
 #Install all the languages/compilers we support
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
           gcc \
           g++ \
           ruby \
-          python python3 \
+          python2 python3 \
           mono-xsp \
           nodejs \
-          openjdk-13-jdk \
+          openjdk-15-jdk \
           golang \
           clisp \
     && rm -rf /var/lib/apt/lists/*
