@@ -40,4 +40,33 @@ Things you may want to cover:
 
 * Deployment instructions
 
+* Initialize .evn file with the following environmental variables:
+  * AWS_ACCESS_KEY_ID=
+  * AWS_SECRET_ACCESS_KEY=
+  * S3_BUCKET_NAME=
+  * S3_HOST_NAME=
+  * ASSET_HOST=
+  * S3_REGION=
+  * HTTP_AUTH_USERNAME=
+  * HTTP_AUTH_PASSWORD=
+  * GOOGLE_ANALYTICS_SITE_ID=
+  * MAILCHIMP_API_KEY=
+  * MAILCHIMP_SPLASH_SIGNUP_LIST_ID=
+  * FACEBOOK_APP_ID=
+  * FACEBOOK_APP_SECRET=
+  * GOOGLE_OAUTH2_APP_ID=
+  * GOOGLE_OAUTH2_APP_SECRET=
+  * TWITTER_APP_ID=
+  * TWITTER_APP_SECRET=
+  * GITHUB_APP_ID=
+  * GITHUB_APP_SECRET=
+  * DOMAIN_NAME=test.host
+  * GITHUB_WEBHOOK_SECRET=
+  * AIRBRAKE_API_KEY=
+  * AIRBRAKE_HOST=
+  * S3_BUCKET=bucket
+  * S3_ACCESS_KEY=abc
+  * S3_SECRET_KEY=abc
+  * S3_REGION=us-west
+
 * ...
