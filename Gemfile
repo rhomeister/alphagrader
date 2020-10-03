@@ -27,7 +27,7 @@ gem 'coffee-rails'
 #
 gem 'haml'
 
-gem 'aws-sdk-s3', "1.82.0"
+gem 'aws-sdk-s3', '~> 1.82.0'
 gem 'paperclip'
 gem 'rubyzip'
 
@@ -44,7 +44,7 @@ gem 'redis'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'simple_form', "5.0.3"
+gem 'simple_form', '5.0.3'
 
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
