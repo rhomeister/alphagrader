@@ -40,7 +40,7 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* Initialize .evn file with the following environmental variables:
+* Initialize .env file with the following environmental variables:
   * AWS_ACCESS_KEY_ID=
   * AWS_SECRET_ACCESS_KEY=
   * S3_BUCKET_NAME=
