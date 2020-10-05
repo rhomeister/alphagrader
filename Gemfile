@@ -97,7 +97,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
+  gem 'capybara', '~> 3.33.0'
   gem 'rails-controller-testing'
   gem 'rspec-collection_matchers'
   gem 'rspec-mocks'
