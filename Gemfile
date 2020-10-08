@@ -63,7 +63,7 @@ gem 'sidekiq'
 
 group :development, :test do
   gem 'factory_bot_rails'
-  gem 'faker'
+  gem 'faker', '~> 1.9.6'
   gem 'pry'
 end
 
