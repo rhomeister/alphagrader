@@ -29,7 +29,7 @@ gem 'haml'
 
 gem 'aws-sdk-s3', '~> 1.82.0'
 gem 'paperclip'
-gem 'rubyzip'
+gem 'rubyzip', '~> 2.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
