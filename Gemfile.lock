@@ -123,7 +123,7 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-bundler (1.5.0)
+    capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
     capistrano-postgresql (4.2.1)
       capistrano (>= 3.0)
@@ -499,7 +499,7 @@ DEPENDENCIES
   brakeman (~> 4.10.0)
   cancancan
   capistrano (~> 3.8)
-  capistrano-bundler (~> 1.1)
+  capistrano-bundler (~> 1.6.0)
   capistrano-postgresql (~> 4.2.1)
   capistrano-rails (~> 1.1)
   capistrano-safe-deploy-to (~> 1.1.1)

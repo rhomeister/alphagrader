@@ -85,7 +85,7 @@ group :development do
 
   gem 'capistrano', '~> 3.8', require: false, group: :development
   # Deploy with capistrano, see config/deploy.rb
-  gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.6.0', require: false
   gem 'capistrano-postgresql', '~> 4.2.1', require: false
   gem 'capistrano-rails', '~> 1.1', require: false
   gem 'capistrano-safe-deploy-to', '~> 1.1.1', require: false
