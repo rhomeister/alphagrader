@@ -123,7 +123,7 @@ gem 'omniauth'
 # gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-oauth2'
-gem 'premailer-rails'
+gem 'premailer-rails', '~> 1.11.1'
 gem 'responders'
 
 # gem 'omniauth-google-oauth2'
