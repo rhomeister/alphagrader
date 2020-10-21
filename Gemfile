@@ -64,6 +64,7 @@ gem 'sidekiq'
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker', '~> 2.14.0'
+  gem 'rubocop-faker' # required to update positional arguments to keywords arguments for faker
   gem 'pry'
 end
 
