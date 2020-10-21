@@ -215,7 +215,7 @@ GEM
       tilt
     hash-deep-merge (0.1.1)
     hashdiff (0.4.0)
-    hashie (3.6.0)
+    hashie (4.1.0)
     htmlentities (4.3.4)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
@@ -274,8 +274,8 @@ GEM
       rack (>= 1.2, < 3)
     octokit (4.14.0)
       sawyer (~> 0.8.0, >= 0.5.3)
-    omniauth (1.9.0)
-      hashie (>= 3.4.6, < 3.7.0)
+    omniauth (1.9.1)
+      hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
     omniauth-github (1.3.0)
       omniauth (~> 1.5)
@@ -487,7 +487,7 @@ DEPENDENCIES
   capistrano-postgresql (~> 4.2.1)
   capistrano-rails (~> 1.1)
   capistrano-safe-deploy-to (~> 1.1.1)
-  capistrano-sidekiq (= 1.0.3)
+  capistrano-sidekiq (~> 1.0.3)
   capistrano-unicorn-nginx (~> 4.1)
   capybara (~> 3.33.0)
   coffee-rails
@@ -511,7 +511,7 @@ DEPENDENCIES
   modernizr-rails
   nokogiri
   octokit
-  omniauth
+  omniauth (~> 1.9.1)
   omniauth-github
   omniauth-oauth2
   paperclip

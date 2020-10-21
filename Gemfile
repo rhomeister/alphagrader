@@ -94,7 +94,7 @@ group :development do
   # gem 'capistrano-memcached', '~> 1.2.0', require: false
   gem 'capistrano-unicorn-nginx', '~> 4.1', require: false
   # gem 'capistrano-faster-assets', '~> 1.0.2', require: false
-  gem 'capistrano-sidekiq', '1.0.3', require: false
+  gem 'capistrano-sidekiq', '~> 1.0.3', require: false
 end
 
 group :test do
@@ -120,7 +120,7 @@ gem 'meta-tags', require: 'meta_tags'
 gem 'modernizr-rails'
 gem 'nokogiri'
 gem 'octokit'
-gem 'omniauth'
+gem 'omniauth', '~> 1.9.1'
 # gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-oauth2'
