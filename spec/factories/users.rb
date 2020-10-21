@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  sequence(:email) { |n| Faker::Internet.safe_email format('User %d', n) }
+  sequence(:email) { |n| Faker::Internet.safe_email name: format('User %d', n) }
 end
 
 FactoryBot.define do
