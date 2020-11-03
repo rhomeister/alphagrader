@@ -99,7 +99,7 @@ end
 
 group :test do
   gem 'capybara', '~> 3.33.0'
-  gem 'rails-controller-testing'
+  gem 'rails-controller-testing', '~> 1.0.5'
   gem 'rspec-collection_matchers'
   gem 'rspec-mocks'
   gem 'rspec-rails'
