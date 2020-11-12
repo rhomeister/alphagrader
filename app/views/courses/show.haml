@@ -61,3 +61,22 @@
             %td= link_to assignment.name, [@course, assignment]
             %td= assignment.due_date
 
+= panel title: 'Assigment results', context: :primary do
+  .panel-body
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= 'Student'
+          - @assignments.decorate.each do |assignment|
+            %th= link_to assignment.name, [@course, assignment]
+      %tbody
+        - @course.student_memberships.each do |student|
+          %tr
+            %td
+              = student.name
+            - @assignments.decorate.each do |assignment|
+              %td
+                - if assignment.submissions.pluck('uploaded_by_id').include? student.user_id # validate that student made submission
+                  = assignment.submissions.pluck('status')[assignment.submissions.pluck('uploaded_by_id').rindex(student.user_id)] # get last submission status from student
+                - else
+                  = 'unsubmitted'
