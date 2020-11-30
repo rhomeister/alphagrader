@@ -77,4 +77,4 @@
                 = student.name
               - @assignments.decorate.each do |assignment|
                 %td
-                  = assignment.submission_status_for(student)
+                  = assignment.decorate.submission_status_for(student)
