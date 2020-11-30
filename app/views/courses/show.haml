@@ -76,5 +76,5 @@
               %td
                 = student.name
               - @assignments.decorate.each do |assignment|
-                %td
+                %td{style: "background-color: " + assignment.decorate.submission_color_for(student) + "; color: white;"}
                   = assignment.decorate.submission_status_for(student)
