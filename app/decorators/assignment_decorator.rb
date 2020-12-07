@@ -29,22 +29,21 @@ class AssignmentDecorator < Draper::Decorator
   def submission_status_for(student)
     submission = last_submission_for(student)
     # check if the student made any submissions
-    if submission
-      submission.status
-    else
-      'unsubmitted'
-    end
+    submission&.status || 'unsubmitted'
   end
 
   def submission_color_for(student)
     submission_status = submission_status_for(student)
     # for each status return the color that it shoud display
-    if submission_status == "unsubmitted"
-      "red"
-    elsif submission_status == "queued"
-      "gray"
-    elsif submission_status == "submitted"
-      "green"
-    end
+
+    colors = {
+      "failed" => "red",
+      "queued" => "gray",
+      "running" => "gray",
+      "unsubmitted" => "gray",
+      "success" => "green"
+    }
+
+    colors[submission_status]
   end
 end
