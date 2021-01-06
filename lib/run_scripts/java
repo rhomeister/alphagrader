@@ -6,7 +6,10 @@ fi
 
 java -cp program.jar Main || java -jar program.jar
 
-if [ $? -ne 0 ]; then
+EXITCODE=$?
+
+if [ $EXITCODE -ne 0 ]; then
+  echo "Exit code: $EXITCODE"
   echo
   echo "WARNING: there were problems with your submission."
   echo "Some tips below"
@@ -17,3 +20,5 @@ if [ $? -ne 0 ]; then
   echo "Failed. Attempt 2"
   echo "Running: 'java -jar program.jar'"
 fi
+
+exit $EXITCODE
