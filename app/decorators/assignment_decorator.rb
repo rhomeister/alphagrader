@@ -37,11 +37,11 @@ class AssignmentDecorator < Draper::Decorator
     # for each status return the color that it shoud display
 
     colors = {
-      "failed" => "red",
-      "queued" => "gray",
-      "running" => "gray",
-      "unsubmitted" => "gray",
-      "success" => "green"
+      'failure' => 'red',
+      'success' => 'green',
+      'queued' => 'gray',
+      'running' => 'gray',
+      'unsubmitted' => 'gray'
     }
 
     colors[submission_status]
