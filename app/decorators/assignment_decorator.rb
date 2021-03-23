@@ -29,21 +29,18 @@ class AssignmentDecorator < Draper::Decorator
   def submission_status_for(student)
     submission = last_submission_for(student)
     # check if the student made any submissions
-    submission&.status || 'unsubmitted'
-  end
+    submission_status = submission&.status || 'unsubmitted'
 
-  def submission_color_for(student)
-    submission_status = submission_status_for(student)
-    # for each status return the color that it shoud display
+    label_class =
+      case submission_status
+      when 'success'
+        'success'
+      when 'failure'
+        'danger'
+      else
+        'info'
+      end
 
-    colors = {
-      'failure' => 'red',
-      'success' => 'green',
-      'queued' => 'gray',
-      'running' => 'gray',
-      'unsubmitted' => 'gray'
-    }
-
-    colors[submission_status]
+    h.content_tag :span, submission_status, class: "label label-#{label_class}"
   end
 end

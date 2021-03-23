@@ -73,8 +73,6 @@
         %tbody
           - @course.student_memberships.each do |student|
             %tr
-              %td
-                = student.name
+              %td= student.name
               - @assignments.decorate.each do |assignment|
-                %td{style: "background-color: " + assignment.decorate.submission_color_for(student) + "; color: white;"}
-                  = assignment.decorate.submission_status_for(student)
+                %td= assignment.decorate.submission_status_for(student)
