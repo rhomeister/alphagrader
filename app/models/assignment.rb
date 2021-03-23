@@ -17,4 +17,8 @@ class Assignment < ApplicationRecord
     result.tests = tests.map(&:dup)
     result
   end
+
+  def last_submission_for(student)
+    submissions.select { |s| s.uploaded_by_id == student.user_id }.sort_by(&:created_at).last
+  end
 end

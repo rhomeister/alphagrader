@@ -61,3 +61,18 @@
             %td= link_to assignment.name, [@course, assignment]
             %td= assignment.due_date
 
+- if current_user.course_instructor?(@course)
+  = panel title: 'Assigment results', context: :primary do
+    .panel-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th= 'Student'
+            - @assignments.decorate.each do |assignment|
+              %th= link_to assignment.name, [@course, assignment]
+        %tbody
+          - @course.student_memberships.each do |student|
+            %tr
+              %td= student.name
+              - @assignments.decorate.each do |assignment|
+                %td= assignment.decorate.submission_status_for(student)

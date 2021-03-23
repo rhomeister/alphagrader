@@ -28,7 +28,7 @@ feature 'Assignment', type: :feature do
     expect(page.body).to include assignment_attributes[:name]
 
     # go back to the assignment page
-    click_link assignment_attributes[:name]
+    click_link(assignment_attributes[:name], match: :first)
     expect(page.body).to include assignment_attributes[:name]
   end
 
@@ -48,7 +48,7 @@ feature 'Assignment', type: :feature do
     visit course_path(course)
     expect(page.body).to include assignment.name
 
-    click_link(assignment.name)
+    click_link(assignment.name, match: :first)
     # go back to the assignment page
     expect(page.body).to include assignment.name
     expect(page.body).to include assignment.description

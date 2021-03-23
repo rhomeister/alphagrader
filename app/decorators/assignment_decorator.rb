@@ -25,4 +25,22 @@ class AssignmentDecorator < Draper::Decorator
 
     h.icon 'exclamation-circle', library: :font_awesome
   end
+
+  def submission_status_for(student)
+    submission = last_submission_for(student)
+    # check if the student made any submissions
+    submission_status = submission&.status || 'unsubmitted'
+
+    label_class =
+      case submission_status
+      when 'success'
+        'success'
+      when 'failure'
+        'danger'
+      else
+        'info'
+      end
+
+    h.content_tag :span, submission_status, class: "label label-#{label_class}"
+  end
 end
