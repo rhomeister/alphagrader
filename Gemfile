@@ -13,7 +13,7 @@ gem 'sentry-raven'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 1.2.3'
 # Use Unicorn as the app server
 gem 'unicorn'
 # Use SCSS for stylesheets

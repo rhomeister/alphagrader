@@ -294,7 +294,7 @@ GEM
     parallel (1.19.2)
     parser (2.7.2.0)
       ast (~> 2.4.1)
-    pg (1.1.4)
+    pg (1.2.3)
     premailer (1.14.2)
       addressable
       css_parser (>= 1.6.0)
@@ -517,7 +517,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-oauth2
   paperclip
-  pg
+  pg (~> 1.2.3)
   premailer-rails (~> 1.11.1)
   pry
   rails
