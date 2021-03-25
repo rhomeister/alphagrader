@@ -79,7 +79,7 @@ group :development do
   # gem 'happy_seed'
   gem 'letter_opener'
 
-  gem 'brakeman', '~> 4.10.0', require: false
+  gem 'brakeman', '~> 4.10.1', require: false
   gem 'rubocop', '~> 0.92.0', require: false
 
   # capistrano
