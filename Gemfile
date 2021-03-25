@@ -17,7 +17,7 @@ gem 'pg', '~> 1.2.3'
 # Use Unicorn as the app server
 gem 'unicorn'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '~> 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '~> 4.2.0'
 # Use CoffeeScript for .coffee assets and views
