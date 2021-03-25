@@ -41,6 +41,6 @@ class AssignmentDecorator < Draper::Decorator
         'info'
       end
 
-    h.content_tag :span, submission_status, class: "label label-#{label_class}"
+    h.content_tag :span, submission_status.upcase, class: "label label-#{label_class}"
   end
 end
