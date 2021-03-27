@@ -46,7 +46,7 @@ gem 'redis'
 
 gem 'simple_form', '~> 5.0.3'
 
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'dotenv-rails', '~> 2.7.6', require: 'dotenv/rails-now'
 
 gem 'rich_pluralization',
     git: 'https://github.com/rhomeister/rich_pluralization.git',

@@ -171,10 +171,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
-    dotenv (2.7.4)
-    dotenv-rails (2.7.4)
-      dotenv (= 2.7.4)
-      railties (>= 3.2, < 6.1)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     draper (3.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -495,7 +495,7 @@ DEPENDENCIES
   coffee-rails
   dateslices
   devise
-  dotenv-rails
+  dotenv-rails (~> 2.7.6)
   draper
   factory_bot_rails
   faker (~> 2.14.0)
