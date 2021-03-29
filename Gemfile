@@ -13,13 +13,13 @@ gem 'sentry-raven'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 1.2.3'
 # Use Unicorn as the app server
 gem 'unicorn'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '~> 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+gem 'uglifier', '~> 4.2.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -32,7 +32,7 @@ gem 'paperclip'
 gem 'rubyzip', '~> 2.3.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.4.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 gem 'redis-namespace'
@@ -46,7 +46,7 @@ gem 'redis'
 
 gem 'simple_form', '~> 5.0.3'
 
-gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'dotenv-rails', '~> 2.7.6', require: 'dotenv/rails-now'
 
 gem 'rich_pluralization',
     git: 'https://github.com/rhomeister/rich_pluralization.git',
@@ -79,7 +79,7 @@ group :development do
   # gem 'happy_seed'
   gem 'letter_opener'
 
-  gem 'brakeman', '~> 4.10.0', require: false
+  gem 'brakeman', '~> 4.10.1', require: false
   gem 'rubocop', '~> 0.92.0', require: false
 
   # capistrano
@@ -122,7 +122,7 @@ gem 'nokogiri'
 gem 'octokit'
 gem 'omniauth', '~> 1.9.1'
 # gem 'omniauth-facebook'
-gem 'omniauth-github'
+gem 'omniauth-github', '~> 1.4.0'
 gem 'omniauth-oauth2'
 gem 'premailer-rails', '~> 1.11.1'
 gem 'responders'
