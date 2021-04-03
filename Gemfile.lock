@@ -208,8 +208,9 @@ GEM
       railties (>= 4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    gretel (3.0.9)
-      rails (>= 3.1.0)
+    gretel (4.2.0)
+      actionview (>= 5.1, < 7.0)
+      railties (>= 5.1, < 7.0)
     haml (5.1.1)
       temple (>= 0.8.0)
       tilt
@@ -502,7 +503,7 @@ DEPENDENCIES
   formtastic!
   git_stats
   github_webhook (~> 1.1.2)
-  gretel
+  gretel (~> 4.2.0)
   haml
   jbuilder
   jquery-rails (~> 4.4.0)
