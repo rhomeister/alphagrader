@@ -36,13 +36,6 @@ Rails.application.routes.draw do
 
   resources :enrollments
 
-  namespace :admin do
-    # get "/stats" => "stats#stats"
-    devise_scope :admin_user do
-      get '/stats/:scope' => 'stats#stats', as: :admin_stats
-    end
-  end
-
   get 'setup' => 'setup#index'
 
   sidekiq_web_constraint = lambda do |request|

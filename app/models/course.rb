@@ -5,11 +5,11 @@ class Course < ApplicationRecord
   has_many :users, through: :memberships
 
   has_many :instructor_memberships, -> { instructor },
-           class_name: 'Membership', source: :course
+           class_name: 'Membership'
   has_many :instructors, through: :instructor_memberships, class_name: 'User', source: :user
 
   has_many :student_memberships, -> { student },
-           class_name: 'Membership', source: :course
+           class_name: 'Membership'
   has_many :students, through: :student_memberships, class_name: 'User', source: :user
 
   has_many :assignments, dependent: :destroy
