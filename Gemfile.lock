@@ -215,7 +215,7 @@ GEM
     gretel (4.2.0)
       actionview (>= 5.1, < 7.0)
       railties (>= 5.1, < 7.0)
-    haml (5.1.1)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     hash-deep-merge (0.1.1)
