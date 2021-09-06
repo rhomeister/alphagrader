@@ -17,7 +17,7 @@ RUN apt-get update && \
           python2 python3 \
           mono-xsp \
           nodejs \
-          openjdk-17-jdk \
+          openjdk-18-jdk \
           golang \
           clisp \
     && rm -rf /var/lib/apt/lists/*
