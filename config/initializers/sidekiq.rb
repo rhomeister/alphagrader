@@ -21,6 +21,7 @@ Sidekiq.configure_server do |config|
 
     # not sure why +1 is necessary, but otherwise getting
     # ActiveRecord::ConnectionTimeOut errors
+    config = config.dup
     config['pool'] = sidekiq_config[:concurrency] + 1
     ActiveRecord::Base.establish_connection(config)
   end
