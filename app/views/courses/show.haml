@@ -4,6 +4,10 @@
   = @course.name
   - if can?(:edit, @course.object)
     .pull-right
+      = link_to 'Remove', course_path(@course),
+        class: 'btn btn-default',
+        method: :delete,
+        data: { confirm: "Are you sure?" }
       = link_to 'Clone', duplicate_course_path(@course), class: 'btn btn-default'
       = link_to 'Edit', edit_course_path(@course), class: 'btn btn-primary'
 

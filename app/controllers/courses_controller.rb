@@ -41,6 +41,13 @@ class CoursesController < ApplicationController
     redirect_to @course.copy, flash: { success: t('courses.copied_succesfully') }
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+    @course.destroy
+
+    redirect_to_root_path
+  end
+
   private
 
   def course_params
