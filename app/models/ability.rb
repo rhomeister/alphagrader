@@ -29,6 +29,7 @@ class Ability
   def setup_course_rights
     can :read, Course, membership_params
     can :create, Course if user.instructor? || user.admin?
+    can :destroy, Course if user.instructor? || user.admin?
 
     can %i[edit update duplicate], Course, instructor_membership_params
   end
