@@ -45,7 +45,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy
 
-    redirect_to_root_path
+    redirect_to action: 'index'
   end
 
   private
