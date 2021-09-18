@@ -44,7 +44,7 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
 
-    redirect_to action: 'index'
+    redirect_to action: 'index', flash: { success: t('courses.deleted_successfully', course.name) }
   end
 
   private

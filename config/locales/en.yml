@@ -29,6 +29,7 @@ en:
     list: My Courses
     new: New Course
     copied_succesfully: Your course has been copied successfully
+    deleted_succesfully: The course %{name} has been deleted successfully
 
   activerecord:
     models:
