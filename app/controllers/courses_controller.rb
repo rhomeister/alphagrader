@@ -43,8 +43,9 @@ class CoursesController < ApplicationController
 
   def destroy
     @course.destroy
+    flash[:notice] = "The course #{@course.name} has been deleted successfully"
 
-    redirect_to action: 'index', flash: { success: t('courses.deleted_successfully', course.name) }
+    redirect_to action: 'index'
   end
 
   private
