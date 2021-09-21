@@ -88,3 +88,20 @@ The output should end with the following line:
 ```
 83 examples, 0 failures, 1 pending
 ```
+
+#### File submissions
+Alphagrader uses `redis` and `sidekiq` to handle file submissions alongside
+`docker`.
+
+##### `redis` setup
+`redis` must be running so that Alphagrader can handle submissions.
+```sh
+$ redis-server
+```
+
+##### `sidekiq` setup
+Once `redis` is running, Alphagrader also requires `sidekiq` running for file
+submissions
+```sh
+$ bundle exec sidekiq -C config/sidekiq.yml
+```
