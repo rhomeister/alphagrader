@@ -46,4 +46,8 @@ class Course < ApplicationRecord
   def membership_for(current_user)
     memberships.find { |m| m.user_id == current_user.id }
   end
+
+  def sorted_student_memberships
+    student_memberships.sort { |a, b| a.name <=> b.name }
+  end
 end
