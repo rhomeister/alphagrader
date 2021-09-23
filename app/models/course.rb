@@ -48,6 +48,6 @@ class Course < ApplicationRecord
   end
 
   def sorted_student_memberships
-    student_memberships.sort { |a, b| a.name <=> b.name }
+    student_memberships.sort_by(&:name)
   end
 end
