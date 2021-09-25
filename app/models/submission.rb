@@ -71,6 +71,10 @@ class Submission < ApplicationRecord
     @tempdir ||= Dir.mktmpdir
   end
 
+  def rerun_tests(submission_id)
+    SubmissionCheckWorker.perform_as_ync(submission_id)
+  end
+
   private
 
   def inject_runfile_if_not_exists
