@@ -41,7 +41,7 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  def update_submissions
+  def rerun_submissions
     @submissions.each(&:rerun_tests)
     redirect_to action: 'index'
   end
