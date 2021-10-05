@@ -71,8 +71,8 @@ class Submission < ApplicationRecord
     @tempdir ||= Dir.mktmpdir
   end
 
-  def rerun_tests(submission_id)
-    SubmissionCheckWorker.perform_as_ync(submission_id)
+  def rerun_tests
+    SubmissionCheckWorker.perform_async(id)
   end
 
   private
