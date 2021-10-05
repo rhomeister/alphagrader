@@ -8,6 +8,9 @@
 
 = panel title: Submission.model_name.human.pl, context: :primary do
   .panel-body
+    %p= link_to 'Rerun Submissions', 
+                update_submissions_assignment_submission_path(@assignment, @submission),
+                method: :patch, class: 'btn btn-primary'
     %table.table.table-striped
       %thead
         %tr
