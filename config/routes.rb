@@ -29,10 +29,8 @@ Rails.application.routes.draw do
   end
 
   resources :assignments do
-    resources :submissions do
-      member do
-        patch 'update_submissions'
-      end
+    collection do
+      patch 'rerun_submissions'
     end
     resources :tests
     resources :teams
