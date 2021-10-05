@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   end
 
   resources :assignments do
-    resources :submissions
+    resources :submissions do
+      member do
+        patch 'update_submissions'
+      end
+    end
     resources :tests
     resources :teams
   end
