@@ -41,6 +41,11 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def update_submissions
+    @submissions.each(&:rerun_tests)
+    redirect_to action: 'index'
+  end
+
   private
 
   def normalize_params
