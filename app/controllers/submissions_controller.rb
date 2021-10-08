@@ -14,6 +14,7 @@ class SubmissionsController < ApplicationController
   end
 
   def index
+    @submissions.each(&:rerun_tests)
     @submissions = @submissions.order('submissions.created_at desc')
     @active_team = @assignment.teams.joins(:memberships)
                               .accessible_by(current_ability)
