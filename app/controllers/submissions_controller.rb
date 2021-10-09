@@ -14,7 +14,6 @@ class SubmissionsController < ApplicationController
   end
 
   def index
-    @submissions.each(&:rerun_tests)
     @submissions = @submissions.order('submissions.created_at desc')
     @active_team = @assignment.teams.joins(:memberships)
                               .accessible_by(current_ability)
@@ -42,8 +41,9 @@ class SubmissionsController < ApplicationController
     end
   end
 
-  def rerun_submissions
+  def rerun_all
     @submissions.each(&:rerun_tests)
+    flash[:success] = 'All submissions have been enqueued for rechecking'
     redirect_to action: 'index'
   end
 
