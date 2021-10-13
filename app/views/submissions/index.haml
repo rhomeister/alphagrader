@@ -27,4 +27,10 @@
             %td= link_to submission.created_at, assignment_submission_path(@assignment, submission)
             %td= submission.uploaded_by
             %td= submission.contributor_names
-            %td= submission.status
+            - unless submission.checks_completed?
+              %td
+                %i.fa.fa-spinner.fa-spin.fa-2x
+                :javascript
+                  setTimeout(function() { location.reload() }, 500)
+            - else
+              %td= submission.status
