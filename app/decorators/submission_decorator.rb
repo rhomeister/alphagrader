@@ -23,6 +23,10 @@ class SubmissionDecorator < Draper::Decorator
     object.team.users.map(&:name).join(', ')
   end
 
+  def loading
+    h.content_tag :i, '', class: 'fa fa-spinner fa-spin fa-2x'
+  end
+
   def status
     label_class =
       case object.status

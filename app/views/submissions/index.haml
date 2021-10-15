@@ -29,7 +29,7 @@
             %td= submission.contributor_names
             - unless submission.checks_completed?
               %td
-                %i.fa.fa-spinner.fa-spin.fa-2x
+                =submission.loading
                 :javascript
                   setTimeout(function() { location.reload() }, 500)
             - else
