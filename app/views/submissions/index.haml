@@ -30,7 +30,5 @@
             - unless submission.checks_completed?
               %td
                 =submission.loading
-                :javascript
-                  setTimeout(function() { location.reload() }, 500)
             - else
               %td= submission.status
