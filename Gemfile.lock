@@ -159,7 +159,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.1.9)
     connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -223,9 +223,9 @@ GEM
     hashdiff (0.4.0)
     hashie (4.1.0)
     htmlentities (4.3.4)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.11.2)
+    jbuilder (2.11.4)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
     jquery-rails (4.4.0)
@@ -261,7 +261,7 @@ GEM
       rake
     mini_mime (1.1.0)
     mini_portile2 (2.6.1)
-    minitest (5.14.4)
+    minitest (5.15.0)
     modernizr-rails (2.7.1)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -479,7 +479,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
