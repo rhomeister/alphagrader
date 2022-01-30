@@ -42,7 +42,8 @@ class SubmissionsController < ApplicationController
   end
 
   def rerun_all
-    RerunSubmissionsJob.perform_later
+    @submissions.each(&:rerun_tests)
+    flash[:success] = 'All submissions have been enqueued for rechecking'
     redirect_to action: 'index'
   end
 
