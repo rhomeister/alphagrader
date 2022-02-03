@@ -23,19 +23,14 @@
         - if @active_team
           = link_to 'Upload New Submission', new_assignment_submission_path(@assignment), class: 'btn btn-primary'
         = no_results_found_row(4) if @submissions.to_a.empty?
-        - if @submissions.any?{ |s| !s.checks_completed? }
+        - @submissions.decorate.each do |submission|
           %tr
-            %td= "foo"
-            %td= "foo"
-            %td= "foo"
-            %td
-              %i.fa.fa-spinner.fa-spin.fa-2x
-              :javascript
-                setTimeout(function() { location.reload() }, 5000)
-        - else
-          - @submissions.decorate.each do |submission|
-            %tr
-              %td= link_to submission.created_at, assignment_submission_path(@assignment, submission)
-              %td= submission.uploaded_by
-              %td= submission.contributor_names
-              %td= submission.status
+            %td= link_to submission.created_at, assignment_submission_path(@assignment, submission)
+            %td= submission.uploaded_by
+            %td= submission.contributor_names
+            %td= submission.status
+
+-# reload page every 2s if submissions are still running
+- if @submissions.any?{ |s| !s.checks_completed? }
+  :javascript
+    setTimeout(function() { location.reload() }, 2000)
