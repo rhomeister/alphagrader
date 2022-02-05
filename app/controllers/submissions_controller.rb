@@ -41,6 +41,12 @@ class SubmissionsController < ApplicationController
     end
   end
 
+  def rerun_all
+    @submissions.each(&:rerun_tests)
+    flash[:success] = 'All submissions have been enqueued for rechecking'
+    redirect_to action: 'index'
+  end
+
   private
 
   def normalize_params

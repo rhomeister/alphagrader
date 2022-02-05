@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   end
 
   resources :assignments do
-    resources :submissions
+    resources :submissions do
+      collection do
+        get 'rerun_all'
+      end
+    end
     resources :tests
     resources :teams
   end

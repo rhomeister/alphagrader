@@ -24,6 +24,8 @@ class SubmissionDecorator < Draper::Decorator
   end
 
   def status
+    return h.content_tag(:i, '', class: 'fa fa-spinner fa-spin fa-2x') if !submission.checks_completed?
+
     label_class =
       case object.status
       when 'success'

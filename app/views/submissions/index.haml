@@ -8,6 +8,10 @@
 
 = panel title: Submission.model_name.human.pl, context: :primary do
   .panel-body
+    - if can?(:rerun_all, @submissions)
+      %p= link_to 'Rerun Submissions',
+                  rerun_all_assignment_submissions_path(@assignment),
+                  class: 'btn btn-primary'
     %table.table.table-striped
       %thead
         %tr
@@ -25,3 +29,8 @@
             %td= submission.uploaded_by
             %td= submission.contributor_names
             %td= submission.status
+
+-# reload page every 2s if submissions are still running
+- if @submissions.any?{ |s| !s.checks_completed? }
+  :javascript
+    setTimeout(function() { location.reload() }, 2000)
