@@ -21,7 +21,7 @@ Common tasks:
 Alphagrader requires the following to function correctly:
 - PostgreSQL
 - `docker`
-- `ruby` 2.5.5
+- `ruby` 2.7.4
 - [`bundler`](https://bundler.io/)
 
 Additionally, it is important to create a `.env` file with the following 
