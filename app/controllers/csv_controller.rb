@@ -7,7 +7,7 @@ class CsvController < ApplicationController
         respond_to do |format|
             format.csv do
                 response.headers['Content-Type'] = 'text/csv'
-                response.headers['Content-Disposition'] = "attachment; filename=leads.csv"
+                response.headers['Content-Disposition'] = "attachment; filename=data.csv"
             end
         end
     end
