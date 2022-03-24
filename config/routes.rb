@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations',
                                     omniauth_callbacks: 'omniauth_callbacks' }
 
-  get 'csv/export', to: 'csv#export'
+  get 'submissions/export', to: 'submissions#export'
 
   mount ActionCable.server => '/cable'
 
