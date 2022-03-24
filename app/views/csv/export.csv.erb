@@ -1,5 +1,0 @@
-<%- headers = ['Email', 'Date'] -%>
-<%= CSV.generate_line headers %>
-<%- @csv.each do |datum| -%>
-    <%= CSV.generate_line([datum.data['email'], datum.created_at]) -%>
-<%- end -%>
