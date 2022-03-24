@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 class SubmissionsController < ApplicationController
   before_action :normalize_params
 
@@ -45,6 +47,17 @@ class SubmissionsController < ApplicationController
     @submissions.each(&:rerun_tests)
     flash[:success] = 'All submissions have been enqueued for rechecking'
     redirect_to action: 'index'
+  end
+
+  def export
+    @csv_data = Submission.where(user_id: current_user.id)
+
+    respond_to do |format|
+      format.csv do 
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=data.csv"
+      end
+    end
   end
 
   private
