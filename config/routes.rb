@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations',
                                     omniauth_callbacks: 'omniauth_callbacks' }
 
-  get 'submissions/export', to: 'submissions#export'
-
   mount ActionCable.server => '/cable'
 
   unauthenticated do
@@ -31,9 +29,11 @@ Rails.application.routes.draw do
   end
 
   resources :assignments do
+    # get 'submissions/export', to: 'submissions#export'
     resources :submissions do
       collection do
         get 'rerun_all'
+        get 'export'
       end
     end
     resources :tests
