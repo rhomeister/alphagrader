@@ -34,3 +34,5 @@
 - if @submissions.any?{ |s| !s.checks_completed? }
   :javascript
     setTimeout(function() { location.reload() }, 2000)
+
+= link_to 'CSV export', export_assignment_submissions_path

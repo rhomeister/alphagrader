@@ -64,8 +64,6 @@
             %td= link_to assignment.name, [@course, assignment]
             %td= assignment.due_date
 
-= link_to 'CSV export', '/submisions/export'
-
 - if current_user.course_instructor?(@course)
   = panel title: 'Assignment results', context: :primary do
     .panel-body
