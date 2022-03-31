@@ -50,7 +50,7 @@ class SubmissionsController < ApplicationController
   end
 
   def export
-    @csv_data = Submission.where(user_id: current_user.id)
+    @csv_data = Submission.all
 
     respond_to do |format|
       format.csv do 
