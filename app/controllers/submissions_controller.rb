@@ -48,13 +48,9 @@ class SubmissionsController < ApplicationController
   end
 
   def export
-    @csv_data = Submission.all
-
     respond_to do |format|
-      format.csv do 
-        format.html
-        format.csv { send_data @csv_data.to_csv, filename: "data.csv" }
-      end
+      format.html
+      format.csv { send_data @submissions.to_csv, filename: 'data.csv' }
     end
   end
 
