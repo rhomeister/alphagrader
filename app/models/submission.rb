@@ -14,6 +14,18 @@ class Submission < ApplicationRecord
     self.status ||= :queued
   end
 
+  def self.to_csv
+    attributes = %w{language status}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.find_each do |user|
+        csv << attributes.map { |attr| user.send(attr) }
+      end
+    end
+  end
+
   after_commit on: :create do
     SubmissionCheckWorker.perform_async(id)
   end
