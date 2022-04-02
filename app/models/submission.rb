@@ -15,13 +15,13 @@ class Submission < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w{language status}
+    attributes = %w[language status]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      all.find_each do |user|
-        csv << attributes.map { |attr| user.send(attr) }
+      all.each do |submission|
+        csv << submission.attributes.values_at(*attributes)
       end
     end
   end
