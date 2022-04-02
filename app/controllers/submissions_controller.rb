@@ -54,8 +54,8 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       format.csv do 
-        response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=data.csv"
+        format.html
+        format.csv { send_data @csv_data.to_csv, filename: "data.csv" }
       end
     end
   end
