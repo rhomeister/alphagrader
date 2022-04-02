@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv'
-
 class SubmissionsController < ApplicationController
   before_action :normalize_params
 
