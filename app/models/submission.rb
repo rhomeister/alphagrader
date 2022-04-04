@@ -15,7 +15,7 @@ class Submission < ApplicationRecord
   end
 
   def self.to_csv
-    attributes = %w[language status]
+    attributes = %w[id created_at updated_at test_results_count successful_test_results_count language status]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
