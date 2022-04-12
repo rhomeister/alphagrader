@@ -33,7 +33,6 @@ Rails.application.routes.draw do
     resources :submissions do
       collection do
         get 'rerun_all'
-        get 'export'
       end
     end
     resources :tests
