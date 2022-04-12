@@ -52,13 +52,6 @@ class SubmissionsController < ApplicationController
     redirect_to action: 'index'
   end
 
-  def export
-    respond_to do |format|
-      format.html
-      format.csv { send_data @submissions.to_csv, filename: 'data.csv' }
-    end
-  end
-
   private
 
   def normalize_params
