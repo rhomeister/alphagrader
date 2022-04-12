@@ -1,5 +1,0 @@
-<%- headers = ['Status', 'Language'] %>
-<%= CSV.generate_line headers %>
-<%- @csv_data.each do |data| -%>
-  <%= CSV.generate_line([data.status, data.language]) %>
-<%- end -%>
