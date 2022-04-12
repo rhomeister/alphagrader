@@ -12,6 +12,9 @@
       %p= link_to 'Rerun Submissions',
                   rerun_all_assignment_submissions_path(@assignment),
                   class: 'btn btn-primary'
+      %p= link_to 'Export',
+                  assignment_submissions_path(format: :csv),
+                  class: 'btn btn-primary'
     %table.table.table-striped
       %thead
         %tr
