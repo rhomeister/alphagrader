@@ -19,6 +19,11 @@ class SubmissionsController < ApplicationController
                               .accessible_by(current_ability)
                               .find_by(memberships: { user_id: current_user.id })
     @active_team = @active_team.try(:decorate)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @submissions.to_csv, filename: 'data.csv' }
+    end
   end
 
   def show
