@@ -39,7 +39,7 @@ describe Submission, type: :model do
   end
 
   it 'can be exported to csv' do
-    travel_to '2022-01-01'
+    travel_to Time.zone.local(2022, 1, 1) # '2022-01-01'
     assignment = create(:assignment)
     assignment.tests << create(:expected_output_test)
 
