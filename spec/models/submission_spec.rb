@@ -51,8 +51,8 @@ describe Submission, type: :model do
     expect(submission.reload.status).to eq 'success'
 
     expected_csv = <<~EXPECTED
-      id,uploaded_by_name,created_at,updated_at,test_results_count,successful_test_results_count,language,status
-      #{submission.id},Ruben,2022-01-01 00:00:00 UTC,2022-01-01 00:00:00 UTC,1,1,,success
+      id,assignment_id,assignment_by_name,uploaded_by_id,uploaded_by_name,created_at,updated_at,test_results_count,successful_test_results_count,language,status
+      #{submission.id},#{assignment.id},#{assignment.name},#{user.id},Ruben,2022-01-01 00:00:00 UTC,2022-01-01 00:00:00 UTC,1,1,,success
     EXPECTED
 
     expect(Submission.to_csv).to eq expected_csv
