@@ -47,8 +47,11 @@ class SubmissionsController < ApplicationController
   end
 
   def rerun_all
-    @submissions.each(&:rerun_tests)
-    flash[:success] = 'All submissions have been enqueued for rechecking'
+    unless @submissions.any?{ |s| !s.checks_completed? }
+      @submissions.each(&:rerun_tests)
+      flash[:success] = 'All submissions have been enqueued for rechecking'
+    end
+
     redirect_to action: 'index'
   end
 
