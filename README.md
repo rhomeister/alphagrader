@@ -56,9 +56,9 @@ S3_SECRET_KEY=abc
 S3_REGION=us-west
 ```
 ### PostgreSQL setup
-Create the following role in `psql`:
+Create the following role:
 ```
-postgres=# createuser -P --interactive
+postgres@server:~$ createuser -P --interactive
 Enter name of role to add: alphagrader
 Enter password for new role: alphagrader
 Shall the new role be a superuser? (y/n) y
