@@ -66,8 +66,8 @@ Shall the new role be a superuser? (y/n) y
 
 Now create the following databases:
 ```
-postgres@server:~$ createdb alphagrader-development
-postgres@server:~$ createdb alphagrader-test
+postgres@server:~$ createdb alphagrader_development
+postgres@server:~$ createdb alphagrader_test
 ```
 
 For details, see `database.yml`.
