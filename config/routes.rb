@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   end
 
   resources :assignments do
-    # get 'submissions/export', to: 'submissions#export'
     resources :submissions do
       collection do
         get 'rerun_all'
