@@ -48,7 +48,7 @@ class Ability
   def setup_submission_rights
     can :read, Submission, team: membership_params
     can :read, Submission, assignment: { course_id: instructor_course_ids }
-    can :rerun_all, Submission, assignment: { course_id: instructor_course_ids }
+    can :rerun_all, Submission if user.instructor? || user.admin?
     can %i[new create], Submission, assignment: { course: membership_params }
   end
 
