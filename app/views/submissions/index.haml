@@ -8,7 +8,7 @@
 
 = panel title: Submission.model_name.human.pl, context: :primary do
   .panel-body
-    - if can?(:rerun_all, @submissions)
+    - if can?(:rerun_all, Submission)
       -# Disable button until all submissions finish rerunning
       - if @submissions.any?{ |s| !s.checks_completed? }
         %span{:class => "btn btn-default"}= 'Rerun Submissions'
