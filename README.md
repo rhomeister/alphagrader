@@ -56,9 +56,9 @@ S3_SECRET_KEY=abc
 S3_REGION=us-west
 ```
 ### PostgreSQL setup
-Create the following role in `psql`:
+Create the following role:
 ```
-postgres=# createuser -P --interactive
+postgres@server:~$ createuser -P --interactive
 Enter name of role to add: alphagrader
 Enter password for new role: alphagrader
 Shall the new role be a superuser? (y/n) y
@@ -66,8 +66,8 @@ Shall the new role be a superuser? (y/n) y
 
 Now create the following databases:
 ```
-postgres@server:~$ createdb alphagrader-development
-postgres@server:~$ createdb alphagrader-test
+postgres@server:~$ createdb alphagrader_development
+postgres@server:~$ createdb alphagrader_test
 ```
 
 For details, see `database.yml`.
