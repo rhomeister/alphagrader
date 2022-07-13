@@ -19,6 +19,11 @@ class SubmissionsController < ApplicationController
                               .accessible_by(current_ability)
                               .find_by(memberships: { user_id: current_user.id })
     @active_team = @active_team.try(:decorate)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @submissions.to_csv, filename: 'data.csv' }
+    end
   end
 
   def show
@@ -42,8 +47,11 @@ class SubmissionsController < ApplicationController
   end
 
   def rerun_all
-    @submissions.each(&:rerun_tests)
-    flash[:success] = 'All submissions have been enqueued for rechecking'
+    unless @submissions.any?{ |s| !s.checks_completed? }
+      @submissions.each(&:rerun_tests)
+      flash[:success] = 'All submissions have been enqueued for rechecking'
+    end
+
     redirect_to action: 'index'
   end
 

@@ -14,6 +14,21 @@ class Submission < ApplicationRecord
     self.status ||= :queued
   end
 
+  def self.to_csv
+    attributes = %w[id assignment_id assignment_by_name
+                    uploaded_by_id uploaded_by_name created_at
+                    updated_at test_results_count successful_test_results_count
+                    language status]
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |submission|
+        csv << attributes.map { |a| submission.send(a) }
+      end
+    end
+  end
+
   after_commit on: :create do
     SubmissionCheckWorker.perform_async(id)
   end
@@ -22,11 +37,22 @@ class Submission < ApplicationRecord
     next unless checks_completed?
 
     notify_users
+    successful_test_results_count # store successful tests count in db column
+  end
+
+  def uploaded_by_name
+    uploaded_by&.name
+  end
+
+  def assignment_by_name
+    assignment&.name
   end
 
   def successful_test_results_count
     value = self[:successful_test_results_count]
     return value if value
+
+    return unless test_results.any?
 
     self.successful_test_results_count = test_results.where(status: %w[success skipped]).count
     save
@@ -72,6 +98,7 @@ class Submission < ApplicationRecord
   end
 
   def rerun_tests
+    update(successful_test_results_count: nil)
     SubmissionCheckWorker.perform_async(id)
   end
 

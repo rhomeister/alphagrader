@@ -26,3 +26,9 @@ config/ansible*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore development dir
+development/
+
+# Ignore Redis dump file
+dump.rdb

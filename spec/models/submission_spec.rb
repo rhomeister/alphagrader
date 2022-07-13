@@ -37,4 +37,24 @@ describe Submission, type: :model do
       expect(result.submission).to eq submission
     end
   end
+
+  it 'can be exported to csv' do
+    travel_to Time.zone.local(2022, 1, 1) # '2022-01-01'
+    assignment = create(:assignment)
+    assignment.tests << create(:expected_output_test)
+
+    user = create(:user, name: 'Ruben')
+    submission = build(:file_submission, assignment: assignment, uploaded_by: user)
+    submission.file = File.new('spec/fixtures/dummy_submissions/correct.zip')
+    submission.save!
+
+    expect(submission.reload.status).to eq 'success'
+
+    expected_csv = <<~EXPECTED
+      id,assignment_id,assignment_by_name,uploaded_by_id,uploaded_by_name,created_at,updated_at,test_results_count,successful_test_results_count,language,status
+      #{submission.id},#{assignment.id},#{assignment.name},#{user.id},Ruben,2022-01-01 00:00:00 UTC,2022-01-01 00:00:00 UTC,1,1,,success
+    EXPECTED
+
+    expect(Submission.to_csv).to eq expected_csv
+  end
 end
