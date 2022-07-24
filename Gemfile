@@ -143,4 +143,4 @@ gem 'kaminari', github: 'amatsuda/kaminari', branch: '0-17-stable'
 # gem 'ransack', github: 'activerecord-hackery/ransack'
 # gem 'twitter'
 
-ruby '~> 2.4'
+ruby '2.7.4'
