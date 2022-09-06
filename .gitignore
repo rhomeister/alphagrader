@@ -32,3 +32,6 @@ development/
 
 # Ignore Redis dump file
 dump.rdb
+
+# Ignore locally stored files
+storage/
