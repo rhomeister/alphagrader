@@ -218,7 +218,7 @@ GEM
     gretel (4.2.0)
       actionview (>= 5.1, < 7.0)
       railties (>= 5.1, < 7.0)
-    haml (6.0.1)
+    haml (6.0.4)
       temple (>= 0.8.2)
       thor
       tilt
