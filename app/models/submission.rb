@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'zip'
+
 class Submission < ApplicationRecord
   belongs_to :assignment
   belongs_to :uploaded_by, class_name: 'User'
@@ -18,7 +20,7 @@ class Submission < ApplicationRecord
     attributes = %w[id assignment_id assignment_by_name
                     uploaded_by_id uploaded_by_name created_at
                     updated_at test_results_count successful_test_results_count
-                    language status]
+                    language status code]
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
@@ -38,6 +40,18 @@ class Submission < ApplicationRecord
 
     notify_users
     successful_test_results_count # store successful tests count in db column
+  end
+
+  def code
+    contents = StringIO.new
+
+    Zip::InputStream.open(file.path) do |io|
+      while (entry = io.get_next_entry)
+        contents << "#{io.read}"
+      end
+    end
+
+    contents.string
   end
 
   def uploaded_by_name

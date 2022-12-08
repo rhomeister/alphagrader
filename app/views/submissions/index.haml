@@ -8,6 +8,7 @@
 
 = panel title: Submission.model_name.human.pl, context: :primary do
   .panel-body
+    -# Rerun submissions button
     - if can?(:rerun_all, Submission)
       -# Disable button until all submissions finish rerunning
       - if @submissions.any?{ |s| !s.checks_completed? }
@@ -19,6 +20,10 @@
       = link_to 'Export Data',
                   assignment_submissions_path(format: :csv),
                   class: 'btn btn-primary'
+    -# New submission button
+    - if @active_team
+      = link_to 'Upload New Submission', new_assignment_submission_path(@assignment), class: 'btn btn-primary'
+    = no_results_found_row(4) if @submissions.to_a.empty?
     %table.table.table-striped
       %thead
         %tr
@@ -27,9 +32,6 @@
           %th= Submission.human_attribute_name(:contributors)
           %th= Submission.human_attribute_name(:status)
       %tbody
-        - if @active_team
-          = link_to 'Upload New Submission', new_assignment_submission_path(@assignment), class: 'btn btn-primary'
-        = no_results_found_row(4) if @submissions.to_a.empty?
         - @submissions.decorate.each do |submission|
           %tr
             %td= link_to submission.created_at, assignment_submission_path(@assignment, submission)
